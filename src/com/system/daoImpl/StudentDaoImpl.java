@@ -26,7 +26,7 @@ public class StudentDaoImpl implements StudentDAO {
 	@Override
 	public void update(Connection conn, Student student) throws SQLException {
 		// TODO Auto-generated method stub
-		String updateSql = "UPDATE tbl_student,studentPassword=?,studentName=?,studentGender=? WHERE studentEmail=?";
+		String updateSql = "UPDATE tbl_student SET studentPassword=?,studentName=?,studentGender=? WHERE studentEmail=?";
 		PreparedStatement ps = conn.prepareStatement(updateSql);
 		// ps.setString(1, student.getEmail());
 		ps.setString(1, student.getPassword());
