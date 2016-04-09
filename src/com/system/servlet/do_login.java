@@ -32,18 +32,10 @@ public class do_login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
-		if(session==null){//会话过期
-			response.sendRedirect("error.jsp");
-			return;
-		}
-		String username1=(String) session.getAttribute("username");
+		
+
 		String username=request.getParameter("username");
-		System.out.println("userName"); 
-		//session如果没有过期，username1和username的值应该相等
-		if(!username1.equals(username)){
-			response.sendRedirect("error.jsp");
-			return;
-		}
+	
 		String password=request.getParameter("password");
 		String identity=request.getParameter("identity");
 		if(username.contentEquals("")||password.contentEquals("")||identity.contentEquals("")){
@@ -60,6 +52,8 @@ public class do_login extends HttpServlet {
 			System.out.println(b);
 			if(b){
 				System.out.println("登陆成功");
+				session.setAttribute("student", s);
+				
 				response.sendRedirect("loginSuccess.jsp");
 				return;
 			}
