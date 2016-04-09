@@ -1,5 +1,6 @@
 package com.system.servlet;
 
+import java.awt.image.RescaleOp;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.system.entity.Student;
+import com.system.entity.Teacher;
 import com.system.service.LoginService;
 
 /**
@@ -29,7 +31,7 @@ public class do_login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -37,11 +39,17 @@ public class do_login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		String identity=request.getParameter("identity");
+		if(username.contentEquals("")||password.contentEquals("")||identity.contentEquals("")){
+			response.sendRedirect("error.jsp");
+			return;
+		}
 		if(identity.equals("用户")){
 			Student s=new Student();
 			s.setEmail(username);
@@ -49,6 +57,7 @@ public class do_login extends HttpServlet {
 			boolean b=new LoginService().studentLogin(s);
 			if(b){
 				response.sendRedirect("loginSuccess.jsp");
+				
 			}
 			else{
 				response.sendRedirect("error.jsp");
@@ -56,6 +65,16 @@ public class do_login extends HttpServlet {
 			
 		}
 		else if(identity.equals("教师")){
+			Teacher t=new Teacher();
+			t.setEmail(username);
+			t.setPassword(password);
+			boolean b=new LoginService().teacherLogin(t);
+			if(b){
+				response.sendRedirect("loginSuccess.jsp");
+			}
+			else{
+				response.sendRedirect("error.jsp");
+			}
 			
 		}
 		

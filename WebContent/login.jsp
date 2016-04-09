@@ -10,9 +10,9 @@
 <form method="post" action="login">
 用户名：<input type="text" name="username"><br>
 密码：<input type="password" name="password"><br>
-<input type="submit" name="submit" value="登录"><br>
 <input type="radio" name="identity" value="用户">用户<br>
 <input type="radio" name="identity" value="教师">教师<br>
+<input type="submit" name="submit" value="登录"><br>
 </form>
 </body>
 </html>
