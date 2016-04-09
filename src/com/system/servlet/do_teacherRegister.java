@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.system.entity.Teacher;
+import com.system.service.RegisterService;
+
 public class do_teacherRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -16,9 +19,30 @@ public class do_teacherRegister extends HttpServlet {
 		String name=request.getParameter("name");
 		String sex=request.getParameter("sex");
 		String phone=request.getParameter("phone");
+		if(email==null||password==null||name==null||sex==null||phone==null||email.equals("")||password.equals("")||name.equals("")||sex.equals("")||phone.equals("")){
+			response.sendRedirect("error.jsp");
+			return;
+		}
+		Teacher t=new Teacher();
+		t.setEmail(email);
+		t.setPassword(password);
+		if(sex.equals("男")){
+			t.setGender("0");
+		}else {
+			t.setGender("1");
+		}
 		
-		
-		
+		t.setPhone(phone);
+		t.setName(name);
+		boolean b=new RegisterService().TeacherRegister(t);
+		if(b){
+			response.sendRedirect("registerSuccess.jsp");
+			return;
+		}
+		else{
+			response.sendRedirect("error.jsp");
+			return;
+		}
 		
 	}
 

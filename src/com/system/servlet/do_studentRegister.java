@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.system.entity.Student;
+import com.system.service.RegisterService;
+
 public class do_studentRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
@@ -16,8 +19,30 @@ public class do_studentRegister extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		String name=request.getParameter("name");
-		String sex=request.getParameter("sex");
-
+		String sex=request.getParameter("sex");	
+		if(email==null||password==null||name==null||sex==null||email.equals("")||password.equals("")||name.equals("")||sex.equals("")){
+			response.sendRedirect("error.jsp");
+			return;
+		}
+		Student s=new Student();
+		s.setEmail(email);
+		if(sex.equals("男")){
+			s.setGender("0");
+		}
+		else{
+			s.setGender("1");
+		}
+		s.setPassword(password);
+		s.setName(name);
+		boolean b=new RegisterService().StudentRegister(s);
+		if(b){
+			response.sendRedirect("registerSuccess.jsp");
+			return;
+		}
+		else{
+			response.sendRedirect("error.jsp");
+			return;
+		}
 		
 		
 	}
