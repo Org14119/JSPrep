@@ -12,7 +12,7 @@
   </welcome-file-list>
 <servlet>
 <servlet-name>login</servlet-name>
-<servlet-class>com.system.servlet.do_login.java</servlet-class>
+<servlet-class>com.system.servlet.do_login</servlet-class>
 </servlet>
 <servlet-mapping>
 <servlet-name>login</servlet-name>

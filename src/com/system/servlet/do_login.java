@@ -29,25 +29,33 @@ public class do_login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String username=request.getParameter("username");
+		System.out.println("userName"); 
 		String password=request.getParameter("password");
 		String identity=request.getParameter("identity");
+		System.out.println(identity);
 		if(identity.equals("用户")){
+			
 			Student s=new Student();
 			s.setEmail(username);
 			s.setPassword(password);
 			boolean b=new LoginService().studentLogin(s);
+			System.out.println(b);
 			if(b){
+				System.out.println("登陆成功");
 				response.sendRedirect("loginSuccess.jsp");
 			}
 			else{
