@@ -1,6 +1,6 @@
 package com.system.servlet;
 
-import java.awt.image.RescaleOp;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
