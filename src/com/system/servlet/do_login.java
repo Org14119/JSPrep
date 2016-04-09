@@ -32,13 +32,10 @@ public class do_login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
-		
-
 		String username=request.getParameter("username");
-	
 		String password=request.getParameter("password");
 		String identity=request.getParameter("identity");
-		if(username.contentEquals("")||password.contentEquals("")||identity.contentEquals("")){
+		if(username==null||password==null||identity==null||username.contentEquals("")||password.contentEquals("")||identity.contentEquals("")){
 			response.sendRedirect("error.jsp");
 			return;
 		}
@@ -53,7 +50,7 @@ public class do_login extends HttpServlet {
 			if(b){
 				System.out.println("登陆成功");
 				session.setAttribute("student", s);
-				
+	
 				response.sendRedirect("loginSuccess.jsp");
 				return;
 			}
