@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import com.system.entity.*;
 
 public interface TeacherDAO {
-	public void save(Connection conn, Teacher teacher) throws SQLException;
+	public void insert(Connection conn, Teacher teacher) throws SQLException;
 
 	public void update(Connection conn, Teacher teacher) throws SQLException;
 
