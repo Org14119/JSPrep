@@ -8,5 +8,6 @@
 </head>
 <body>
 操作错误！！！！
+<a href="login.jsp">回到首页</a>
 </body>
 </html>

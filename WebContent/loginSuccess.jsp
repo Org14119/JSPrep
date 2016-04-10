@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>操作成功</title>
 </head>
 <body>
 <center><h1>成功</h1></center>
+<center><a href="login.jsp">回到首页</a></center>
 </body>
 </html>
