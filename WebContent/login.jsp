@@ -9,9 +9,9 @@
 <body>
 <center>
 <form method="post" action="login">
-用户名：<input type="text" name="username"><br>
-密码：<input type="password" name="password"><br>
-<input type="radio" name="identity" value="用户">用户<br>
+用户名：<input type="text" name="username"><br><br/>
+密 &nbsp;码：&nbsp; <input type="password" name="password"><br><br/>
+<input type="radio" name="identity" value="用户">用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="identity" value="教师">教师<br>
 <input type="submit" name="submit" value="登录"><br><br/><br/>
 <a href="studentRegister.jsp">新用户？现在注册</a><br/>
