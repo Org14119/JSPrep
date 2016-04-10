@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.system.dao.TeacherDAO;
 import com.system.entity.Teacher;
@@ -56,6 +57,13 @@ public class TeacherDaoImpl implements TeacherDAO {
 		ps.setString(1, teacher.getEmail());
 
 		return ps.executeQuery();
+	}
+
+	public ResultSet getAll(Connection conn) throws SQLException {
+		String getAllSql = "SELECT * FROM tbl_teacher";
+		Statement s = conn.createStatement();
+		return s.executeQuery(getAllSql);
+
 	}
 
 }
