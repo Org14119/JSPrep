@@ -27,6 +27,11 @@ public class StudentDAOTest {
 			while(rs.next()){
 				System.out.println(rs.getString("studentName"));
 			}
+			for(int i=0;i<10000;i++){
+				s.setEmail(i*9999+"num"+"@163.com");
+				sdi.insert(conn, s);
+				System.out.println("inok"+i);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
