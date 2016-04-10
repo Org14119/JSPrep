@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.system.daoImpl.StudentDaoImpl;
 import com.system.daoImpl.TeacherDaoImpl;
+import com.system.entity.Student;
 import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
 
@@ -43,6 +45,84 @@ public class ConsultService {
 			}
 			return null;
 		} finally {
+			try {
+				teacherSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	/*
+	 * 获取学生的ID信息
+	 */
+	protected Student getStudentID(Student student){
+		Connection conn=ConnectionFactory.getInstace().makeConnection();
+		ResultSet studentSet=null;
+		try {
+			conn.setAutoCommit(false);
+			studentSet=new StudentDaoImpl().get(conn, student);
+			while(studentSet.next()){
+				student.setId(studentSet.getLong("studentID"));
+				conn.commit();
+				return student;
+			}
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			return null;
+			// TODO: handle exception
+		}finally{
+			try {
+				studentSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	/*
+	 * 获取老师ID信息
+	 */
+	protected Teacher getTeacherID(Teacher teacher){
+		Connection conn=ConnectionFactory.getInstace().makeConnection();
+		ResultSet teacherSet=null;
+		try {
+			conn.setAutoCommit(false);
+			teacherSet=new TeacherDaoImpl().get(conn,teacher);
+			while(teacherSet.next()){
+				teacher.setId(teacherSet.getLong("teacherID"));
+				conn.commit();
+				return teacher;
+			}
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			return null;
+			// TODO: handle exception
+		}finally{
 			try {
 				teacherSet.close();
 			} catch (SQLException e) {

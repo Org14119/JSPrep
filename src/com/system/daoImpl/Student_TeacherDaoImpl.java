@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.system.util.*;
 import com.system.dao.Studnet_TeacherDAO;
 import com.system.entity.Student;
@@ -21,20 +20,20 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 		ps.setLong(1, student.getId());
 		ps.setLong(2, teacher.getId());
 		ps.setDate(3, TimeUtil.getCurrentTime());
-		ps.setInt(4,1);
+		ps.setInt(4, 0);// 默认绑定状态为0，即未绑定
 		ps.execute();
 	}
 
 	@Override
 	/*
-	 * (non-Javadoc) 更新联系时间
+	 * (non-Javadoc) 修改状态为1，即绑定成功
 	 * 
 	 * @see com.system.dao.Studnet_TeacherDAO#update(java.sql.Connection,
 	 * com.system.entity.Student, com.system.entity.Teacher)
 	 */
 	public void update(Connection conn, Student student, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
-		String updateSql = "UPDATE tbl_student_teacher SET relationDate=? WHERE studentID=?,teacherID=?";
+		String updateSql = "UPDATE tbl_student_teacher SET relationDate=? WHERE studentID=? AND teacherID=?";
 		PreparedStatement ps = conn.prepareStatement(updateSql);
 		ps.setDate(1, TimeUtil.getCurrentTime());
 		ps.setLong(2, student.getId());
@@ -62,4 +61,20 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 		return ps.executeQuery();
 	}
 
+	/*
+	 * 更改绑定状态
+	 */
+	public void changeState(Connection conn, Student student, Teacher teacher, boolean bindingState)
+			throws SQLException {
+		String changeSql = "UPDATE tbl_student_teacher SET relationState=? WHERE studentID=? AND teacherID=?";
+		PreparedStatement ps = conn.prepareStatement(changeSql);
+		if (bindingState) {
+			ps.setInt(1, 1);
+		} else {
+			ps.setInt(1, 0);
+		}
+		ps.setLong(2, student.getId());
+		ps.setLong(3, teacher.getId());
+		ps.execute();
+	}
 }
