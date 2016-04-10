@@ -16,11 +16,12 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 	@Override
 	public void insert(Connection conn, Student student, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
-		String insertSql = "INSERT INTO tbl_student_teacher (studentID,teacherID,relationDate) VALUES(?,?,?) ";
+		String insertSql = "INSERT INTO tbl_student_teacher (studentID,teacherID,relationDate,relationState) VALUES(?,?,?,?) ";
 		PreparedStatement ps = conn.prepareStatement(insertSql);
 		ps.setLong(1, student.getId());
 		ps.setLong(2, teacher.getId());
 		ps.setDate(3, TimeUtil.getCurrentTime());
+		ps.setInt(4,1);
 		ps.execute();
 	}
 
