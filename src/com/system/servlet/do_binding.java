@@ -26,6 +26,7 @@ public class do_binding extends HttpServlet {
 				Teacher t=new Teacher();
 				t.setEmail(str);
 				boolean flag=new BindingService().InsertBindStudentTeacherService(student, t);
+				System.out.println(flag);
 				if(flag){
 					System.out.println("绑定成功！");
 				}
