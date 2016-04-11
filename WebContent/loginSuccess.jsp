@@ -8,6 +8,6 @@
 </head>
 <body>
 <center><h1>成功</h1></center>
-<center><a href="login.jsp">回到首页</a></center>
+<center><a href="index.jsp">回到首页</a></center>
 </body>
 </html>

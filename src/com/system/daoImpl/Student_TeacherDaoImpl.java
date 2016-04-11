@@ -77,4 +77,15 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 		ps.setLong(3, teacher.getId());
 		ps.execute();
 	}
+
+	/*
+	 * 获得所有申请的Dao
+	 */
+	public ResultSet getApplies(Connection conn,  Teacher teacher) throws SQLException {
+		String applySql = "SELECT * FROM tbl_student_teacher WHERE teacherID=? AND relationState='0'";
+		PreparedStatement ps = conn.prepareStatement(applySql);
+		
+		ps.setLong(1, teacher.getId());
+		return ps.executeQuery();
+	}
 }
