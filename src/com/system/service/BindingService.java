@@ -1,12 +1,13 @@
 package com.system.service;
 
 import java.sql.Connection;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-
+import com.system.daoImpl.StudentDaoImpl;
 import com.system.daoImpl.Student_TeacherDaoImpl;
-
 import com.system.entity.Student;
 import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
@@ -31,7 +32,7 @@ public class BindingService {
 			} else {
 				new Student_TeacherDaoImpl().insert(conn, student, teacher);
 				conn.commit();
-				//System.out.println("绑定申请提交");
+				// System.out.println("绑定申请提交");
 				return true;
 			}
 
@@ -40,7 +41,7 @@ public class BindingService {
 			e.printStackTrace();
 			try {
 				conn.rollback();
-				//System.out.println("回滚");
+				// System.out.println("回滚");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -49,6 +50,60 @@ public class BindingService {
 		} finally {
 
 			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/*
+	 * 获得所有绑定申请学生
+	 */
+	public List<Student> getApplyStudent(Teacher teacher) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		List<Student> studentList = new ArrayList<Student>();
+		ConsultService service = new ConsultService();
+		ResultSet applySet = null;
+		ResultSet studentSet = null;
+		try {
+			conn.setAutoCommit(false);
+
+			teacher = service.getTeacherID(teacher);
+			if (teacher == null || teacher.getId() == null || teacher.getId().equals("")) {
+				return null;
+			}
+			applySet = new Student_TeacherDaoImpl().getApplies(conn, teacher);
+			while (applySet.next()) {
+				Long sid = applySet.getLong("studentID");
+				Student s = new Student();
+				s.setId(sid);
+				studentSet = new StudentDaoImpl().getByID(conn, s);
+				while (studentSet.next()) {
+					Student adds = new Student();
+					adds.setName(studentSet.getString("studentName"));
+
+					adds.setGender(String.valueOf(studentSet.getInt("studentGender")));
+					adds.setEmail(studentSet.getString("studentEmail"));
+					studentList.add(adds);
+				}
+				studentSet.close();
+			}
+			return studentList;
+		} catch (Exception e) {
+			// TODO: handle exception
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+
+		} finally {
+			try {
+				applySet.close();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -98,7 +153,9 @@ public class BindingService {
 		}
 
 	}
-
+	/*
+	 * 拒绝申请的时候调用
+	 */
 	public boolean cancelBindingService(Student student, Teacher teacher) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		ConsultService service = new ConsultService();
@@ -109,8 +166,8 @@ public class BindingService {
 			if (student == null || teacher == null || student.getId() == null || teacher.getId() == null
 					|| student.getId().equals("") || teacher.getId().equals("")) {
 				return false;
-			}else{
-				Student_TeacherDaoImpl std=new Student_TeacherDaoImpl();
+			} else {
+				Student_TeacherDaoImpl std = new Student_TeacherDaoImpl();
 				std.changeState(conn, student, teacher, false);
 				std.delete(conn, student, teacher);
 				conn.commit();
@@ -126,7 +183,7 @@ public class BindingService {
 				e1.printStackTrace();
 			}
 			return false;
-		}finally{
+		} finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {

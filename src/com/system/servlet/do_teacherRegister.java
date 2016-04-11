@@ -11,6 +11,10 @@ import com.system.service.RegisterService;
 
 public class do_teacherRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(req,resp);
+	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -21,6 +25,7 @@ public class do_teacherRegister extends HttpServlet {
 		String phone=request.getParameter("phone");
 		if(email==null||password==null||name==null||sex==null||phone==null||email.equals("")||password.equals("")||name.equals("")||sex.equals("")||phone.equals("")){
 			response.sendRedirect("error.jsp");
+			System.out.println("啥都没有");
 			return;
 		}
 		Teacher t=new Teacher();

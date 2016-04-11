@@ -54,5 +54,13 @@ public class StudentDaoImpl implements StudentDAO {
 		ps.setString(1, student.getEmail());
 		return ps.executeQuery();
 	}
+	
+	public ResultSet getByID(Connection conn, Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		String getSql = "SELECT * FROM tbl_student WHERE studentID=?";
+		PreparedStatement ps = conn.prepareStatement(getSql);
+		ps.setLong(1, student.getId());
+		return ps.executeQuery();
+	}
 
 }

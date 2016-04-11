@@ -65,5 +65,16 @@ public class TeacherDaoImpl implements TeacherDAO {
 		return s.executeQuery(getAllSql);
 
 	}
+	/*
+	 * 通过Id获得老师
+	 */
+	public ResultSet getById(Connection conn, Teacher teacher) throws SQLException {
+		// TODO Auto-generated method stub
+		String getSql = "SELECT * FROM tbl_teacher WHERE teacherID=?";
+		PreparedStatement ps = conn.prepareStatement(getSql);
+		ps.setLong(1, teacher.getId());
+
+		return ps.executeQuery();
+	}
 
 }

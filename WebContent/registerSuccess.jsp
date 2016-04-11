@@ -7,6 +7,6 @@
 <title>注册成功</title>
 </head>
 <body>
-成功！
+注册成功！
 </body>
 </html>
