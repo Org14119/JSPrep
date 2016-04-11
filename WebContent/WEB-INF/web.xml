@@ -26,12 +26,20 @@
     <servlet-name>studentRegister</servlet-name>
     <url-pattern>/studentRegister</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>teacherRegister</servlet-name>
     <servlet-class>com.system.servlet.do_teacherRegister</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>teacherRegister</servlet-name>
     <url-pattern>/teacherRegister</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>binding</servlet-name>
+    <servlet-class>com.system.servlet.do_binding</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>binding</servlet-name>
+    <url-pattern>/binding</url-pattern>
   </servlet-mapping>
 </web-app>

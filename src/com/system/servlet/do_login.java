@@ -50,8 +50,8 @@ public class do_login extends HttpServlet {
 			if(b){
 				System.out.println("登陆成功");
 				session.setAttribute("student", s);
-	
-				response.sendRedirect("loginSuccess.jsp");
+				session.setAttribute("state", true);
+				response.sendRedirect("studentIndex.jsp");
 				return;
 			}
 			else{
@@ -66,7 +66,9 @@ public class do_login extends HttpServlet {
 			t.setPassword(password);
 			boolean b=new LoginService().teacherLogin(t);
 			if(b){
-				response.sendRedirect("loginSuccess.jsp");
+				session.setAttribute("teacher", t);
+				session.setAttribute("state", true);
+				response.sendRedirect("teacherIndex.jsp");
 				return;
 			}
 			else{

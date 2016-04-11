@@ -20,15 +20,18 @@ public class TeacherDAOTest {
 		t.setPassword("123");
 		t.setPhone("138138138138");
 		TeacherDaoImpl tdi = new TeacherDaoImpl();
+		int i=0;
 		try {
+			while(true){
+				new TeacherDaoImpl().insert(conn, t);
+				t.setEmail(String.valueOf(i)+"sdfas");
+		i++;
+			}
 			// tdi.insert(conn, t);
 			// tdi.delete(conn, t);
 			// tdi.update(conn, t);
-			ResultSet rs = tdi.get(conn, t);
-			while (rs.next()) {
-				System.out.println(1);
-				System.out.println(rs.getString("teacherName"));
-			}
+		
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
