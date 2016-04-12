@@ -1,7 +1,7 @@
 package com.system.test;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 
 import com.system.daoImpl.TeacherDaoImpl;
@@ -19,7 +19,7 @@ public class TeacherDAOTest {
 		t.setName("王老师");
 		t.setPassword("123");
 		t.setPhone("138138138138");
-		TeacherDaoImpl tdi = new TeacherDaoImpl();
+		//TeacherDaoImpl tdi = new TeacherDaoImpl();
 		int i=0;
 		try {
 			while(true){

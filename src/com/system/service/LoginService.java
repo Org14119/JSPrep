@@ -10,7 +10,7 @@ import com.system.entity.Student;
 import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
 
-public class LoginService {			//验证学生登陆服务
+public class LoginService { // 验证学生登陆服务,同时添加学生的信息(姓名和性别)
 	public boolean studentLogin(Student student) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		ResultSet rs = null;
@@ -19,6 +19,8 @@ public class LoginService {			//验证学生登陆服务
 			rs = new StudentDaoImpl().get(conn, student);
 			while (rs.next()) {
 				conn.commit();
+				student.setName(rs.getString("studentName"));
+				student.setGender(String.valueOf(rs.getInt("studentGender")));
 				return rs.getString("studentPassword").equals(student.getPassword());
 			}
 			conn.commit();
@@ -49,7 +51,8 @@ public class LoginService {			//验证学生登陆服务
 			}
 		}
 	}
-	public boolean teacherLogin(Teacher teacher){			//验证老师登陆服务
+
+	public boolean teacherLogin(Teacher teacher) { // 验证老师登陆服务,同时添加教师的信息(姓名和性别)
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		ResultSet rs = null;
 		try {
@@ -57,7 +60,9 @@ public class LoginService {			//验证学生登陆服务
 			rs = new TeacherDaoImpl().get(conn, teacher);
 			while (rs.next()) {
 				conn.commit();
-				return rs.getString("studentPassword").equals(teacher.getPassword());
+				teacher.setName(rs.getString("teacherName"));
+				teacher.setGender(String.valueOf(rs.getInt("teacherGender")));
+				return rs.getString("teacherPassword").equals(teacher.getPassword());
 			}
 			conn.commit();
 			return false;
