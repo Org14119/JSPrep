@@ -36,7 +36,7 @@
 	<%
 	if(!s.getEmail().equals("")){
 	%>
-	<%	List<Teacher> teachers=new viewTeacherService().getBindingTeachers(s);
+	<%	List<Teacher> teachers=new ViewTeacherService().getBindingTeachers(s);
 		for(Teacher t:teachers){
 		out.println(t.getName()+"</br>");}	}	
 %>
