@@ -26,13 +26,20 @@ public class do_binding extends HttpServlet {
 			for(String str:teacherEmail){
 				Teacher t=new Teacher();
 				t.setEmail(str);
-				boolean flag=new BindingService().InsertBindStudentTeacherService(student, t);
-				System.out.println(flag);
-				if(flag){
-					System.out.println("申请成功！");
+				
+				boolean isBinding=new BindingService().CheckWhetherBinding(student, t);
+				if(isBinding){
+					boolean flag=new BindingService().InsertBindStudentTeacherService(student, t);
+					System.out.println(flag);
+					if(flag){
+						System.out.println("申请成功！");
+					}
+					else{
+						System.out.println("申请失败！");
+					}	
 				}
 				else{
-					System.out.println("申请失败！");
+					System.out.println("你已经绑定"+t.getName()+"老师！");
 				}
 				
 			}
