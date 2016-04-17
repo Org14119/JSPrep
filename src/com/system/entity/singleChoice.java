@@ -1,12 +1,19 @@
 package com.system.entity;
 
 public class SingleChoice {
+	private long id;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	private String title;
 	private String choiceA;
 	private String choiceB;
 	private String choiceC;
 	private String ChoiceD;
-	private String correctAnswer;
+	private int correctAnswer;
 	private String answerAnalyze;
 	public String getTitle() {
 		return title;
@@ -38,10 +45,10 @@ public class SingleChoice {
 	public void setChoiceD(String choiceD) {
 		ChoiceD = choiceD;
 	}
-	public String getCorrectAnswer() {
+	public int getCorrectAnswer() {
 		return correctAnswer;
 	}
-	public void setCorrectAnswer(String correctAnswer) {
+	public void setCorrectAnswer(int correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
 	public String getAnswerAnalyze() {
