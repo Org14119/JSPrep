@@ -3,7 +3,7 @@
 <%@page import="com.system.service.*"%>
 <%@page import="com.system.entity.*"%>
 <%@page import="java.util.*"%>
-
+<%@page import="com.system.dataManagement.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,13 +27,15 @@
 	请在要绑定的教师后面打勾
 	<form method="post" action="binding">
 		<%
-			List<Teacher> teachers = new ConsultService().getAllTeachers();
+			List<Teacher> allTeachers = new ConsultService().getAllTeachers();
+			List<Teacher> bindingTeachers=new viewTeacherService().getBindingTeachers(student);
+			List<Teacher> teachers=new ManageUnbindingTeacher().getUnbindingTeacher(allTeachers, bindingTeachers);
 					String inputName = "teacher";
 					String type1 = "checkbox";
-
 					for (int i = 0; i < teachers.size(); i++) {
 						String teacherName = teachers.get(i).getName();
 						String teacherEmail = teachers.get(i).getEmail();
+						
 						out.println("<input type=" + type1 + " name=" + inputName + " value=" + teacherEmail + ">"
 								+ teacherName);
 						out.println("<br/>");

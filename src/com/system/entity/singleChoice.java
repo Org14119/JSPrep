@@ -1,6 +1,6 @@
 package com.system.entity;
 
-public class singleChoice {
+public class SingleChoice {
 	private String title;
 	private String choiceA;
 	private String choiceB;
