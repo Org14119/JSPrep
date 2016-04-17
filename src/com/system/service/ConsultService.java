@@ -138,4 +138,43 @@ public class ConsultService {
 			}
 		}
 	}
+	protected Teacher getTeacherByID(Teacher teacher){
+		Connection conn=ConnectionFactory.getInstace().makeConnection();
+		Teacher t=teacher;
+		ResultSet teacherSet=null;
+		try {
+			conn.setAutoCommit(false);
+			teacherSet=new TeacherDaoImpl().getById(conn, teacher);
+			while(teacherSet.next()){
+				t.setEmail(teacherSet.getString("teacherEmail"));
+				t.setGender(String.valueOf(teacherSet.getInt("teacherGender")));
+				t.setName(teacherSet.getString("teacherName"));
+				return t;
+			}
+			return null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		}finally{
+			try {
+				teacherSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

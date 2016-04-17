@@ -58,6 +58,7 @@ public class TeacherDaoImpl implements TeacherDAO {
 
 		return ps.executeQuery();
 	}
+	
 
 	public ResultSet getAll(Connection conn) throws SQLException {
 		String getAllSql = "SELECT * FROM tbl_teacher";
