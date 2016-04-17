@@ -15,13 +15,13 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 	@Override
 	public void insert(Connection conn, QuestionSpace space, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
-		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,testTime,endTime,teacherID) VALUES(?,?,?)";
+		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,beginTime,endTime,teacherID) VALUES(?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(insertSQL);
 		ps.setString(1, space.getName());
 		ps.setString(2, space.getType());
-		ps.setDate(3, (Date) space.getBeginTime());
+		ps.setDate(3, space.getBeginTime());
 		ps.setLong(5, teacher.getId());
-		ps.setDate(4, (Date) space.getEndTime());
+		ps.setDate(4, space.getEndTime());
 		ps.execute();
 
 	}
@@ -58,6 +58,5 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();
 	}
-	
 
 }

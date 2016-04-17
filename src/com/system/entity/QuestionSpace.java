@@ -1,6 +1,6 @@
 package com.system.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class QuestionSpace {
 	private long id;
