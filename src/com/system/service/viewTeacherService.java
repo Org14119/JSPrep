@@ -11,7 +11,7 @@ import com.system.entity.Student;
 import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
 
-public class viewTeacherService {
+public class ViewTeacherService {
 	/*
 	 * 传入的内容至少是学生的Email，如果没有数据，返回null
 	 */
