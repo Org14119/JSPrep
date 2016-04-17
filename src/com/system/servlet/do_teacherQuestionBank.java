@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.system.entity.QuestionSpace;
 import com.system.entity.Teacher;
 import com.system.service.QuestionSpaceService;
-import com.system.util.TimeUtil;
+
 
 public class do_teacherQuestionBank extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,8 +34,8 @@ public class do_teacherQuestionBank extends HttpServlet {
 			teacherBank.setName(bankName);
 			teacherBank.setType(teacherBankType);
 			new com.system.util.TimeUtil();
-			teacherBank.setBeginTime(TimeUtil.parseStringToDate(startTime));
-			teacherBank.setEndTime(TimeUtil.parseStringToDate(endTime));
+			teacherBank.setBeginTime(startTime);
+			teacherBank.setEndTime(endTime);
 			boolean flag=new QuestionSpaceService().addSpace(teacherBank, t);
 			if(flag){
 				System.out.println("添加题库成功！");

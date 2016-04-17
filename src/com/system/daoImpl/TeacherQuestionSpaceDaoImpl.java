@@ -1,7 +1,7 @@
 package com.system.daoImpl;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,17 +11,19 @@ import com.system.entity.QuestionSpace;
 import com.system.entity.Teacher;
 
 public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
+	private final String format = "%Y-%m-%d %H:%i:%s";
 
 	@Override
 	public void insert(Connection conn, QuestionSpace space, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
-		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,beginTime,endTime,teacherID) VALUES(?,?,?,?,?)";
+		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,beginTime,endTime,teacherID) VALUES(?,?,STR_TO_DATE(?,'"
+				+ format + "'),STR_TO_DATE(?,'" + format + "'),?)";
 		PreparedStatement ps = conn.prepareStatement(insertSQL);
 		ps.setString(1, space.getName());
 		ps.setString(2, space.getType());
-		ps.setDate(3, space.getBeginTime());
+		ps.setString(3, space.getBeginTime());
 		ps.setLong(5, teacher.getId());
-		ps.setDate(4, space.getEndTime());
+		ps.setString(4, space.getEndTime());
 		ps.execute();
 
 	}
@@ -29,12 +31,13 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 	@Override
 	public void update(Connection conn, QuestionSpace space) throws SQLException {
 		// TODO Auto-generated method stub
-		String updateSQL = "UPDATE tbl_teacherquestionspace SET beginTime=? name=? type=? endTime=? WHERE id=?";
+		String updateSQL = "UPDATE tbl_teacherquestionspace SET beginTime=STR_TO_DATE(?,'" + format
+				+ "') name=? type=? endTime=STR_TO_DATE(?,'" + format + "') WHERE id=?";
 		PreparedStatement ps = conn.prepareStatement(updateSQL);
-		ps.setDate(1, (Date) space.getBeginTime());
+		ps.setString(1, space.getBeginTime());
 		ps.setString(2, space.getName());
 		ps.setString(3, space.getType());
-		ps.setDate(4, (Date) space.getEndTime());
+		ps.setString(4, space.getEndTime());
 		ps.setLong(5, space.getId());
 
 		ps.execute();

@@ -18,9 +18,10 @@ public class TimeUtil {
 		DateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//小写的mm表示的是分钟  
 		try {
 			java.util.Date date=sdf.parse(str);
-			
+			System.out.println(date.getTime());
 			java.sql.Date sqlDate=new java.sql.Date(date.getTime());
 			
+			System.out.println(sqlDate);
 			return sqlDate;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

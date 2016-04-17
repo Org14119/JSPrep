@@ -66,8 +66,8 @@ public class QuestionSpaceService {
 				space.setId(spaceSet.getLong("id"));
 				space.setName(spaceSet.getString("name"));
 				space.setType(spaceSet.getString("type"));
-				space.setBeginTime(spaceSet.getDate("beginTime"));
-				space.setEndTime(spaceSet.getDate("endTime"));
+				space.setBeginTime(spaceSet.getTimestamp("beginTime").toString());
+				space.setEndTime(spaceSet.getTimestamp("endTime").toString());
 				spaceList.add(space);
 			}
 			conn.commit();
