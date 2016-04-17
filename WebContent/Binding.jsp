@@ -28,7 +28,7 @@
 	<form method="post" action="binding">
 		<%
 			List<Teacher> allTeachers = new ConsultService().getAllTeachers();
-			List<Teacher> bindingTeachers=new viewTeacherService().getBindingTeachers(student);
+			List<Teacher> bindingTeachers=new ViewTeacherService().getBindingTeachers(student);
 			List<Teacher> teachers=new ManageUnbindingTeacher().getUnbindingTeacher(allTeachers, bindingTeachers);
 					String inputName = "teacher";
 					String type1 = "checkbox";
