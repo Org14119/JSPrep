@@ -15,6 +15,56 @@ import com.system.util.ConnectionFactory;
 public class BindingService {
 
 	/*
+	 * 添加绑定信息之前查重复,传入Email参数
+	 * 如果能够绑定，表示检验通过（之前没有绑定过）则返回True，否则返回false；
+	 */
+	public boolean CheckWhetherBinding(Student student, Teacher teacher) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ConsultService cService = new ConsultService();
+		ResultSet set = null;
+		try {
+			conn.setAutoCommit(false);
+			teacher = cService.getTeacherID(teacher);
+			student = cService.getStudentID(student);
+			if (teacher != null && student != null) {
+				set=new Student_TeacherDaoImpl().get(conn, student, teacher);
+				conn.commit();
+				while(set.next()){
+					return false;
+				}
+				return true;//表示检验通过
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				set.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				conn.close();
+				set.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+	}
+
+	/*
 	 * 传入需要绑定的学生和老师，其中均必须有Email这个属性
 	 */
 	public boolean InsertBindStudentTeacherService(Student student, Teacher teacher) {
@@ -51,6 +101,7 @@ public class BindingService {
 
 			try {
 				conn.close();
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -153,8 +204,7 @@ public class BindingService {
 		}
 
 	}
-	
-	 
+
 	/*
 	 * 拒绝申请的时候调用
 	 */
