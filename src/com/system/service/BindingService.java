@@ -153,6 +153,8 @@ public class BindingService {
 		}
 
 	}
+	
+	 
 	/*
 	 * 拒绝申请的时候调用
 	 */

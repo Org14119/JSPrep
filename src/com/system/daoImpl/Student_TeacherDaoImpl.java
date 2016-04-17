@@ -60,7 +60,16 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 		ps.setLong(2, teacher.getId());
 		return ps.executeQuery();
 	}
-
+	/*
+	 * 得到学生绑定的所有老师
+	 * 
+	 */
+	public ResultSet getAllBindingTeachersOfStudent(Connection conn,Student student)throws SQLException{
+		String getSql="SELECT *FROM tbl_student_teacher WHERE studentID=?";
+		PreparedStatement ps=conn.prepareStatement(getSql);
+		ps.setLong(1, student.getId());
+		return ps.executeQuery();
+	}
 	/*
 	 * 更改绑定状态
 	 */
