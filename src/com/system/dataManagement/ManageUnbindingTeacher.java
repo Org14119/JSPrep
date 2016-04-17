@@ -1,26 +1,25 @@
 package com.system.dataManagement;
 
 
-import java.util.Iterator;
+
 import java.util.List;
 
 import com.system.entity.Teacher;
 
 public class ManageUnbindingTeacher {
 
-	public List<Teacher> getUnbindingTeacher(List<Teacher> l1, List<Teacher> l2) {
-		List<Teacher> tempList = l2;
-		Iterator<Teacher> itBinding = l1.iterator();
-		Iterator<Teacher> itAll = l2.iterator();
-		while (itAll.hasNext()) {
-			while (itBinding.hasNext()) {
-				Teacher t1 = itAll.next();
-				Teacher t2 = itBinding.next();
-				if (t1.getEmail().equals(t2.getEmail())) {
-					tempList.remove(t1);
+
+	public List<Teacher>getUnbindingTeacher(List<Teacher> l1,List<Teacher> l2){
+		List<Teacher> teachers=l2;
+		for(int i=0;i<l1.size();i++){
+			for(int j=0;j<l2.size();j++){
+				if(l1.get(i).getEmail().equals(l2.get(j).getEmail())){
+					teachers.remove(j);
 				}
 			}
 		}
-		return tempList;
+		return teachers;
+
+
 	}
 }

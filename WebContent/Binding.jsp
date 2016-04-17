@@ -29,7 +29,7 @@
 		<%
 			List<Teacher> allTeachers = new ConsultService().getAllTeachers();
 			List<Teacher> bindingTeachers=new ViewTeacherService().getBindingTeachers(student);
-			List<Teacher> teachers=new ManageUnbindingTeacher().getUnbindingTeacher(allTeachers, bindingTeachers);
+			List<Teacher> teachers=new ManageUnbindingTeacher().getUnbindingTeacher(bindingTeachers,allTeachers);
 					String inputName = "teacher";
 					String type1 = "checkbox";
 					for (int i = 0; i < teachers.size(); i++) {
