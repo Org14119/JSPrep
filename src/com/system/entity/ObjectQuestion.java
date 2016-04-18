@@ -1,6 +1,6 @@
 package com.system.entity;
 
-public class SingleChoice {
+public class ObjectQuestion {
 	private long id;
 
 	public long getId() {
