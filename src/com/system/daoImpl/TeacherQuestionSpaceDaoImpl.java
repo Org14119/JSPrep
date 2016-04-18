@@ -46,7 +46,7 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 	@Override
 	public void delete(Connection conn, QuestionSpace space) throws SQLException {
 		// TODO Auto-generated method stub
-		String deleteSQL = "DELETE FROM tbl_teacherquestionspace WHERE id=?";
+		String deleteSQL = "DELETE * FROM tbl_teacherquestionspace WHERE id=?";
 		PreparedStatement ps = conn.prepareStatement(deleteSQL);
 		ps.setLong(1, space.getId());
 		ps.execute();
