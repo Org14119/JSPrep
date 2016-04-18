@@ -29,6 +29,7 @@
 				List<QuestionSpace> spacelists=new QuestionSpaceService().getQuestionSpaceOfTeacher(t);	
 				for(int i=0;i<spacelists.size();i++){
 					out.println("<br>"+spacelists.get(i).getName()+"-"+spacelists.get(i).getType()+"<br>");
+					
 				}
 				%>	
 			

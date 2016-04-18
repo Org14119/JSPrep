@@ -66,12 +66,20 @@
     <servlet-name>registerDispatcher</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>teacherBank</servlet-name>
     <servlet-class>com.system.servlet.do_teacherQuestionBank</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>teacherBank</servlet-name>
     <url-pattern>/teacherBank</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>addObjectQuestion</servlet-name>
+    <servlet-class>com.system.servlet.do_addObjectQuestions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addObjectQuestion</servlet-name>
+    <url-pattern>/addObjectQuestion</url-pattern>
   </servlet-mapping>
 </web-app>

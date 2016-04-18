@@ -36,6 +36,7 @@ public class do_teacherQuestionBank extends HttpServlet {
 			new com.system.util.TimeUtil();
 			teacherBank.setBeginTime(startTime);
 			teacherBank.setEndTime(endTime);
+	//		session.setAttribute("currentTeacherSpace",teacherBank);
 			boolean flag=new QuestionSpaceService().addSpace(teacherBank, t);
 			if(flag){
 				System.out.println("添加题库成功！");
