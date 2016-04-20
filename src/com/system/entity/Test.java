@@ -4,6 +4,8 @@ public class Test {
 	private String testTime = "2016-01-01 09:00:00";
 	private long testID;
 	private boolean isExam = false;
+	private int testScore = 0;
+
 	public boolean isExam() {
 		return isExam;
 	}
@@ -26,6 +28,14 @@ public class Test {
 
 	public void setTestTime(String testTime) {
 		this.testTime = testTime;
+	}
+
+	public int getTestScore() {
+		return testScore;
+	}
+
+	public void setTestScore(int testScore) {
+		this.testScore = testScore;
 	}
 
 }

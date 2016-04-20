@@ -4,7 +4,7 @@ public class ObjectAnswer {
 	private long answerInfoID;
 	private int answerScore = 0;
 	private String answerTime = "2016-01-01 09:00:00";
-	private int answerContent;
+	private int answerContent=1;
 	private boolean isChecked = false;
 
 	public long getAnswerInfoID() {
