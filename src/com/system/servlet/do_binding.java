@@ -20,7 +20,7 @@ public class do_binding extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
 		Student student=(Student)session.getAttribute("student");
-		System.out.println(student.getEmail());
+		//System.out.println(student.getEmail());
 		String[] teacherEmail=request.getParameterValues("teacher");
 		if(teacherEmail!=null&&teacherEmail.length>0){
 			for(String str:teacherEmail){
