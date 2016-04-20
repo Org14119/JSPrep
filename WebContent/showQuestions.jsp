@@ -33,7 +33,6 @@ else{
 			out.println("C、 "+o.getChoiceC());
 			out.println("D、 "+o.getChoiceD());
 			out.println("答案解析："+o.getCorrectAnswer());
-			out.println(o.getScore());
 			i++;
 		}
 	}

@@ -32,7 +32,8 @@
 	<%
 		}
 	%>
-	<a href="getTeacherAllSpace.jsp">查看你的所有的题库</a>
+	<a href="getTeacherAllSpace.jsp">查看你的所有的题库</a><br>
+<a href="teacherQuestionBank.jsp">添加题库</a>
 	<center>
 		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>
 	</center>
