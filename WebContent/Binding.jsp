@@ -29,7 +29,17 @@
 		<%
 			List<Teacher> allTeachers = new ConsultService().getAllTeachers();
 			List<Teacher> bindingTeachers=new ViewTeacherService().getBindingTeachers(student);
-			List<Teacher> teachers=new ManageUnbindingTeacher().getUnbindingTeacher(bindingTeachers,allTeachers);
+			List<Teacher> bindedTeachers=new ViewTeacherService().getBindedTeachers(student);
+			/*
+			for(int i=0;i<bindingTeachers.size();i++){
+				System.out.println("申请"+bindingTeachers.get(i).getName());
+			}
+			for(int i=0;i<bindedTeachers.size();i++){
+				System.out.println("绑定完成"+bindedTeachers.get(i).getName());
+			}*/
+			if(allTeachers!=null&&bindingTeachers!=null&&bindedTeachers!=null){
+				List<Teacher> teachers=new ManageUnbindingTeacher().getUnbindingTeacher(bindedTeachers,bindingTeachers,allTeachers);
+				if(teachers!=null){
 					String inputName = "teacher";
 					String type1 = "checkbox";
 					for (int i = 0; i < teachers.size(); i++) {
@@ -39,7 +49,11 @@
 						out.println("<input type=" + type1 + " name=" + inputName + " value=" + teacherEmail + ">"
 								+ teacherName);
 						out.println("<br/>");
-					}
+					}	
+				}
+
+			}
+
 		%>
 		<input type="submit" name="submit" value="绑定">
 

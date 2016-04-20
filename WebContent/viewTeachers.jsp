@@ -34,14 +34,19 @@
 		}
 	%>
 	<%
-	if(!s.getEmail().equals("")){
+		if (!s.getEmail().equals("")) {
 	%>
-	<%	List<Teacher> teachers=new ViewTeacherService().getBindingTeachers(s);
-		for(Teacher t:teachers){
-		out.println(t.getName()+"</br>");}	}	
-%>
+	<%
+		List<Teacher> teachers = new ViewTeacherService().getBindedTeachers(s);
+				if (teachers != null) {
+					for (Teacher t : teachers) {
+						out.println(t.getName() + "</br>");
+					}
+				}
+			}
+	%>
 
-<% 
+	<%
 		}
 	%>
 
