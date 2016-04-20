@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@page import="com.system.service.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.system.entity.*"%>
@@ -25,37 +24,34 @@
 	%>
 	<%
 		String type = (String) session.getAttribute("type");
+	out.println( type);
 			Student s = (Student) session.getAttribute("student");
 			boolean flag = (boolean) session.getAttribute("state");
+			out.println( flag && type.equals("student"));
 			if (flag && type.equals("student")) {
 				out.println("欢迎您，" + s.getName() + "学生!");
 	%>
-		<%
-		if (!s.getEmail().equals("")) {
-	%>
-	<%
-		List<Teacher> teachers = new ViewTeacherService().getBindedTeachers(s);
-				if (teachers != null) {
-					for (Teacher t : teachers) {%>
-						
-		<a href="viewMyTeacherSpace.jsp?teacherEmail=<%=t.getEmail()%>"><%=t.getName() %></a>				
-					<% 	
-					}
-				}
-			}
-	%>
-	<%
-		}
-	%>
 
-
+	<%
+	String teacherEmail=request.getParameter("teacherEmail");
+	Teacher t = new Teacher();
+	t.setEmail(teacherEmail);
+	List<QuestionSpace> spacelists = new QuestionSpaceService().getQuestionSpaceOfTeacher(t);
+	if(spacelists!=null){%>
+	<%="题库：" %><br />
+	<% for(int i=0;i<spacelists.size();i++){%>
+	<%=spacelists.get(i).getName() %>
+	<%	}
+	}
+	%>
 	<%
 		}
 	%>
 
 
 
-
-
+	<%
+		}
+	%>
 </body>
 </html>
