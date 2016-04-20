@@ -61,5 +61,6 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();
 	}
-
+	
+	
 }

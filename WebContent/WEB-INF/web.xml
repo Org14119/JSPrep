@@ -10,6 +10,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>acceptBinding</servlet-name>
     <servlet-class>com.system.servlet.do_acceptBinding</servlet-class>
