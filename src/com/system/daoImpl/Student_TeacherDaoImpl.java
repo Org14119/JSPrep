@@ -66,7 +66,7 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 	 * 
 	 */
 	public ResultSet getAllBindingTeachersOfStudent(Connection conn, Student student) throws SQLException {
-		String getSql = "SELECT *FROM tbl_student_teacher WHERE studentID=?";
+		String getSql = "SELECT *FROM tbl_student_teacher WHERE studentID=? AND relationState=1";
 		PreparedStatement ps = conn.prepareStatement(getSql);
 		ps.setLong(1, student.getId());
 		return ps.executeQuery();

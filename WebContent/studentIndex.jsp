@@ -39,6 +39,8 @@
 		}
 	%>
 
+
+<a href="viewTeachers.jsp">查看我的老师</a>
 	<a href="<%=request.getContextPath()%>/logout">登出</a>
 	<br />
 	<br />

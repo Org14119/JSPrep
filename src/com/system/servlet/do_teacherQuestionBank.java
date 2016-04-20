@@ -40,6 +40,7 @@ public class do_teacherQuestionBank extends HttpServlet {
 			boolean flag=new QuestionSpaceService().addSpace(teacherBank, t);
 			if(flag){
 				System.out.println("添加题库成功！");
+				request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
 			}
 			else{
 				System.out.println("添加题库失败！");
