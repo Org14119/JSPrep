@@ -24,16 +24,16 @@ else{
 		int i=1;
 		while(iterList.hasNext()){
 			ObjectQuestion o=iterList.next();
-			System.out.println("第一题、单项选择。");
-			System.out.println(i+"、");
-			System.out.print(o.getTitle());
-			System.out.println("("+o.getScore()+"分)");
-			System.out.println("A、 "+o.getChoiceA());
-			System.out.println("B、 "+o.getChoiceB());
-			System.out.println("C、 "+o.getChoiceC());
-			System.out.println("D、 "+o.getChoiceD());
-			System.out.println("答案解析："+o.getCorrectAnswer());
-			System.out.println(o.getScore());
+			out.println("第一题、单项选择。");
+			out.println(i+"、");
+			out.print(o.getTitle());
+			out.println("("+o.getScore()+"分)");
+			out.println("A、 "+o.getChoiceA());
+			out.println("B、 "+o.getChoiceB());
+			out.println("C、 "+o.getChoiceC());
+			out.println("D、 "+o.getChoiceD());
+			out.println("答案解析："+o.getCorrectAnswer());
+			out.println(o.getScore());
 			i++;
 		}
 	}

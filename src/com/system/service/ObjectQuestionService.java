@@ -64,7 +64,7 @@ public class ObjectQuestionService {
 				question.setChoiceD(questionSet.getString("answer4"));
 				question.setCorrectAnswer(questionSet.getInt("trueAnswer"));
 				question.setScore(questionSet.getInt("score"));
-				question.setAnswerAnalyze(questionSet.getString("analyze"));
+				question.setAnswerAnalyze(questionSet.getString("questionAnalyze"));
 				questionVector.add(question);
 			}
 			conn.commit();

@@ -30,20 +30,17 @@
 				session.setAttribute("SpaceList", spacelists);
 				for (int i = 0; i < spacelists.size(); i++) {
 	%>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<form action="addObjectQuestion" method="post">
 
 		<%
-			out.println(spacelists.get(i).getName()+"-"+spacelists.get(i).getType());
+			out.println(spacelists.get(i).getName() + "-" + spacelists.get(i).getType());
 		%>
-		<a href="spaceManage.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName() %></a>
-		
-		
-		
+		<a href="spaceManage.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName()%></a>
 		<input type="hidden" value=<%=spacelists.get(i).getId()%>
 			name="spaceID" /> <input type="submit" value="修改" />
 
