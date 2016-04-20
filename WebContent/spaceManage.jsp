@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="com.system.entity.*"%>
+    pageEncoding="UTF-8"%>
+    <%@ page import="com.system.entity.*"%>
 <%@ page import="com.system.service.*"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,36 +26,16 @@
 			boolean flag = (boolean) session.getAttribute("state");
 			if (flag && type.equals("teacher")) {
 				out.println("欢迎您，" + t.getName() + "教师!");
-				List<QuestionSpace> spacelists = new QuestionSpaceService().getQuestionSpaceOfTeacher(t);
-				session.setAttribute("SpaceList", spacelists);
-				for (int i = 0; i < spacelists.size(); i++) {
-	%>
-	
-	
-	
-	
-	
-	<form action="addObjectQuestion" method="post">
-
-		<%
-			out.println(spacelists.get(i).getName()+"-"+spacelists.get(i).getType());
-		%>
-		<a href="spaceManage.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName() %></a>
-		
-		
-		
-		<input type="hidden" value=<%=spacelists.get(i).getId()%>
-			name="spaceID" /> <input type="submit" value="修改" />
-
-	</form>
-	<%
-		}
-	%>
-
-
-
-	<%
-		} else {
+				String spaceID=request.getParameter("spaceID");
+				out.print(spaceID);
+				QuestionSpace currentTeacherSpace= new QuestionSpace();
+				currentTeacherSpace.setId(Long.parseLong(spaceID));
+				session.setAttribute("currentTeacherSpace", currentTeacherSpace);%>
+				<a href="addObjectQuestions.jsp">增加题目</a>
+				
+				
+	<% 			
+			} else {
 				session.invalidate();
 				response.sendRedirect("login.jsp");
 			}
@@ -63,10 +43,6 @@
 	<%
 		}
 	%>
-
-
-
-
 
 </body>
 </html>
