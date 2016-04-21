@@ -9,7 +9,7 @@ import com.system.entity.Student;
 import com.system.entity.Test;
 
 public interface TestDAO {
-	public void insert(Connection conn, Student student, QuestionSpace space,Test test) throws SQLException;
+	public ResultSet insert(Connection conn, Student student, QuestionSpace space,Test test) throws SQLException;
 
 	public void update(Connection conn, Test test) throws SQLException;
 
