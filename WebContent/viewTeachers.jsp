@@ -47,11 +47,21 @@ out.println("会话过期，请重新登录");
 %>
 <%
 	}
+		else{%>
+		<%session.invalidate(); %>
+		<%="会话过期或者未登录，请重新登录"%>
+		<a href="index.jsp">登录</a>
+<%		}
 %>
 
 
 <%
 	}}
+else{%>
+<%session.invalidate(); %>
+<%="会话过期或者未登录，请重新登录"%>
+<a href="index.jsp">登录</a>
+<% 	}
 %>
 
 

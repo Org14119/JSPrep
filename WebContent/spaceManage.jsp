@@ -10,12 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
+<%
+if(!session.isNew()){
+
+
 		if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
 				|| session.getAttribute("state") == null) {
 	%>
-	<%="您还没登陆吧，老师？"%>
-	<a href="index.jsp">点击这里登陆</a>
+	<%="会话过期或者未登录，请重新登录"%>
+	<a href="index.jsp">登录</a>
 
 	<%
 		} else {
@@ -38,12 +41,19 @@
 	<% 			
 			} else {
 				session.invalidate();
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("index.jsp");
 			}
 	%>
 	<%
 		}
-	%>
+
+}
+else{%>
+<%="会话过期或者未登录，请重新登录"%>
+<a href="index.jsp">登录</a>
+<% 	}
+%>
+
 
 </body>
 </html>

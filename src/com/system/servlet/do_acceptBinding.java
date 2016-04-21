@@ -31,29 +31,41 @@ public class do_acceptBinding extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
-		if (session == null || session.getAttribute("teacher") == null
-				|| (Boolean) session.getAttribute("state") == false) {
-			session.invalidate();
-			resp.sendRedirect("error.jsp");
-		} else {
-			Teacher teacher = (Teacher) session.getAttribute("teacher");
-			String sEmails[] = req.getParameterValues("acceptStudents");
-			BindingService acceptService = new BindingService();
-			Student temps = new Student();
-			if (sEmails != null && sEmails.length >= 0) {
+		if(!session.isNew()){
+			if (session == null || session.getAttribute("teacher") == null
+					|| (Boolean) session.getAttribute("state") == false) {
+				session.invalidate();
+				resp.sendRedirect("index.jsp");
+			} else {
+				Teacher teacher = (Teacher) session.getAttribute("teacher");
+				String sEmails[] = req.getParameterValues("acceptStudents");
+				BindingService acceptService = new BindingService();
+				Student temps = new Student();
+				if (sEmails != null && sEmails.length >= 0) {
 
-				for (int i = 0; i < sEmails.length; i++) {
-					temps.setEmail(sEmails[i]);
-					boolean b = acceptService.acceptBindingService(temps, teacher);
-					if (b) {
-						System.out.println("成功同意");
-					} else {
-						System.out.println("请求未成功");
-						resp.sendRedirect("error.jsp");
+					for (int i = 0; i < sEmails.length; i++) {
+						temps.setEmail(sEmails[i]);
+						boolean b = acceptService.acceptBindingService(temps, teacher);
+						if (b) {
+							System.out.println("成功同意");
+						} else {
+							System.out.println("请求未成功");
+							resp.sendRedirect("error.jsp");
+						}
 					}
-				}
 
+				}
+				else{
+					System.out.println("系统错误");
+					resp.sendRedirect("teacherIndex.jsp");
+				}
 			}
 		}
+		else{
+			session.invalidate();
+			resp.sendRedirect("index.jsp");
+		}
+		
+
 	};
 }

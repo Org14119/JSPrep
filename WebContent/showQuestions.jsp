@@ -10,55 +10,67 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		QuestionSpace currentTeacherSpace2 = (QuestionSpace) session.getAttribute("currentTeacherSpace");
-		if (currentTeacherSpace2 == null) {
-			response.sendRedirect("error.jsp");
-			return;
-		} else {
-			Vector<ObjectQuestion> objectQuestionLists = new ObjectQuestionService()
-					.getAllQuestionOfSpace(currentTeacherSpace2);
-			if (objectQuestionLists != null) {
-				Iterator<ObjectQuestion> iterList = objectQuestionLists.iterator();
-				int i = 1;
-				while (iterList.hasNext()) {
-					ObjectQuestion o = iterList.next();
-	%><br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<%=i%>：<%=o.getTitle()%>
-	<%="(" + o.getScore() + "分)"%><br /> 选项A:<%=o.getChoiceA()%><br />
-	选项B:<%=o.getChoiceB()%><br /> 选项C:<%=o.getChoiceC()%><br /> 选项D:<%=o.getChoiceD()%><br />
-	正确答案：
-	<%
-		int correct = o.getCorrectAnswer();
-					switch (correct) {
-					case 1:
-						out.println("A");
-						break;
-					case 2:
-						out.println("B");
-						break;
-					case 3:
-						out.println("C");
-						break;
-					case 4:
-						out.println("D");
-						break;
-					}
-	%>
-	<br /> 答案解析：<%=o.getAnswerAnalyze()%><br />
+<%
+if(!session.isNew()){
 
-
-	<%
-		i++;
+	QuestionSpace currentTeacherSpace2 = (QuestionSpace) session.getAttribute("currentTeacherSpace");
+	if (currentTeacherSpace2 == null) {%>
+	<%="会话过期或者未登录，请重新登录"%>
+    <a href="index.jsp">登录</a>
+	<% 
+		
+		return;
+	} else {
+		Vector<ObjectQuestion> objectQuestionLists = new ObjectQuestionService()
+				.getAllQuestionOfSpace(currentTeacherSpace2);
+		if (objectQuestionLists != null) {
+			Iterator<ObjectQuestion> iterList = objectQuestionLists.iterator();
+			int i = 1;
+			while (iterList.hasNext()) {
+				ObjectQuestion o = iterList.next();
+%><br />
+<br />
+<br />
+<br />
+<br />
+<%=i%>：<%=o.getTitle()%>
+<%="(" + o.getScore() + "分)"%><br /> 选项A:<%=o.getChoiceA()%><br />
+选项B:<%=o.getChoiceB()%><br /> 选项C:<%=o.getChoiceC()%><br /> 选项D:<%=o.getChoiceD()%><br />
+正确答案：
+<%
+	int correct = o.getCorrectAnswer();
+				switch (correct) {
+				case 1:
+					out.println("A");
+					break;
+				case 2:
+					out.println("B");
+					break;
+				case 3:
+					out.println("C");
+					break;
+				case 4:
+					out.println("D");
+					break;
 				}
-			}
+%>
+<br /> 答案解析：<%=o.getAnswerAnalyze()%><br />
 
+
+<%
+	i++;
+			}
 		}
-	%>
+
+	}
+
+}
+else{%>
+<%="会话过期或者未登录，请重新登录"%>
+<a href="index.jsp">登录</a>
+<% 	}
+%>
+
 
 </body>
 </html>

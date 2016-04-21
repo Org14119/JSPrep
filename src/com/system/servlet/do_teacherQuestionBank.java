@@ -19,34 +19,49 @@ public class do_teacherQuestionBank extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
-		Teacher t=(Teacher)session.getAttribute("teacher");
-		String bankName=request.getParameter("bankName");
-		String teacherBankType=request.getParameter("bankType");
-		String startTime=request.getParameter("startTime");
-		String endTime=request.getParameter("endTime");
-		
-		if(teacherBankType==null||t==null||startTime==null||endTime==null||t.equals("")||teacherBankType.equals("")||startTime.equals("")||endTime.equals("")){
-			response.sendRedirect("error.jsp");
-			return;
-		}
-		else{
-			QuestionSpace teacherBank=new QuestionSpace();
-			teacherBank.setName(bankName);
-			teacherBank.setType(teacherBankType);
-			new com.system.util.TimeUtil();
-			teacherBank.setBeginTime(startTime);
-			teacherBank.setEndTime(endTime);
-	//		session.setAttribute("currentTeacherSpace",teacherBank);
-			boolean flag=new QuestionSpaceService().addSpace(teacherBank, t);
-			if(flag){
-				System.out.println("添加题库成功！");
-				request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+		if(!session.isNew()){
+			Teacher t=(Teacher)session.getAttribute("teacher");
+			if(t!=null){
+				String bankName=request.getParameter("bankName");
+				String teacherBankType=request.getParameter("bankType");
+				String startTime=request.getParameter("startTime");
+				String endTime=request.getParameter("endTime");
+				
+				if(teacherBankType==null||t==null||startTime==null||endTime==null||t.equals("")||teacherBankType.equals("")||startTime.equals("")||endTime.equals("")){
+					response.sendRedirect("error.jsp");
+					return;
+				}
+				else{
+					QuestionSpace teacherBank=new QuestionSpace();
+					teacherBank.setName(bankName);
+					teacherBank.setType(teacherBankType);
+					new com.system.util.TimeUtil();
+					teacherBank.setBeginTime(startTime);
+					teacherBank.setEndTime(endTime);
+			//		session.setAttribute("currentTeacherSpace",teacherBank);
+					boolean flag=new QuestionSpaceService().addSpace(teacherBank, t);
+					if(flag){
+						System.out.println("添加题库成功！");
+						request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+					}
+					else{
+						System.out.println("添加题库失败！");
+						request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+					}
+					
+				}
 			}
 			else{
-				System.out.println("添加题库失败！");
+				session.invalidate();
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
-			
+
 		}
+		else{
+			session.invalidate();
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+
 	
 	}
 

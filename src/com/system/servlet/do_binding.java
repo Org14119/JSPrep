@@ -19,33 +19,47 @@ public class do_binding extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
-		Student student=(Student)session.getAttribute("student");
-		//System.out.println(student.getEmail());
-		String[] teacherEmail=request.getParameterValues("teacher");
-		if(teacherEmail!=null&&teacherEmail.length>0){
-			for(String str:teacherEmail){
-				Teacher t=new Teacher();
-				t.setEmail(str);
-				
-				boolean isBinding=new BindingService().CheckWhetherBinding(student, t);
-				if(isBinding){
-					boolean flag=new BindingService().InsertBindStudentTeacherService(student, t);
-					System.out.println(flag);
-					if(flag){
-						System.out.println("申请成功！");
-						
+		if(!session.isNew()){
+			Student student=(Student)session.getAttribute("student");
+			//System.out.println(student.getEmail());
+			String[] teacherEmail=request.getParameterValues("teacher");
+			if(teacherEmail!=null&&teacherEmail.length>0){
+				for(String str:teacherEmail){
+					Teacher t=new Teacher();
+					t.setEmail(str);
+					
+					boolean isBinding=new BindingService().CheckWhetherBinding(student, t);
+					if(isBinding){
+						boolean flag=new BindingService().InsertBindStudentTeacherService(student, t);
+						System.out.println(flag);
+						if(flag){
+							System.out.println("申请成功！");
+							
+						}
+						else{
+							System.out.println("申请失败！");
+						}	
 					}
 					else{
-						System.out.println("申请失败！");
-					}	
+						System.out.println("你已经绑定"+t.getName()+"老师！");
+						request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+						
+					}
+					
 				}
-				else{
-					System.out.println("你已经绑定"+t.getName()+"老师！");
-				}
-				
+				request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
 			}
-			request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+			else{
+				System.out.println("服务器故障，请稍候重试");
+				request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+			}
 		}
+		else{
+			session.invalidate();
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+
+		}
+
 		
 	}
 

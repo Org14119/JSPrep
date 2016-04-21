@@ -20,7 +20,7 @@
 			if (session == null || session.equals("") || session.getAttribute("type") == null
 					|| session.getAttribute("state") == null || session.getAttribute("student") == null) {
 
-				out.println("会话过期，请重新登录");
+				out.println("会话过期或者未登录，请重新登录");
 	%>
 	<a href="index.jsp">登录</a>
 	<%
@@ -43,10 +43,20 @@
 	</center>
 	<%
 		}
+				else{%>
+				<%session.invalidate(); %>
+				<%="会话过期或者未登录，请重新登录"%>
+				<a href="index.jsp">登录</a>
+	<%		}
 	%>
 	<%
 		}
 		}
+		else{%>
+		<%session.invalidate(); %>
+		<%="会话过期或者未登录，请重新登录"%>
+		<a href="index.jsp">登录</a>
+<% 	}
 	%>
 
 

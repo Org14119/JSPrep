@@ -8,22 +8,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
-				|| session.getAttribute("state") == null) {
-	%>
-	<%="您还没登陆吧，老师？"%>
-	<a href="index.jsp">点击这里登陆</a>
+<%
+if(!session.isNew()){
 
-	<%
-		} else {
-	%>
-	<%
-		String type = (String) session.getAttribute("type");
-			Teacher t = (Teacher) session.getAttribute("teacher");
-			boolean flag = (boolean) session.getAttribute("state");
-			if (flag && type.equals("teacher")) {
-				out.println("欢迎您，" + t.getName() + "教师!");%>				
+	if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
+			|| session.getAttribute("state") == null) {
+%>
+%>
+<%="会话过期或者未登录，请重新登录"%>
+<a href="index.jsp">登录</a>
+
+<%
+	} else {
+%>
+<%
+	String type = (String) session.getAttribute("type");
+		Teacher t = (Teacher) session.getAttribute("teacher");
+		boolean flag = (boolean) session.getAttribute("state");
+		if (flag && type.equals("teacher")) {
+			out.println("欢迎您，" + t.getName() + "教师!");%>				
 <form method="post" action="addObjectQuestion">
 请输入题目内容：
 <input type="text" name="questionName"><br><br/>
@@ -47,15 +50,22 @@
 <input type="submit" name="submit" value="确定"><br><br/><br/>
 
 </form>			
-						
-	<% 		} else {
-				session.invalidate();
-				response.sendRedirect("login.jsp");
-			}
-	%>
-	<%
+					
+<% 		} else {
+			session.invalidate();
+			response.sendRedirect("index.jsp");
 		}
-	%>
+%>
+<%
+	}}
+else{%>
+<%="会话过期或者未登录，请重新登录"%>
+<a href="index.jsp">登录</a>
+<% 	}
+%>	
+
+
+	
 
 
 

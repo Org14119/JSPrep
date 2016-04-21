@@ -33,60 +33,68 @@ public class do_login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		System.out.println("sessionID="+session.getId());
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String identity = request.getParameter("identity");
-		if (username == null || password == null || identity == null || username.contentEquals("")
-				|| password.contentEquals("") || identity.contentEquals("")) {
-			response.sendRedirect("error.jsp");
-			return;
-		}
-
-		if (identity.equals("用户")) {
-
-			Student s = new Student();
-			s.setEmail(username);
-			s.setPassword(password);
-			boolean b = new LoginService().studentLogin(s);
-			// System.out.println(b);
-			if (b) {
-				System.out.println("登陆成功");
-				if(!session.isNew()){
-					session.setAttribute("student", s);
-					session.setAttribute("state", true);
-					session.setAttribute("type", "student");
-					response.sendRedirect("studentIndex.jsp");
-				}
-
-				return;
-			} else {
+		if(!session.isNew()){
+			System.out.println("sessionID="+session.getId());
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String identity = request.getParameter("identity");
+			if (username == null || password == null || identity == null || username.contentEquals("")
+					|| password.contentEquals("") || identity.contentEquals("")) {
 				response.sendRedirect("error.jsp");
-				session.invalidate();
 				return;
 			}
 
-		} else if (identity.equals("教师")) {
-			Teacher t = new Teacher();
-			t.setEmail(username);
-			t.setPassword(password);
-			boolean b = new LoginService().teacherLogin(t);
-			if (b) {
-				if(!session.isNew()){
-					session.setAttribute("teacher", t);
-					session.setAttribute("state", true);
-					session.setAttribute("type", "teacher");
-					response.sendRedirect("teacherIndex.jsp");	
+			if (identity.equals("用户")) {
+
+				Student s = new Student();
+				s.setEmail(username);
+				s.setPassword(password);
+				boolean b = new LoginService().studentLogin(s);
+				// System.out.println(b);
+				if (b) {
+					System.out.println("登陆成功");
+					
+						session.setAttribute("student", s);
+						session.setAttribute("state", true);
+						session.setAttribute("type", "student");
+						response.sendRedirect("studentIndex.jsp");
+					
+
+					return;
+				} else {
+					response.sendRedirect("error.jsp");
+					session.invalidate();
+					return;
 				}
 
-				return;
-			} else {
-				response.sendRedirect("error.jsp");
-				session.invalidate();
-				return;
+			} else if (identity.equals("教师")) {
+				Teacher t = new Teacher();
+				t.setEmail(username);
+				t.setPassword(password);
+				boolean b = new LoginService().teacherLogin(t);
+				if (b) {
+					
+						session.setAttribute("teacher", t);
+						session.setAttribute("state", true);
+						session.setAttribute("type", "teacher");
+						response.sendRedirect("teacherIndex.jsp");	
+					
+
+					return;
+				} else {
+					response.sendRedirect("error.jsp");
+					session.invalidate();
+					return;
+				}
+
 			}
 
 		}
+		else{
+			session.invalidate();
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+
 
 	}
 

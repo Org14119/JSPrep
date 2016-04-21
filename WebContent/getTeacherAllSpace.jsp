@@ -11,42 +11,55 @@
 </head>
 <body>
 	<%
-		if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
-				|| session.getAttribute("state") == null) {
+		if (!session.isNew()) {
+			if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
+					|| session.getAttribute("state") == null) {
 	%>
-	<%="您还没登陆吧，老师？"%>
-	<a href="index.jsp">点击这里登陆</a>
+				<%="会话过期或者未登录，请重新登录"%>
+				<a href="index.jsp">登录</a>
 
 	<%
 		} else {
 	%>
 	<%
 		String type = (String) session.getAttribute("type");
-			Teacher t = (Teacher) session.getAttribute("teacher");
-			boolean flag = (boolean) session.getAttribute("state");
-			if (flag && type.equals("teacher")) {
-				out.println("欢迎您，" + t.getName() + "教师!");
-				List<QuestionSpace> spacelists = new QuestionSpaceService().getQuestionSpaceOfTeacher(t);
-				session.setAttribute("SpaceList", spacelists);
-				for (int i = 0; i < spacelists.size(); i++) {
+				Teacher t = (Teacher) session.getAttribute("teacher");
+				boolean flag = (boolean) session.getAttribute("state");
+				if (flag && type.equals("teacher")) {
+					out.println("欢迎您，" + t.getName() + "教师!");
+					List<QuestionSpace> spacelists = new QuestionSpaceService().getQuestionSpaceOfTeacher(t);
+					session.setAttribute("SpaceList", spacelists);
+					for (int i = 0; i < spacelists.size(); i++) {
 	%>
 
-       <br/><br/>
-		<a href="spaceManage.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName() + "-" + spacelists.get(i).getType()%></a>
+	<br />
+	<br />
+	<a href="spaceManage.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName() + "-" + spacelists.get(i).getType()%></a>
 
-<%} %>
+	<%
+		}
+	%>
 
 
 
 	<%
 		} else {
-				session.invalidate();
-				response.sendRedirect("login.jsp");
-			}
+					session.invalidate();
+					response.sendRedirect("index.jsp");
+				}
 	%>
 	<%
 		}
+		}
+		else{%>
+		<%session.invalidate(); %>
+		<%="会话过期或者未登录，请重新登录"%>
+		<a href="index.jsp">登录</a>
+<% 	}
 	%>
+
+
+
 
 
 

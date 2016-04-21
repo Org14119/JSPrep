@@ -9,33 +9,46 @@
 </head>
 <body>
 	<%
-		if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
-				|| session.getAttribute("state") == null) {
+		if (!session.isNew()) {
+			if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
+					|| session.getAttribute("state") == null) {
 	%>
-	<%="您还没登陆吧，老师？"%>
-	<a href="index.jsp">点击这里登陆</a>
+	<%="会话过期或者未登录，请重新登录"%>
+	<a href="index.jsp">登录</a>
 
 	<%
-		} else {
+		} 
+			else {
 	%>
 	<%
-		String type = (String) session.getAttribute("type");
-			Teacher t = (Teacher) session.getAttribute("teacher");
-			boolean flag = (boolean) session.getAttribute("state");
-			if (flag && type.equals("teacher")) {
-				out.println("欢迎您，" + t.getName() + "教师!");
-			} else {
-				session.invalidate();
-				response.sendRedirect("login.jsp");
-			}
+		        String type = (String) session.getAttribute("type");
+				Teacher t = (Teacher) session.getAttribute("teacher");
+				boolean flag = (boolean) session.getAttribute("state");
+				if (flag && type.equals("teacher")) {
+					out.println("欢迎您，" + t.getName() + "教师!");
 	%>
-	<%
-		}
-	%>
-	<a href="getTeacherAllSpace.jsp">查看你的所有的题库</a><br>
-<a href="teacherQuestionBank.jsp">添加题库</a>
+	<a href="getTeacherAllSpace.jsp">查看你的所有的题库</a>
+	<br>
+	<a href="teacherQuestionBank.jsp">添加题库</a>
 	<center>
 		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>
 	</center>
+	<%
+		} else {
+					session.invalidate();
+					response.sendRedirect("index.jsp");
+				}
+	%>
+	<%
+		}
+		}
+		else{%>
+			<%="会话过期或者未登录，请重新登录"%>
+			<a href="index.jsp">登录</a>
+	<% 	}
+	%>
+
+
+
 </body>
 </html>
