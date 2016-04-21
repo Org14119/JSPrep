@@ -11,12 +11,12 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  <servlet-name>validate</servlet-name>
-  <servlet-class>com.system.servlet.do_validate</servlet-class>
+    <servlet-name>validate</servlet-name>
+    <servlet-class>com.system.servlet.do_validate</servlet-class>
   </servlet>
   <servlet-mapping>
-  <servlet-name>validate</servlet-name>
-  <url-pattern>/validate</url-pattern>
+    <servlet-name>validate</servlet-name>
+    <url-pattern>/validate</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>acceptBinding</servlet-name>
@@ -82,12 +82,20 @@
     <servlet-name>teacherBank</servlet-name>
     <url-pattern>/teacherBank</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>addObjectQuestion</servlet-name>
     <servlet-class>com.system.servlet.do_addObjectQuestions</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>addObjectQuestion</servlet-name>
     <url-pattern>/addObjectQuestion</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>com.system.servlet.do_test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
   </servlet-mapping>
 </web-app>

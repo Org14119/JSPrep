@@ -45,7 +45,8 @@
 	<%
 		for (int i = 0; i < spacelists.size(); i++) {
 	%>
-	<%=spacelists.get(i).getName()%>
+	
+	<a href="spaceHandleIndex.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName()%></a>
 	<%
 		}
 					}
