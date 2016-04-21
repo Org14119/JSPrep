@@ -10,7 +10,7 @@ public class TimeUtil {
 	/*
 	 * 这个方法有毒，需要修改，不要用!!!!!
 	 */
-	public  Date getCurrentTime() {
+	public static  Date getCurrentTime() {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date(System.currentTimeMillis());
 		format.format(now);

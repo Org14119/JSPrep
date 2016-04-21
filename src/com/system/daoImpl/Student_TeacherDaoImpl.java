@@ -13,6 +13,7 @@ import com.system.entity.Teacher;
 public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 
 	@Override
+
 	public void insert(Connection conn, Student student, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
 		String insertSql = "INSERT INTO tbl_student_teacher (studentID,teacherID,relationDate,relationState) VALUES(?,?,?,?) ";
