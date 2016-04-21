@@ -33,7 +33,7 @@ public class do_binding extends HttpServlet {
 					System.out.println(flag);
 					if(flag){
 						System.out.println("申请成功！");
-						request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+						
 					}
 					else{
 						System.out.println("申请失败！");
@@ -44,6 +44,7 @@ public class do_binding extends HttpServlet {
 				}
 				
 			}
+			request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
 		}
 		
 	}
