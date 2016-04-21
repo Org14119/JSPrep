@@ -47,9 +47,10 @@ public class do_acceptBinding extends HttpServlet {
 						temps.setEmail(sEmails[i]);
 						boolean b = acceptService.acceptBindingService(temps, teacher);
 						if (b) {
-							System.out.println("成功同意");
+							//System.out.println("成功同意");
+							req.getRequestDispatcher("teacherIndex.jsp").forward(req, resp);
 						} else {
-							System.out.println("请求未成功");
+							//System.out.println("请求未成功");
 							resp.sendRedirect("error.jsp");
 						}
 					}
