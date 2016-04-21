@@ -15,33 +15,25 @@
 </head>
 <body>
 	<%
-		if (session == null || session.equals("") || session.getAttribute("type") == null
-				|| session.getAttribute("state") == null) {
+		if (!session.isNew()) {
+
+			if (session == null || session.equals("") || session.getAttribute("type") == null
+					|| session.getAttribute("state") == null || session.getAttribute("student") == null) {
+
+				out.println("会话过期，请重新登录");
 	%>
-	<%
-		out.println("你丫登陆了没？");
-	%>
-	<a href="index.jsp">现在去登陆!</a>
+	<a href="index.jsp">登录</a>
 	<%
 		} else {
-	%>
-	<%
-		String type = (String) session.getAttribute("type");
-			Student s = (Student) session.getAttribute("student");
-			boolean flag = (boolean) session.getAttribute("state");
-			if (flag && type.equals("student")) {
-				out.println("欢迎您，" + s.getName() + "学生!");
-	%>
-	<%
-		}
-	%>
-	<%
-		}
-	%>
 
-
-<a href="viewTeachers.jsp">查看我的老师</a>
-<jsp:include page="isBinding.jsp"></jsp:include>
+				String type = (String) session.getAttribute("type");
+				Student s = (Student) session.getAttribute("student");
+				boolean flag = (boolean) session.getAttribute("state");
+				if (flag && type.equals("student")) {
+					out.println("欢迎您，" + s.getName() + "学生!");
+	%>
+	<a href="viewTeachers.jsp">查看我的老师</a>
+	<jsp:include page="isBinding.jsp"></jsp:include>
 	<a href="<%=request.getContextPath()%>/logout">登出</a>
 	<br />
 	<br />
@@ -49,6 +41,23 @@
 		<jsp:include page="Binding.jsp"></jsp:include>
 
 	</center>
+	<%
+		}
+	%>
+	<%
+		}
+		}
+	%>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

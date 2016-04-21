@@ -33,6 +33,7 @@ public class do_login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		System.out.println("sessionID="+session.getId());
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String identity = request.getParameter("identity");
@@ -51,10 +52,13 @@ public class do_login extends HttpServlet {
 			// System.out.println(b);
 			if (b) {
 				System.out.println("登陆成功");
-				session.setAttribute("student", s);
-				session.setAttribute("state", true);
-				session.setAttribute("type", "student");
-				response.sendRedirect("studentIndex.jsp");
+				if(!session.isNew()){
+					session.setAttribute("student", s);
+					session.setAttribute("state", true);
+					session.setAttribute("type", "student");
+					response.sendRedirect("studentIndex.jsp");
+				}
+
 				return;
 			} else {
 				response.sendRedirect("error.jsp");
@@ -68,10 +72,13 @@ public class do_login extends HttpServlet {
 			t.setPassword(password);
 			boolean b = new LoginService().teacherLogin(t);
 			if (b) {
-				session.setAttribute("teacher", t);
-				session.setAttribute("state", true);
-				session.setAttribute("type", "teacher");
-				response.sendRedirect("teacherIndex.jsp");
+				if(!session.isNew()){
+					session.setAttribute("teacher", t);
+					session.setAttribute("state", true);
+					session.setAttribute("type", "teacher");
+					response.sendRedirect("teacherIndex.jsp");	
+				}
+
 				return;
 			} else {
 				response.sendRedirect("error.jsp");
