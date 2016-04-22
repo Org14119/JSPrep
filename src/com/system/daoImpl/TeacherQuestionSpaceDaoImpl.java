@@ -62,5 +62,11 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 		return ps.executeQuery();
 	}
 	
+	public ResultSet get(Connection conn,QuestionSpace space)throws SQLException{
+		String sql="SELECT * FROM tbl_teacherquestionspace WHERE id=?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setLong(1, space.getId());
+		return ps.executeQuery();
+	}
 	
 }
