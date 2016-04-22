@@ -8,13 +8,115 @@ import java.util.Map;
 import java.util.Vector;
 
 import com.system.daoImpl.ObjectAnswerInfoDaoImpl;
+import com.system.daoImpl.TeacherDaoImpl;
+import com.system.daoImpl.TeacherQuestionSpaceDaoImpl;
 import com.system.daoImpl.TestDaoImpl;
 import com.system.entity.QuestionSpace;
 import com.system.entity.Student;
+import com.system.entity.Teacher;
 import com.system.entity.Test;
 import com.system.util.ConnectionFactory;
 
 public class TestService {
+	/*
+	 * 通过testID查找对应的题库和老师，返回为Map，只含有一对key-value； 如果发生异常，返回null
+	 * 这一对key-value包含了对应对象的所有信息，除了老师的密码
+	 */
+	public Map<QuestionSpace, Teacher> getDetailOfTest(Test test) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ResultSet testSet = null;
+		ResultSet spaceSet = null;
+		ResultSet teacherSet = null;
+		TestDaoImpl testImpl = new TestDaoImpl();
+		TeacherQuestionSpaceDaoImpl spaceImpl = new TeacherQuestionSpaceDaoImpl();
+		TeacherDaoImpl teacherImpl = new TeacherDaoImpl();
+		try {
+			conn.setAutoCommit(false);
+			testSet = testImpl.get(conn, test);
+			Teacher trueTeacher = new Teacher();
+			QuestionSpace trueSpace = new QuestionSpace();
+			while (testSet.next()) {
+				QuestionSpace space = new QuestionSpace();
+				space.setId(testSet.getLong("questionSpaceID"));
+				spaceSet = spaceImpl.get(conn, space);
+				while (spaceSet.next()) {
+					Long id = spaceSet.getLong("id");
+					String type = spaceSet.getString("type");
+					String name = spaceSet.getString("name");
+					String beginTime = spaceSet.getTimestamp("beginTime").toString();
+					String endTime = spaceSet.getTimestamp("endTime").toString();
+					long teacherID = spaceSet.getLong("teacherID");
+					Teacher tempTeacher = new Teacher();
+					tempTeacher.setId(teacherID);
+					QuestionSpace tempSpace = new QuestionSpace();
+					tempSpace.setBeginTime(beginTime);
+					tempSpace.setEndTime(endTime);
+					tempSpace.setId(id);
+					tempSpace.setType(type);
+					tempSpace.setName(name);
+					trueSpace = tempSpace;
+					teacherSet = teacherImpl.getById(conn, tempTeacher);
+					while (teacherSet.next()) {
+						long trueTeacherID = teacherSet.getLong("teacherID");
+						String teacherEmail = teacherSet.getString("teacherEmail");
+						String teacherName = teacherSet.getString("teacherName");
+						String teacherPhone = teacherSet.getString("teacherPhone");
+						int gender = teacherSet.getInt("teacherGender");
+						String trueGender = "1";
+						if (gender == 0) {
+							trueGender = "0";
+						}
+						trueTeacher.setGender(trueGender);
+						trueTeacher.setEmail(teacherEmail);
+						trueTeacher.setName(teacherName);
+						trueTeacher.setPhone(teacherPhone);
+						trueTeacher.setId(trueTeacherID);
+					}
+				}
+			}
+
+			conn.commit();
+			Map<QuestionSpace, Teacher> returnMap = new HashMap<QuestionSpace, Teacher>();
+			returnMap.put(trueSpace, trueTeacher);
+			return returnMap;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		} finally {
+			try {
+				teacherSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				spaceSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				testSet.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 	/*
 	 * 创建一场考试或者测试的时候使用，需要传入Test对象，其中包含开始时间，是否是考试等信息 需要传入QuestionSpace对象， 包含其ID属性
 	 * 需要传入Student对象，包含其ID属性 返回值为这次考试（测试）分配的ID信息，之后添加为每道题添加答案的时候需要利用该ID
@@ -227,24 +329,24 @@ public class TestService {
 			}
 		}
 	}
+
 	/*
-	 * 检查这次考试是否被批改，返回一个Map，Map的Key是题目的总数，Value是被批改的题目的数目。
-	 * 如果发生异常，返回null
+	 * 检查这次考试是否被批改，返回一个Map，Map的Key是题目的总数，Value是被批改的题目的数目。 如果发生异常，返回null
 	 */
-	public Map<Integer,Integer> getCheckState(Test test){
-		Connection conn= ConnectionFactory.getInstace().makeConnection();
-		//ResultSet testSet=null;	
-		ResultSet answerSet=null;
+	public Map<Integer, Integer> getCheckState(Test test) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		// ResultSet testSet=null;
+		ResultSet answerSet = null;
 		try {
 			conn.setAutoCommit(false);
-			answerSet=new ObjectAnswerInfoDaoImpl().get(conn, test);
-			Map<Integer,Integer>stateMap=new HashMap<Integer ,Integer>();
-			int quizamount=0;
-			int checkamount=0;
-			while(answerSet.next()){
+			answerSet = new ObjectAnswerInfoDaoImpl().get(conn, test);
+			Map<Integer, Integer> stateMap = new HashMap<Integer, Integer>();
+			int quizamount = 0;
+			int checkamount = 0;
+			while (answerSet.next()) {
 				quizamount++;
-				int flag=answerSet.getInt("isChecked");
-				if(flag==1){
+				int flag = answerSet.getInt("isChecked");
+				if (flag == 1) {
 					checkamount++;
 				}
 			}
@@ -261,8 +363,8 @@ public class TestService {
 				e1.printStackTrace();
 			}
 			return null;
-		}finally{
-			
+		} finally {
+
 			try {
 				answerSet.close();
 			} catch (SQLException e1) {
