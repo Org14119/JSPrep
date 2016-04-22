@@ -90,12 +90,20 @@
     <servlet-name>addObjectQuestion</servlet-name>
     <url-pattern>/addObjectQuestion</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>test</servlet-name>
     <servlet-class>com.system.servlet.do_test</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>test</servlet-name>
     <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>practice</servlet-name>
+    <servlet-class>com.system.servlet.do_practice</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>practice</servlet-name>
+    <url-pattern>/practice</url-pattern>
   </servlet-mapping>
 </web-app>
