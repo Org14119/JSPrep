@@ -40,6 +40,9 @@ public class do_test extends HttpServlet {
 						ObjectQuestion o = iterList.next();
 						String temp=request.getParameter(Integer.toString(number+1));
 						ObjectAnswer objectAnswer=new ObjectAnswer();
+						if(temp==null){
+							temp="0";
+						}
 						objectAnswer.setAnswerContent(Integer.parseInt(temp));
 						answerMap.put(o, objectAnswer);	
 						number++;
