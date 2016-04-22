@@ -36,13 +36,10 @@ public class TestDaoImpl implements TestDAO {
 	@Override
 	public void update(Connection conn, Test test) throws SQLException {
 		// TODO Auto-generated method stub
-		String updateSql = "UPDATE tbl_test SET testTime=STR_TO_DATE(?,?),isExam=?,testScore=? WHERE testID=?";
+		String updateSql = "UPDATE tbl_test SET testScore=? WHERE testID=?";
 		PreparedStatement ps = conn.prepareStatement(updateSql);
-		ps.setString(1, test.getTestTime());
-		ps.setString(2, format);
-		ps.setInt(3, test.isExam() == true ? 1 : 0);
-		ps.setLong(4, test.getTestID());
-		ps.setInt(5, test.getTestScore());
+		ps.setInt(1, test.getTestScore());
+		ps.setLong(2, test.getTestID());
 		ps.execute();
 
 	}

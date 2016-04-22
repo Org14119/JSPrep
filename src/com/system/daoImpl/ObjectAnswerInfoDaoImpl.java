@@ -43,7 +43,7 @@ public class ObjectAnswerInfoDaoImpl implements ObjectAnswerInfoDao {
 		ps.execute();
 
 	}
-
+	
 	@Override
 	public void delete(Connection conn, ObjectAnswer answer) throws SQLException {
 		// TODO Auto-generated method stub

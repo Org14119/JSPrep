@@ -66,6 +66,16 @@ public class ObjectQuestionDaoImpl implements ObjectQuestionDAO {
 		return ps.executeQuery();
 	}
 	/*
+	 * 通过ID查找
+	 */
+	public ResultSet get(Connection conn,ObjectQuestion question) throws SQLException{
+		String getSQL="SELECT * FROM tbl_objectquestion WHERE questionID=?";
+		PreparedStatement ps=conn.prepareStatement(getSQL);
+		ps.setLong(1, question.getId());
+		return ps.executeQuery();
+				
+	}
+	/*
 	 * 删除属于某个题库的所有题目
 	 */
 	public void deleteAll(Connection conn,QuestionSpace space)throws SQLException{
