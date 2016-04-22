@@ -33,6 +33,7 @@
 					out.println("欢迎您，" + s.getName() + "学生!");
 	%>
 	<a href="viewTeachers.jsp">查看我的老师</a>
+	<a href="viewMyTestRecord.jsp">查看我的考试记录</a>
 	<jsp:include page="isBinding.jsp"></jsp:include>
 	<a href="<%=request.getContextPath()%>/logout">登出</a>
 	<br />

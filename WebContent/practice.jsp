@@ -56,10 +56,10 @@ if(!session.isNew()){
 							<div>
 							第<%=i %>题
 							<%=o.getTitle()+"("+o.getScore()+"分)"%><br>
-							<input type="radio" name="<%=i%>" value="1"><%=o.getChoiceA() %><br>
-							<input type="radio" name="<%=i%>" value="2"><%=o.getChoiceB() %><br>
-							<input type="radio" name="<%=i%>" value="3"><%=o.getChoiceC() %><br>
-							<input type="radio" name="<%=i%>" value="4"><%=o.getChoiceD() %><br>
+							<input type="radio" name="<%=i%>" value="1">A.<%=o.getChoiceA() %><br>
+							<input type="radio" name="<%=i%>" value="2">B.<%=o.getChoiceB() %><br>
+							<input type="radio" name="<%=i%>" value="3">C.<%=o.getChoiceC() %><br>
+							<input type="radio" name="<%=i%>" value="4">D.<%=o.getChoiceD() %><br>
 							<div>
 							答案解析：<br>
 							<%=o.getAnswerAnalyze() %><br></div>

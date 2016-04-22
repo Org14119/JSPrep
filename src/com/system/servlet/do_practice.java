@@ -46,6 +46,9 @@ public class do_practice extends HttpServlet {
 					while (iterList.hasNext()) {
 						ObjectQuestion o = iterList.next();
 						String temp=request.getParameter(Integer.toString(number+1));
+						if(temp==null){
+							temp="0";
+						}
 						ObjectAnswer objectAnswer=new ObjectAnswer();
 						objectAnswer.setAnswerContent(Integer.parseInt(temp));
 						answerMap.put(o, objectAnswer);	

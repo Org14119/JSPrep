@@ -32,26 +32,82 @@
 					out.println("欢迎您，" + s.getName() + "学生!");
 					Vector<Test> testRecord=new TestService().getTestRecord(s);
 					if(testRecord!=null&&!testRecord.isEmpty()){
-						Iterator<Test> iterList=testRecord.iterator();%>
-						考试记录：
-						科目                           老师                         考试 时间                            状态                             分数                                操作<br/><br/>
+						int all=0;
+						int checked=0;
+						String state="未知";
+						Iterator<Test> iterList=testRecord.iterator();%><br/><br/>
+						考试记录：<br/><br/>
+						科目                           老师                                                                    考试时间                                                                                状态                             分数                                操作<br/><br/>
 						<%while(iterList.hasNext()){
 							Test t=iterList.next();
 							if(t.isExam()){%>
+							<%
+							Map<Integer,Integer> map=new TestService().getCheckState(t);
+
+							if(map!=null){
+								for(Map.Entry<Integer,Integer> me:map.entrySet()){
+									all=me.getKey();
+									checked=me.getValue();
+								}
+								if(all==checked){
+									state="批改完成";
+								}
+								else{
+									state="未批改";
+								}
+				
+								}
+							else{
+								state="异常";%>
+								
+		<% 					}
+
+%>	
 								<div>
-								<%="默认                           "+"默认                        "+t.getTestTime()+"   "+"默认"+t.getTestScore()+"        "%><a href="viewMyPaper.jsp">查询</a>
+								<%="默认                           "+"默认                        "+t.getTestTime()+"   "%>
+							
+								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state %></a>
+								<%=t.getTestScore()+"        " %>
+								<a href="viewMyPaper.jsp">查看试卷</a>
 								
 								</div>
 							<% }
 						}
 						Iterator<Test> iterList1=testRecord.iterator();%><br/><br/>
-						练习记录：
+						练习记录：<br/><br/>
 						科目                           老师                         考试 时间                            状态                             分数                                操作<br/><br/>
 						<%while(iterList1.hasNext()){
 							Test t=iterList1.next();
 							if(t.isExam()==false){%>
+							
+													<%
+							Map<Integer,Integer> map=new TestService().getCheckState(t);
+
+							if(map!=null){
+								for(Map.Entry<Integer,Integer> me:map.entrySet()){
+									all=me.getKey();
+									checked=me.getValue();
+								}
+								if(all==checked){
+									state="批改完成";
+								}
+								else{
+									state="未批改";
+								}
+				
+								}
+							else{
+								state="异常";%>
+		<% 					}
+
+%>
+							
+							
 								<div>
-								<%="默认                           "+"默认                        "+t.getTestTime()+"   "+"默认"+t.getTestScore()+"        "%><a href="viewMyPaper.jsp">查询</a>
+								<%="默认                           "+"默认                        "+t.getTestTime()+"   "%>
+								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state%></a>
+								<%=t.getTestScore()+"        " %>
+								<a href="viewMyPaper.jsp">查看试卷</a>
 								
 								</div>
 							<% }	
@@ -69,12 +125,7 @@
 						
 				<%
 					}
-					
-					
-					
-					
-					
-					
+	
 					
 				}
 
