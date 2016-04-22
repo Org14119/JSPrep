@@ -15,18 +15,22 @@ public class TestDaoImpl implements TestDAO {
 	private final String format = "%Y-%m-%d %H:%i:%s";
 
 	@Override
-	public ResultSet insert(Connection conn, Student student, QuestionSpace space, Test test) throws SQLException {
+	public synchronized ResultSet insert(Connection conn, Student student, QuestionSpace space, Test test)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		String insertSql = "INSERT INTO tbl_test (testTime,isExam,studentID,questionSpaceID,testScore) VALUES(STR_TO_DATE(?,?),?,?,?,?)";
-		PreparedStatement ps = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS	);
-		
+		PreparedStatement ps = conn.prepareStatement(insertSql);
+
 		ps.setString(1, test.getTestTime());
 		ps.setString(2, format);
 		ps.setInt(3, test.isExam() == true ? 1 : 0);
 		ps.setLong(4, student.getId());
 		ps.setLong(5, space.getId());
 		ps.setInt(6, test.getTestScore());
-		return ps.executeQuery();
+		ps.execute();
+		String sql = "SELECT max(testID) from tbl_test";
+		Statement st = conn.createStatement();
+		return st.executeQuery(sql);
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public class TestDaoImpl implements TestDAO {
 	 */
 	public ResultSet get(Connection conn, QuestionSpace space) throws SQLException {
 		String getSql = "SELECT tbl_test.testScore,tbl_test.testTime,tbl_test.isExam ,tbl_test.testID FROM tbl_test,tbl_teacherquestionspace WHERE tbl_teacherquestionspace.id=? AND tbl_teacherquestionspace.id=tbl_test.questionspaceID";
-		PreparedStatement ps=conn.prepareStatement(getSql);
+		PreparedStatement ps = conn.prepareStatement(getSql);
 		ps.setLong(1, space.getId());
 		return ps.executeQuery();
 	}

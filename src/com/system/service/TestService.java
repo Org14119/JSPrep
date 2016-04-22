@@ -28,7 +28,7 @@ public class TestService {
 			testIdSet = new TestDaoImpl().insert(conn, studentWithID, spaceWithID, test);
 			conn.commit();
 			while (testIdSet.next()) {
-				return testIdSet.getLong("testID");
+				return testIdSet.getLong("max(testID)");
 			}
 			return -1L;
 		} catch (Exception e) {
