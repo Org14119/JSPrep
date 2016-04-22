@@ -26,7 +26,7 @@ public class TimeUtil {
 		return format.format(date);
 	}
 
-	public static java.sql.Date parseStringToDate(String str) {
+	public java.sql.Date parseStringToDate(String str) {
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 小写的mm表示的是分钟
 		try {
 			java.util.Date date = sdf.parse(str);

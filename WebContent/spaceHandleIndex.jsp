@@ -30,9 +30,13 @@ if(!session.isNew()){
 				if (flag && type.equals("student")) {
 					out.println("欢迎您，" + s.getName() + "学生!");
 					String spaceID=request.getParameter("spaceID");
+					String beginTime=request.getParameter("startTime");
+					String endTime=request.getParameter("endTime");
 					out.print(spaceID);
 					QuestionSpace currentTeacherSpace= new QuestionSpace();
 					currentTeacherSpace.setId(Long.parseLong(spaceID));
+					currentTeacherSpace.setBeginTime(beginTime);
+					currentTeacherSpace.setEndTime(endTime);
 					session.setAttribute("currentTeacherSpace", currentTeacherSpace);
 					%>
 					
