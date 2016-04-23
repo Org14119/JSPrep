@@ -44,7 +44,13 @@
 							checked=me.getValue();
 							rest=all-checked;
 						}
-						out.println("已经批改了"+String.valueOf(checked)+"道题，还剩"+String.valueOf(rest)+"道题未批改");
+						if(all==0){
+							out.println("该考试您还未作答也没提交，没有具体信息！");
+						}
+						else{
+							out.println("已经批改了"+String.valueOf(checked)+"道题，还剩"+String.valueOf(rest)+"道题未批改");
+						}
+						
 						%>
 						<a href="viewMyTestRecord.jsp">返回上一页</a>
 						
