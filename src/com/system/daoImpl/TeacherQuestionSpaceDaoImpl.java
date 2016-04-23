@@ -1,10 +1,10 @@
 package com.system.daoImpl;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.system.dao.TeacherQuestionSpaceDAO;
 import com.system.entity.QuestionSpace;
@@ -14,7 +14,7 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 	private final String format = "%Y-%m-%d %H:%i:%s";
 
 	@Override
-	public void insert(Connection conn, QuestionSpace space, Teacher teacher) throws SQLException {
+	public synchronized ResultSet insert(Connection conn, QuestionSpace space, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
 		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,beginTime,endTime,teacherID) VALUES(?,?,STR_TO_DATE(?,'"
 				+ format + "'),STR_TO_DATE(?,'" + format + "'),?)";
@@ -24,8 +24,10 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 		ps.setString(3, space.getBeginTime());
 		ps.setLong(5, teacher.getId());
 		ps.setString(4, space.getEndTime());
+		Statement st = conn.createStatement();
+		String sql = "SELECT MAX(id) FROM tbl_teacherquestionspace";
 		ps.execute();
-
+		return st.executeQuery(sql);
 	}
 
 	@Override
@@ -61,12 +63,12 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();
 	}
-	
-	public ResultSet get(Connection conn,QuestionSpace space)throws SQLException{
-		String sql="SELECT * FROM tbl_teacherquestionspace WHERE id=?";
-		PreparedStatement ps=conn.prepareStatement(sql);
+
+	public ResultSet get(Connection conn, QuestionSpace space) throws SQLException {
+		String sql = "SELECT * FROM tbl_teacherquestionspace WHERE id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setLong(1, space.getId());
 		return ps.executeQuery();
 	}
-	
+
 }
