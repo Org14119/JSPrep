@@ -36,11 +36,14 @@ public class do_checkTest extends HttpServlet {
 						score = 0;
 						System.out.println("批改失败");
 						session.setAttribute(testID, score);
-						response.sendRedirect("allRecord.jsp");
-					} else {
+
+						
+					}
+					else{
 						System.out.println("批改成功");
 						session.setAttribute(testID, score);
-						response.sendRedirect("allRecord.jsp");
+						
+
 					}
 
 					// request.setAttribute(testID, score);
