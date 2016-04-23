@@ -34,7 +34,7 @@ public class ObjectAnswerInfoDaoImpl implements ObjectAnswerInfoDao {
 	@Override
 	public void update(Connection conn, ObjectAnswer answer) throws SQLException {
 		// TODO Auto-generated method stub
-		String updateSql = "UPDATE tbl_objectanswer SET studentAnswer=?,answerScore=? isChecked=? WHERE answerInfoID=?";
+		String updateSql = "UPDATE tbl_objectanswerinfo SET studentAnswer=?,answerScore=? ,isChecked=? WHERE answerInfoID=?";
 		PreparedStatement ps = conn.prepareStatement(updateSql);
 		ps.setInt(1, answer.getAnswerContent());
 		ps.setInt(2, answer.getAnswerScore());

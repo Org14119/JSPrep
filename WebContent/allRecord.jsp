@@ -30,10 +30,13 @@ if(!session.isNew()){
 			if (flag && type.equals("teacher")) {
 				out.println("欢迎您，" + t.getName() + "教师!");
 				String spaceID=request.getParameter("spaceID");
-				System.out.println("spaceid="+spaceID);
-				out.print(spaceID);
+
+				//out.print(spaceID);
+				//System.out.println(spaceID);
+
 				QuestionSpace currentTeacherSpace= new QuestionSpace();
 				currentTeacherSpace.setId(Long.parseLong(spaceID));
+				//System.out.println("zcP"+currentTeacherSpace.getId());
 				Map<Test, Student> map=new TestService().getTestRecord(currentTeacherSpace);
 				Test test=new Test();
 				Student student=new Student();
