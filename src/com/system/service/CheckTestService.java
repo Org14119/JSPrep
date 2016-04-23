@@ -40,7 +40,7 @@ public class CheckTestService {
 					tempQuiz.setId(quizID);
 					ResultSet quizSet = questionImpl.get(conn, tempQuiz);
 					while (quizSet.next()) {
-						int trueAnswer = quizSet.getInt("trueAnsewr");
+						int trueAnswer = quizSet.getInt("trueAnswer");
 						int score = quizSet.getInt("score");
 						if (trueAnswer == studentAnswer) {
 							testScore += score;
@@ -74,6 +74,7 @@ public class CheckTestService {
 			return testScore;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {

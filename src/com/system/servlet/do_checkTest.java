@@ -13,62 +13,53 @@ import com.system.service.CheckTestService;
 
 public class do_checkTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		HttpSession session=request.getSession();
-		if(!session.isNew()){
+		HttpSession session = request.getSession();
+		if (!session.isNew()) {
 			if (session == null || session.getAttribute("teacher") == null
 					|| (Boolean) session.getAttribute("state") == false) {
 				session.invalidate();
 				response.sendRedirect("index.jsp");
-			}
-			else{
-				String testID=request.getParameter("testID");
-				System.out.println("该testID="+testID);
-				if(testID!=null&&!testID.equals("")){
-					Test test=new Test();
-					
-					test.setTestID(Long.valueOf(testID));
-					int score=new CheckTestService().checkTest(test);
-					if(score==-1){
-						score=0;
+			} else {
+				String testID = request.getParameter("testID");
+				// System.out.println("该testID="+testID);
+				if (testID != null && !testID.equals("")) {
+					Test test = new Test();
+
+					test.setTestID(Long.parseLong(testID));
+					int score = new CheckTestService().checkTest(test);
+					if (score == -1) {
+						score = 0;
 						System.out.println("批改失败");
 						session.setAttribute(testID, score);
-						response.sendRedirect("allRecord.jsp");	
-					}
-					else{
+						response.sendRedirect("allRecord.jsp");
+					} else {
 						System.out.println("批改成功");
 						session.setAttribute(testID, score);
-						response.sendRedirect("allRecord.jsp");	
+						response.sendRedirect("allRecord.jsp");
 					}
 
-//			   request.setAttribute(testID, score);
-//			   RequestDispatcher rd=request.getRequestDispatcher("/allRecord.jsp");
-//			   rd.forward(request,response);
-			  
-				}
-				else{
+					// request.setAttribute(testID, score);
+					// RequestDispatcher
+					// rd=request.getRequestDispatcher("/allRecord.jsp");
+					// rd.forward(request,response);
+
+				} else {
 					session.invalidate();
 					response.sendRedirect("index.jsp");
 				}
 
-				
-				
-				
-				
 			}
-		
-		
-		
-		
-		
-	}
-		else{
+
+		} else {
 			session.invalidate();
 			response.sendRedirect("index.jsp");
-			
+
 		}
 
-}
+	}
 }
