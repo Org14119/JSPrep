@@ -30,6 +30,7 @@ if(!session.isNew()){
 			if (flag && type.equals("teacher")) {
 				out.println("欢迎您，" + t.getName() + "教师!");
 				String spaceID=request.getParameter("spaceID");
+				System.out.println("spaceid="+spaceID);
 				out.print(spaceID);
 				QuestionSpace currentTeacherSpace= new QuestionSpace();
 				currentTeacherSpace.setId(Long.parseLong(spaceID));
@@ -49,7 +50,7 @@ if(!session.isNew()){
 					<% for(Map.Entry<Test, Student> me:map.entrySet()){
 						test=me.getKey();
 						student=me.getValue();
-						if(student.getGender()=="1"){
+						if(student.getGender()=="0"){
 							student.setGender("男");
 						}
 						else{
@@ -107,7 +108,7 @@ if(!session.isNew()){
 		<% for(Map.Entry<Test, Student> me:map.entrySet()){
 			test=me.getKey();
 			student=me.getValue();
-			if(student.getGender()=="1"){
+			if(student.getGender()=="0"){
 				student.setGender("男");
 			}
 			else{
@@ -169,7 +170,7 @@ if(!session.isNew()){
 		<% for(Map.Entry<Test, Student> me:map.entrySet()){
 			test=me.getKey();
 			student=me.getValue();
-			if(student.getGender()=="1"){
+			if(student.getGender()=="0"){
 				student.setGender("男");
 			}
 			else{
@@ -245,7 +246,7 @@ if(!session.isNew()){
 		<% for(Map.Entry<Test, Student> me:map.entrySet()){
 			test=me.getKey();
 			student=me.getValue();
-			if(student.getGender()=="1"){
+			if(student.getGender()=="0"){
 				student.setGender("男");
 			}
 			else{
