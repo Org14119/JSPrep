@@ -32,11 +32,11 @@ if(!session.isNew()){
 				String spaceID=request.getParameter("spaceID");
 
 				//out.print(spaceID);
-				//System.out.println(spaceID);
+				System.out.println("shabi"+spaceID);
 
 				QuestionSpace currentTeacherSpace= new QuestionSpace();
 				currentTeacherSpace.setId(Long.parseLong(spaceID));
-				//System.out.println("zcP"+currentTeacherSpace.getId());
+				System.out.println("zcP"+currentTeacherSpace.getId());
 				Map<Test, Student> map=new TestService().getTestRecord(currentTeacherSpace);
 				Test test=new Test();
 				Student student=new Student();
@@ -191,13 +191,13 @@ if(!session.isNew()){
 					}
 				if(all!=0&&all==checked){
 				str="查看答题情况";
-				score=(int)session.getAttribute(String.valueOf(test.getTestID()));
-				out.println("fenshu+"+score);
-				if(score!=0){
+			    Test tempTest=new TestService().getTestRecord(test);
+			    if(tempTest!=null){
+		
 					%>
 					
 			            <%=student.getName()+"  "+student.getGender()+"  "+student.getEmail()+"   "+test.getTestTime()%>
-            <%=score+"分"%>
+            <%=tempTest.getTestScore()+"分"%>
             
             <a href="viewStudentTestPaper.jsp?testID=<%=test.getTestID()%>"><%=str%></a><br>		
 					
@@ -255,7 +255,7 @@ if(!session.isNew()){
 			else{
 				student.setGender("女");
 			}
-			if(test.isExam()){%>
+			if(!test.isExam()){%>
 			
 			<% 
 				Map<Integer,Integer> map4=new TestService().getCheckState(test);
@@ -266,11 +266,11 @@ if(!session.isNew()){
 					}
 				if(all!=0&&all==checked){
 				str="查看答题情况";
-				score=(int)session.getAttribute(String.valueOf(test.getTestID()));
-				if(score!=0){
+				Test tempTest=new TestService().getTestRecord(test);
+				if(tempTest!=null){
 					%>
 		    <%=student.getName()+"  "+student.getGender()+"  "+student.getEmail()+"   "+test.getTestTime()%>
-            <%=score+"分"%>
+            <%=tempTest.getTestScore()+"分"%>
             
             <a href="viewStudentTestPaper.jsp?testID=<%=test.getTestID()%>"><%=str%></a><br>	
 					

@@ -26,24 +26,21 @@ public class do_checkTest extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			} else {
 				String testID = request.getParameter("testID");
-				// System.out.println("该testID="+testID);
+			System.out.println("该testID="+testID);
 				if (testID != null && !testID.equals("")) {
 					Test test = new Test();
 
 					test.setTestID(Long.parseLong(testID));
 					int score = new CheckTestService().checkTest(test);
 					if (score == -1) {
-						score = 0;
 						System.out.println("批改失败");
-						session.setAttribute(testID, score);
-
+						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
 						
 					}
 					else{
 						System.out.println("批改成功");
-						session.setAttribute(testID, score);
-						
-
+						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
+			
 					}
 
 					// request.setAttribute(testID, score);

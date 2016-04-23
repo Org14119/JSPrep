@@ -89,7 +89,7 @@
 				
 							else{
 								out.println("系统繁忙，请稍候重试！");%>
-								<a href="allRecord.jsp">返回上一页</a>
+								<a href="viewAllTests.jsp">返回上一页</a>
 								
 							<%}
 								
