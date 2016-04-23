@@ -11,8 +11,6 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
 		if (!session.isNew()) {
 
 			if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
@@ -33,11 +31,11 @@
 					String spaceID = request.getParameter("spaceID");
 
 					//out.print(spaceID);
-					//System.out.println(spaceID);
+					System.out.println("shabi" + spaceID);
 
 					QuestionSpace currentTeacherSpace = new QuestionSpace();
 					currentTeacherSpace.setId(Long.parseLong(spaceID));
-					//System.out.println("zcP"+currentTeacherSpace.getId());
+					System.out.println("zcP" + currentTeacherSpace.getId());
 					Map<Test, Student> map = new TestService().getTestRecord(currentTeacherSpace);
 					Test test = new Test();
 					Student student = new Student();
@@ -194,9 +192,7 @@
 	%>
 
 	<%
-		request.setCharacterEncoding("UTF-8");
-								response.setCharacterEncoding("UTF-8");
-								Map<Integer, Integer> map3 = new TestService().getCheckState(test);
+		Map<Integer, Integer> map3 = new TestService().getCheckState(test);
 								if (map3 != null) {
 									for (Map.Entry<Integer, Integer> m : map3.entrySet()) {
 										all = m.getKey();
@@ -204,15 +200,13 @@
 									}
 									if (all != 0 && all == checked) {
 										str = "查看答题情况";
-										score = Integer.parseInt(
-												(String) session.getAttribute(String.valueOf(test.getTestID())));
-										out.println("fenshu+" + score);
-										if (score != 0) {
+										Test tempTest = new TestService().getTestRecord(test);
+										if (tempTest != null) {
 	%>
 
 	<%=student.getName() + "  " + student.getGender() + "  "
 														+ student.getEmail() + "   " + test.getTestTime()%>
-	<%=score + "分"%>
+	<%=tempTest.getTestScore() + "分"%>
 
 	<a href="viewStudentTestPaper.jsp?testID=<%=test.getTestID()%>"><%=str%></a>
 	<br>
@@ -271,13 +265,11 @@
 							} else {
 								student.setGender("女");
 							}
-							if (test.isExam()) {
+							if (!test.isExam()) {
 	%>
 
 	<%
-		request.setCharacterEncoding("UTF-8");
-								response.setCharacterEncoding("UTF-8");
-								Map<Integer, Integer> map4 = new TestService().getCheckState(test);
+		Map<Integer, Integer> map4 = new TestService().getCheckState(test);
 								if (map4 != null) {
 									for (Map.Entry<Integer, Integer> m : map4.entrySet()) {
 										all = m.getKey();
@@ -285,13 +277,12 @@
 									}
 									if (all != 0 && all == checked) {
 										str = "查看答题情况";
-										score = Integer.parseInt(
-												(String) session.getAttribute(String.valueOf(test.getTestID())));
-										if (score != 0) {
+										Test tempTest = new TestService().getTestRecord(test);
+										if (tempTest != null) {
 	%>
 	<%=student.getName() + "  " + student.getGender() + "  "
 														+ student.getEmail() + "   " + test.getTestTime()%>
-	<%=score + "分"%>
+	<%=tempTest.getTestScore() + "分"%>
 
 	<a href="viewStudentTestPaper.jsp?testID=<%=test.getTestID()%>"><%=str%></a>
 	<br>

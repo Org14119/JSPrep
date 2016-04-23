@@ -1,8 +1,7 @@
 package com.system.servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,22 +27,20 @@ public class do_checkTest extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			} else {
 				String testID = request.getParameter("testID");
-				// System.out.println("该testID="+testID);
+				System.out.println("该testID=" + testID);
 				if (testID != null && !testID.equals("")) {
 					Test test = new Test();
 
 					test.setTestID(Long.parseLong(testID));
 					int score = new CheckTestService().checkTest(test);
 					if (score == -1) {
-						score = 0;
 						System.out.println("批改失败");
-						Map<Long,Integer>map=new HashMap<Long,Integer>();
-						session.setAttribute("scoreMap", map);
+
+						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
 
 					} else {
 						System.out.println("批改成功");
-						Map<Long,Integer>map=new HashMap<Long,Integer>();
-						session.setAttribute("scoreMap", map);
+						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
 
 					}
 

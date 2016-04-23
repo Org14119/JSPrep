@@ -36,6 +36,7 @@
 							ObjectAnswer tempObjectAnswer=new ObjectAnswer();
 							int i=1;
 							String myAnswer="";
+							String correctAnswer="";
 							if(map!=null){
 								for(Map.Entry<ObjectQuestion, ObjectAnswer> me:map.entrySet()){
 									tempObjectQuestion=me.getKey();
@@ -55,7 +56,18 @@
 									else if(tempObjectAnswer.getAnswerContent()==0){
 										myAnswer="未作答";
 									}
-		
+									if(tempObjectQuestion.getCorrectAnswer()==1){
+										correctAnswer="A";
+									}
+									else if(tempObjectQuestion.getCorrectAnswer()==2){
+										correctAnswer="B";
+									}
+									else if(tempObjectQuestion.getCorrectAnswer()==3){
+										correctAnswer="C";
+									}
+									else if(tempObjectQuestion.getCorrectAnswer()==4){
+										correctAnswer="D";
+									}
 									
 									
 									%>
@@ -68,7 +80,9 @@
 											C.<%=tempObjectQuestion.getChoiceC()%><br>
 											D.<%=tempObjectQuestion.getChoiceD()%><br>
 											考生所选答案：<%=myAnswer %><br>
-											
+										             正确答案：<%=correctAnswer %><br>
+									                           答案解析：<%=tempObjectQuestion.getAnswerAnalyze() %><br>
+									       
 										</div>
 									
 									
@@ -78,14 +92,14 @@
 								i++;}%>
 								<br/>
 
-								
+								<a href="viewAllTests.jsp">返回</a>
 								
 								
 							<% }
 				
 							else{
 								out.println("系统繁忙，请稍候重试！");%>
-								<a href="allRecord.jsp">返回上一页</a>
+								<a href="viewAllTests.jsp">返回上一页</a>
 								
 							<%}
 								
