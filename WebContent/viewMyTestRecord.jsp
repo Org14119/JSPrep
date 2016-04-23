@@ -36,7 +36,7 @@
 						int checked=0;
 						int score=0;
 						String state="未知";
-					
+					   String str="查看试卷";
 						
 						
 						
@@ -58,18 +58,22 @@
 								}
 								if(all==checked&&all!=0){
 									state="批改完成";
+									str="查看试卷";
 									score=new CheckTestService().checkTest(t);
 									if(score==-1){
 										state="批改失败";
+										str="无法查看";
 										score=0;
 									}
 							
 								}
 								else if(all!=0&&all>checked){
 									state="未批改";
+									str="查看试卷";
 								}
 								else if(all==0){
 									state="未知";
+									str="无法查看";
 								}
 								}
 				
@@ -100,7 +104,13 @@ else{
 							
 								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state %></a>
 								<%=score+"        " %>
-								<a href="viewMyPaper.jsp">查看试卷</a>
+								<%if(str.equals("查看试卷")){%>
+									<a href="viewMyPapers.jsp?testID=<%=t.getTestID()%>"><%=str %></a>
+								<% }
+								else{%>
+									<%=str %>
+								<% }
+								%>
 								
 								</div>
 							<% }}
@@ -122,17 +132,21 @@ else{
 								}
 								if(all==checked&&all!=0){
 									state="批改完成";
+									str="查看试卷";
 									score=new CheckTestService().checkTest(t);
 									if(score==-1){
 										state="批改失败";
+										str="无法查看";
 										score=0;
 									}
 								}
 								else if(all!=0&&all>checked){
 									state="未批改";
+									str="查看试卷";
 								}
 								else if(all==0){
 									state="未知";
+									str="无法查看";
 								}
 				
 								}
@@ -159,7 +173,13 @@ else{
 									<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
 								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state%></a>
 								<%=score+"        " %>
-								<a href="viewMyPaper.jsp">查看试卷</a>
+								<%if(str.equals("查看试卷")){%>
+									<a href="viewMyPapers.jsp?testID=<%=t.getTestID()%>"><%=str %></a>
+								<% }
+								else if(str.equals("无法查看")){%>
+									<%=str %>
+								<% }
+								%>
 								
 								</div>
 							<% }	

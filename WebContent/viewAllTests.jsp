@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="com.system.entity.*"%>
+    pageEncoding="UTF-8"%>
+        <%@page import="com.system.service.*"%>
+<%@page import="java.util.*"%>
+<%@page import="com.system.entity.*"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,32 +11,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
+		<%
 		if (!session.isNew()) {
 			if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
 					|| session.getAttribute("state") == null) {
 	%>
-	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+				<%="会话过期或者未登录，请重新登录"%>
+				<a href="index.jsp">登录</a>
 
 	<%
-		} 
-			else {
+		} else {
 	%>
 	<%
-		        String type = (String) session.getAttribute("type");
+		String type = (String) session.getAttribute("type");
 				Teacher t = (Teacher) session.getAttribute("teacher");
 				boolean flag = (boolean) session.getAttribute("state");
 				if (flag && type.equals("teacher")) {
 					out.println("欢迎您，" + t.getName() + "教师!");
+					List<QuestionSpace> spacelists = new QuestionSpaceService().getQuestionSpaceOfTeacher(t);
+					session.setAttribute("SpaceList", spacelists);
+					for (int i = 0; i < spacelists.size(); i++) {
 	%>
-	<a href="getTeacherAllSpace.jsp">查看你的所有的题库</a>
-	<br>
-	<a href="teacherQuestionBank.jsp">添加题库</a>
-	<a href="viewAllTests.jsp">查看考试</a>
-	<center>
-		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>
-	</center>
+
+	<br />
+	<br />
+	<a href="allRecord.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName() + "-" + spacelists.get(i).getType()%></a>
+
+	<%
+		}
+	%>
+
+
+
 	<%
 		} else {
 					session.invalidate();
@@ -44,12 +53,10 @@
 		}
 		}
 		else{%>
-			<%="会话过期或者未登录，请重新登录"%>
-			<a href="index.jsp">登录</a>
-	<% 	}
+		<%session.invalidate(); %>
+		<%="会话过期或者未登录，请重新登录"%>
+		<a href="index.jsp">登录</a>
+<% 	}
 	%>
-
-
-
 </body>
 </html>
