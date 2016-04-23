@@ -78,7 +78,7 @@ public class TestDaoImpl implements TestDAO {
 	 * 通过题库ID查找Test信息
 	 */
 	public ResultSet get(Connection conn, QuestionSpace space) throws SQLException {
-		String getSql = "SELECT tbl_test.testScore,tbl_test.testTime,tbl_test.isExam ,tbl_test.testID FROM tbl_test,tbl_teacherquestionspace WHERE tbl_teacherquestionspace.id=? AND tbl_teacherquestionspace.id=tbl_test.questionspaceID";
+		String getSql = "SELECT tbl_test.testScore,tbl_test.testTime,tbl_test.isExam ,tbl_test.testID,tbl_test.studentID FROM tbl_test,tbl_teacherquestionspace WHERE tbl_teacherquestionspace.id=? AND tbl_teacherquestionspace.id=tbl_test.questionspaceID";
 		PreparedStatement ps = conn.prepareStatement(getSql);
 		ps.setLong(1, space.getId());
 		return ps.executeQuery();

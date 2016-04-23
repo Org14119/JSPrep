@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import com.system.daoImpl.ObjectAnswerInfoDaoImpl;
+import com.system.daoImpl.StudentDaoImpl;
 import com.system.daoImpl.TeacherDaoImpl;
 import com.system.daoImpl.TeacherQuestionSpaceDaoImpl;
 import com.system.daoImpl.TestDaoImpl;
@@ -219,34 +220,50 @@ public class TestService {
 	/*
 	 * 根据题库的ID信息查找考试信息 。如果发生异常，返回null
 	 */
-	public Vector<Test> getTestRecord(QuestionSpace space) {
+	public Map<Test, Student> getTestRecord(QuestionSpace space) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		ResultSet testSet = null;
+		ResultSet studentSet = null;
+		Map<Test, Student> map = new HashMap<Test, Student>();
 		try {
 			conn.setAutoCommit(false);
 			testSet = new TestDaoImpl().get(conn, space);
-			Vector<Test> testVector = new Vector<Test>();
 			while (testSet.next()) {
-				Test tempTest = new Test();
+				Test truet = new Test();
+				Student trues = new Student();
+				Student tempS = new Student();
+				long sid = testSet.getLong("studentID");
+				tempS.setId(sid);
+				studentSet = new StudentDaoImpl().getByID(conn, tempS);
+				while (studentSet.next()) {
+					Long studentID = studentSet.getLong("studentID");
+					String studentEmail = studentSet.getString("studentEmail");
+					String name = studentSet.getString("studentName");
+					int studentGender = studentSet.getInt("studentGender");
+					trues.setId(studentID);
+					trues.setEmail(studentEmail);
+					trues.setGender(String.valueOf(studentGender));
+					trues.setName(name);
+
+				}
 				int examflag = testSet.getInt("isExam");
 				switch (examflag) {
 				case 1:
-					tempTest.setExam(true);
+					truet.setExam(true);
 					break;
 				case 0:
-					tempTest.setExam(false);
+					truet.setExam(false);
 					break;
 				default:
 					return null;
 				}
-				tempTest.setTestID(testSet.getLong("testID"));
-				tempTest.setTestScore(testSet.getInt("testScore"));
-				tempTest.setTestTime(testSet.getTimestamp("testTime").toString());
-				testVector.add(tempTest);
+				truet.setTestID(testSet.getLong("testID"));
+				truet.setTestScore(testSet.getInt("testScore"));
+				truet.setTestTime(testSet.getTimestamp("testTime").toString());
+				map.put(truet, trues);
 			}
 			conn.commit();
-			return testVector;
-
+			return map;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
