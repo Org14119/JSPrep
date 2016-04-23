@@ -34,7 +34,14 @@
 					if(testRecord!=null&&!testRecord.isEmpty()){
 						int all=0;
 						int checked=0;
+						int score=0;
 						String state="未知";
+					
+						
+						
+						
+						QuestionSpace qs=new QuestionSpace();
+						Teacher myTeacher=new Teacher();
 						Iterator<Test> iterList=testRecord.iterator();%><br/><br/>
 						考试记录：<br/><br/>
 						科目                           老师                                                                    考试时间                                                                                状态                             分数                                操作<br/><br/>
@@ -49,30 +56,55 @@
 									all=me.getKey();
 									checked=me.getValue();
 								}
-								if(all==checked){
+								if(all==checked&&all!=0){
 									state="批改完成";
+									score=new CheckTestService().checkTest(t);
+									if(score==-1){
+										state="批改失败";
+										score=0;
+									}
+							
 								}
-								else{
+								else if(all!=0&&all>checked){
 									state="未批改";
 								}
-				
+								else if(all==0){
+									state="未知";
 								}
+								}
+				
+								
 							else{
 								state="异常";%>
 								
 		<% 					}
 
 %>	
+<%
+Map<QuestionSpace, Teacher> myMap=new TestService().getDetailOfTest(t);
+if(myMap!=null){
+	for(Map.Entry<QuestionSpace, Teacher> me:myMap.entrySet()){
+		qs=me.getKey();
+		myTeacher=me.getValue();
+	}
+}
+else{
+	qs.setName("未知");
+	myTeacher.setName("未知");
+}
+
+%>
+
 								<div>
-								<%="默认                           "+"默认                        "+t.getTestTime()+"   "%>
+								<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
 							
 								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state %></a>
-								<%=t.getTestScore()+"        " %>
+								<%=score+"        " %>
 								<a href="viewMyPaper.jsp">查看试卷</a>
 								
 								</div>
-							<% }
-						}
+							<% }}
+						
 						Iterator<Test> iterList1=testRecord.iterator();%><br/><br/>
 						练习记录：<br/><br/>
 						科目                           老师                         考试 时间                            状态                             分数                                操作<br/><br/>
@@ -88,11 +120,19 @@
 									all=me.getKey();
 									checked=me.getValue();
 								}
-								if(all==checked){
+								if(all==checked&&all!=0){
 									state="批改完成";
+									score=new CheckTestService().checkTest(t);
+									if(score==-1){
+										state="批改失败";
+										score=0;
+									}
 								}
-								else{
+								else if(all!=0&&all>checked){
 									state="未批改";
+								}
+								else if(all==0){
+									state="未知";
 								}
 				
 								}
@@ -101,12 +141,24 @@
 		<% 					}
 
 %>
-							
+	<%
+Map<QuestionSpace, Teacher> myMap=new TestService().getDetailOfTest(t);
+if(myMap!=null){
+	for(Map.Entry<QuestionSpace, Teacher> me:myMap.entrySet()){
+		qs=me.getKey();
+		myTeacher=me.getValue();
+	}
+}
+else{
+	qs.setName("未知");
+	myTeacher.setName("未知");
+}
+%>						
 							
 								<div>
-								<%="默认                           "+"默认                        "+t.getTestTime()+"   "%>
+									<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
 								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state%></a>
-								<%=t.getTestScore()+"        " %>
+								<%=score+"        " %>
 								<a href="viewMyPaper.jsp">查看试卷</a>
 								
 								</div>
@@ -118,16 +170,8 @@
 						out.println("当前没有考试记录！");%>
 						<a href="studentIndex.jsp">返回首页</a>
 						
-				<% 	}
-					else{
-						out.println("系统繁忙，请稍候重试！");%>
-						<a href="studentIndex.jsp">返回首页</a>
-						
-				<%
-					}
-	
-					
-				}
+				<% 	}}
+
 
 				else {
 	%>
