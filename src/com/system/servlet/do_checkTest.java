@@ -1,6 +1,8 @@
 package com.system.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,14 +37,13 @@ public class do_checkTest extends HttpServlet {
 					if (score == -1) {
 						score = 0;
 						System.out.println("批改失败");
-						session.setAttribute(testID, score);
+						Map<Long,Integer>map=new HashMap<Long,Integer>();
+						session.setAttribute("scoreMap", map);
 
-						
-					}
-					else{
+					} else {
 						System.out.println("批改成功");
-						session.setAttribute(testID, score);
-						
+						Map<Long,Integer>map=new HashMap<Long,Integer>();
+						session.setAttribute("scoreMap", map);
 
 					}
 
