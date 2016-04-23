@@ -8,7 +8,7 @@ import com.system.entity.QuestionSpace;
 import com.system.entity.Teacher;
 
 public interface TeacherQuestionSpaceDAO {
-	public void insert(Connection conn, QuestionSpace space,Teacher teacher) throws SQLException;
+	public ResultSet insert(Connection conn, QuestionSpace space,Teacher teacher) throws SQLException;
 
 	public void update(Connection conn, QuestionSpace space) throws SQLException;
 

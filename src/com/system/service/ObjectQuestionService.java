@@ -3,6 +3,7 @@ package com.system.service;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.Vector;
 
 import com.system.daoImpl.ObjectQuestionDaoImpl;
@@ -11,6 +12,38 @@ import com.system.entity.QuestionSpace;
 import com.system.util.ConnectionFactory;
 
 public class ObjectQuestionService {
+	public boolean addQuestionsToSpace(Vector<ObjectQuestion>questions,QuestionSpace space){
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ObjectQuestionDaoImpl impl=new ObjectQuestionDaoImpl();
+		try {
+			conn.setAutoCommit(false);
+			Iterator<ObjectQuestion> iter=questions.iterator();
+			while(iter.hasNext()){
+				ObjectQuestion question=iter.next();
+				impl.insert(conn, question, space);
+			}
+			conn.commit();
+			//conn.close();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return false;
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	/*
 	 * 添加题目的时候使用，需要题库对象（包含ID)，需要题目对象(包含详细信息）
 	 */
@@ -20,7 +53,7 @@ public class ObjectQuestionService {
 			conn.setAutoCommit(false);
 			new ObjectQuestionDaoImpl().insert(conn, question, space);
 			conn.commit();
-			conn.close();
+			//conn.close();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -69,7 +102,7 @@ public class ObjectQuestionService {
 			}
 			conn.commit();
 			questionSet.close();
-			conn.close();
+			//conn.close();
 			return questionVector;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -106,7 +139,7 @@ public class ObjectQuestionService {
 			conn.setAutoCommit(false);
 			new ObjectQuestionDaoImpl().update(conn, question);
 			conn.commit();
-			conn.close();
+			//conn.close();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -137,7 +170,7 @@ public class ObjectQuestionService {
 			conn.setAutoCommit(false);
 			new ObjectQuestionDaoImpl().delete(conn, question);
 			conn.commit();
-			conn.close();
+			//conn.close();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -168,7 +201,7 @@ public class ObjectQuestionService {
 			conn.setAutoCommit(false);
 			new ObjectQuestionDaoImpl().deleteAll(conn, space);
 			conn.commit();
-			conn.close();
+			//conn.close();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
