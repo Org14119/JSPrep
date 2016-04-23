@@ -3,10 +3,11 @@ package com.system.service;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 import com.system.daoImpl.ObjectAnswerInfoDaoImpl;
+import com.system.daoImpl.ObjectQuestionDaoImpl;
 import com.system.entity.ObjectAnswer;
 import com.system.entity.ObjectQuestion;
 import com.system.entity.Test;
@@ -16,31 +17,49 @@ public class ObjectAnswerService {
 	/*
 	 * 
 	 * 通过Test的ID获取answer内容 传入Test对象，其中至少包含ID
-	 * 返回Vector<ObjectAnswer>,包含answer对象的ID，如果还要查看解析，需要调用其它方法; 如果发生异常，返回null
+	 * 返回Map<ObjectQuestion,ObjectAnswer>,包含question,answer对象的所有内容.如果发生异常，返回null
 	 * 
 	 */
-	public Vector<ObjectAnswer> getObjectAnswer(Test test) {
+	public Map<ObjectQuestion, ObjectAnswer> getObjectAnswer(Test test) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		ResultSet questionSet = null;
-		Vector<ObjectAnswer> questionV = new Vector<ObjectAnswer>();
+		ResultSet answerSet = null;
+		Map<ObjectQuestion, ObjectAnswer> map = new HashMap<ObjectQuestion, ObjectAnswer>();
 		try {
 			conn.setAutoCommit(false);
-			questionSet = new ObjectAnswerInfoDaoImpl().get(conn, test);
-			while (questionSet.next()) {
-				ObjectAnswer answer = new ObjectAnswer();
-				answer.setAnswerInfoID(questionSet.getLong("answerInfoID"));
-				answer.setAnswerContent(questionSet.getInt("studentAnswer"));
-				answer.setAnswerScore(questionSet.getInt("answerScore"));
-				answer.setChecked(false);
-				int tempState = questionSet.getInt("isChecked");
+			answerSet = new ObjectAnswerInfoDaoImpl().get(conn, test);
+			while (answerSet.next()) {
+				long quizID = answerSet.getLong("questionID");
+				ObjectQuestion truequestion = new ObjectQuestion();
+				ObjectQuestion tempQuestion = new ObjectQuestion();
+				tempQuestion.setId(quizID);
+				ObjectAnswer trueAnswer = new ObjectAnswer();
+				// ObjectAnswer answer = new ObjectAnswer();
+				trueAnswer.setAnswerInfoID(answerSet.getLong("answerInfoID"));
+				trueAnswer.setAnswerContent(answerSet.getInt("studentAnswer"));
+				trueAnswer.setAnswerScore(answerSet.getInt("answerScore"));
+				trueAnswer.setChecked(false);
+				int tempState = answerSet.getInt("isChecked");
 				if (tempState == 1) {
-					answer.setChecked(true);
+					trueAnswer.setChecked(true);
 				}
-				answer.setAnswerTime(questionSet.getTimestamp("answerTime").toString());
-				questionV.add(answer);
+				trueAnswer.setAnswerTime(answerSet.getTimestamp("answerTime").toString());
+				questionSet = new ObjectQuestionDaoImpl().get(conn, tempQuestion);
+				while (questionSet.next()) {
+					truequestion.setId(questionSet.getLong("questionID"));
+					truequestion.setTitle(questionSet.getString("questionContent"));
+					truequestion.setChoiceA(questionSet.getString("answer1"));
+					truequestion.setChoiceB(questionSet.getString("answer2"));
+					truequestion.setChoiceC(questionSet.getString("answer3"));
+					truequestion.setChoiceD(questionSet.getString("answer4"));
+					truequestion.setAnswerAnalyze(questionSet.getString("questionAnalyze"));
+					truequestion.setScore(questionSet.getInt("score"));
+					truequestion.setCorrectAnswer(questionSet.getInt("trueAnswer"));
+				}
+				map.put(truequestion, trueAnswer);
 			}
 			conn.commit();
-			return questionV;
+			return map;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -52,6 +71,12 @@ public class ObjectAnswerService {
 			}
 			return null;
 		} finally {
+			try {
+				answerSet.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			try {
 				questionSet.close();
 			} catch (SQLException e) {
