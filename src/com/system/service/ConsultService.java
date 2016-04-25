@@ -15,6 +15,7 @@ import com.system.util.ConnectionFactory;
 
 public class ConsultService {
 	/*
+
 	 * 获得所有学生的集合，如果查询异常返回null
 	 */
 	public Vector<Student> getAllStudents(){
@@ -59,6 +60,7 @@ public class ConsultService {
 			}
 		}
 	}
+
 	/*
 	 * 返回所有老师的集合，如果查询异常返回null
 	 */

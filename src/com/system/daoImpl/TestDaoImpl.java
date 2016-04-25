@@ -83,5 +83,11 @@ public class TestDaoImpl implements TestDAO {
 		ps.setLong(1, space.getId());
 		return ps.executeQuery();
 	}
+	public ResultSet getScores(Connection conn,QuestionSpace space)throws SQLException{
+		String sql="SELECT FROM tbl_test WHERE questionSpaceID=? AND isExam=1";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setLong(1, space.getId());
+		return ps.executeQuery();
+	}
 
 }
