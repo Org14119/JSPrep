@@ -102,6 +102,8 @@ public class do_FileUpLoad extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			writer.println("无法解析");
+			writer.flush();
 		}
 	}
 
