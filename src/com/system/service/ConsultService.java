@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import com.system.daoImpl.StudentDaoImpl;
 import com.system.daoImpl.TeacherDaoImpl;
@@ -13,6 +14,51 @@ import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
 
 public class ConsultService {
+	/*
+	 * 获得所有学生的集合，如果查询异常返回null
+	 */
+	public Vector<Student> getAllStudents(){
+		Vector<Student>students=new Vector<Student>();
+		Connection conn=ConnectionFactory.getInstace().makeConnection();
+		ResultSet studentSet=null;
+		try {
+			conn.setAutoCommit(false);
+			studentSet=new StudentDaoImpl().getAll(conn);
+			while(studentSet.next()){
+				Student tempS=new Student();
+				tempS.setEmail(studentSet.getString("studentEmail"));
+				tempS.setGender(String.valueOf(studentSet.getInt("studentGender")));
+				tempS.setName(studentSet.getString("studentName"));
+				tempS.setId(studentSet.getLong("studentID"));
+				students.add(tempS);
+			}
+			conn.commit();
+			return students;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		}finally{
+			try {
+				studentSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	/*
 	 * 返回所有老师的集合，如果查询异常返回null
 	 */
