@@ -2,6 +2,7 @@ package com.system.servlet;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ public class do_checkTest extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			} else {
 				String testID = request.getParameter("testID");
-			System.out.println("该testID="+testID);
+				System.out.println("该testID=" + testID);
 				if (testID != null && !testID.equals("")) {
 					Test test = new Test();
 
@@ -34,13 +35,13 @@ public class do_checkTest extends HttpServlet {
 					int score = new CheckTestService().checkTest(test);
 					if (score == -1) {
 						System.out.println("批改失败");
+
 						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
-						
-					}
-					else{
+
+					} else {
 						System.out.println("批改成功");
 						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
-			
+
 					}
 
 					// request.setAttribute(testID, score);
