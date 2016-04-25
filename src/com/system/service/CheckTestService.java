@@ -39,9 +39,18 @@ public class CheckTestService {
 					ObjectQuestion tempQuiz = new ObjectQuestion();
 					tempQuiz.setId(quizID);
 					ResultSet quizSet = questionImpl.get(conn, tempQuiz);
+					if(!quizSet.first()){
+						ObjectAnswer tempAnswer = new ObjectAnswer();
+						tempAnswer.setAnswerInfoID(answerInfoId);
+						tempAnswer.setAnswerScore(0);
+						tempAnswer.setChecked(true);
+						tempAnswer.setAnswerContent(0);
+						answerImpl.update(conn, tempAnswer);
+					}
 					while (quizSet.next()) {
 						int trueAnswer = quizSet.getInt("trueAnswer");
 						int score = quizSet.getInt("score");
+						
 						if (trueAnswer == studentAnswer) {
 							testScore += score;
 							ObjectAnswer tempAnswer = new ObjectAnswer();

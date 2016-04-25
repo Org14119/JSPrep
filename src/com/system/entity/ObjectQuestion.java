@@ -27,7 +27,7 @@ public class ObjectQuestion {
 		this.score = score;
 	}
 
-	private String answerAnalyze;
+	private String answerAnalyze="无";
 
 	public String getTitle() {
 		return title;
