@@ -50,7 +50,7 @@ public class ObjectQuestionDaoImpl implements ObjectQuestionDAO {
 	@Override
 	public void delete(Connection conn, ObjectQuestion question) throws SQLException {
 		// TODO Auto-generated method stub
-		String deleteSQL = "DELETE * FROM tbl_ObjectQuestion WHERE questionID=?";
+		String deleteSQL = "DELETE  FROM tbl_ObjectQuestion WHERE questionID=?";
 		PreparedStatement ps = conn.prepareStatement(deleteSQL);
 		ps.setLong(1, question.getId());
 		ps.execute();
