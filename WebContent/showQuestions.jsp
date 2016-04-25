@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% request.setCharacterEncoding("UTF-8");%>
+<%response.setCharacterEncoding("UTF-8"); %>
 <%
 if(!session.isNew()){
 
@@ -53,8 +55,28 @@ if(!session.isNew()){
 					out.println("D");
 					break;
 				}
+				
+				
+				
+			
 %>
 <br /> 答案解析：<%=o.getAnswerAnalyze()%><br />
+<form method="post" action="modifyQuestion.jsp">
+<input type="hidden" name="questionID" value=<%=o.getId() %>>
+		 <input type="hidden" name="questionName" value=<%=o.getTitle() %>>
+		 <input type="hidden" name="answerA" value=<%=o.getChoiceA() %>>
+		 <input type="hidden" name="answerB" value=<%=o.getChoiceB() %>>
+		 <input type="hidden" name="answerC" value=<%=o.getChoiceC() %>>
+		 <input type="hidden" name="answerD"value=<%=o.getChoiceD() %>>
+		 <input type="hidden" name="correctAnswer" value=<%=o.getCorrectAnswer() %>>
+		 <input type="hidden" name="answerAnalyze" value=<%=o.getAnswerAnalyze() %>>
+		 <input type="hidden" name="score" value=<%=o.getScore() %>>
+<input type="submit" name="submit" value="修改问题" >
+</form>
+<form method="post" action="delete">
+<input type="hidden" name="questionID" value=<%=o.getId() %>>
+<input type="submit" name="submit" value="删除问题" >
+</form>
 
 
 <%

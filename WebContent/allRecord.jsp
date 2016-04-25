@@ -53,7 +53,8 @@ if(!session.isNew()){
 					<% for(Map.Entry<Test, Student> me:map.entrySet()){
 						test=me.getKey();
 						student=me.getValue();
-						if(student.getGender()=="0"){
+						System.out.println("性别"+student.getGender());
+						if(student.getGender().equals("0")){
 							student.setGender("男");
 						}
 						else{
@@ -111,7 +112,8 @@ if(!session.isNew()){
 		<% for(Map.Entry<Test, Student> me:map.entrySet()){
 			test=me.getKey();
 			student=me.getValue();
-			if(student.getGender()=="0"){
+			System.out.println("性别"+student.getGender());
+			if(student.getGender().equals("0")){
 				student.setGender("男");
 			}
 			else{
@@ -173,7 +175,8 @@ if(!session.isNew()){
 		<% for(Map.Entry<Test, Student> me:map.entrySet()){
 			test=me.getKey();
 			student=me.getValue();
-			if(student.getGender()=="0"){
+			System.out.println("性别"+student.getGender());
+			if(student.getGender().equals("0")){
 				student.setGender("男");
 			}
 			else{
@@ -249,7 +252,8 @@ if(!session.isNew()){
 		<% for(Map.Entry<Test, Student> me:map.entrySet()){
 			test=me.getKey();
 			student=me.getValue();
-			if(student.getGender()=="0"){
+			System.out.println("性别"+student.getGender());
+			if(student.getGender().equals("0")){
 				student.setGender("男");
 			}
 			else{
