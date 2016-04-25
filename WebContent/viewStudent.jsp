@@ -33,8 +33,9 @@
 							out.println("欢迎您，" + t.getName() + "教师!");
 							Vector<Student> allStudent=new BindingService().getAllStudent(t);
 							List<Student> bindingStudent=new BindingService().getApplyStudent(t);
-							if(allStudent!=null&&bindingStudent!=null){
-								Vector<Student> bindedStudent=new ManageBindedStudent().getBindedStudent(allStudent, bindingStudent);
+							Vector<Student> allStudents=new ConsultService().getAllStudents();
+							if(allStudent!=null&&allStudents!=null&&bindingStudent!=null){
+								Vector<Student> bindedStudent=new ManageStudent().getStudent(allStudent, bindingStudent);
 								if(bindedStudent!=null){
 									Iterator<Student> iterList=bindedStudent.iterator();%>
 									<br>已经绑定的学生：<br>
@@ -42,12 +43,38 @@
 										
 										<% Student s=iterList.next();%>
 										<%=s.getName() %><br>
-									<% }
-									
+									<% }%>
+											
+					          <%Vector<Student> allStudent1=new BindingService().getAllStudent(t);
+					          Vector<Student> unBindedStudent=new ManageStudent().getStudent(allStudents, allStudent1);
+					          if(unBindedStudent!=null){
+									Iterator<Student> iterList2=unBindedStudent.iterator();%>
+									<br>未绑定的学生：<br>
+									<br>点击前面的框进行绑定：<br>
+									<form method="post"  action="teacherBindingStudent">
+									<%while(iterList2.hasNext()){%>
+										<% Student s2=iterList2.next();%>
+										<input type="checkbox" name="acceptStudents" value=<%=s2.getEmail() %>><%=s2.getName() %><br>
+									<% }%>
+									<input type="submit" name="submit" value="绑定">
+									</form>
+									<%
 								}
 								else{%>
 									<%="系统繁忙，请稍候重试!" %>
 									<a href="teacherIndex.jsp">返回主页</a>
+									
+									
+									
+									
+									
+									
+								<%}}
+								else{%>
+									<%="系统繁忙，请稍候重试!" %>
+									<a href="teacherIndex.jsp">返回主页</a>
+									
+							
 						<%}}
 							else{%>
 								<%="系统繁忙，请稍候重试!" %>
@@ -66,8 +93,8 @@
 	<%
 		}
 
-			}
-		} else {
+			}}
+		else {
 	%>
 	<%
 		session.invalidate();

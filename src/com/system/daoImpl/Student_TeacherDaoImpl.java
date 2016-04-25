@@ -107,7 +107,7 @@ String getSql = "SELECT *FROM tbl_student_teacher WHERE studentID=? AND relation
 		ps.setLong(3, teacher.getId());
 		ps.execute();
 	}
-
+	
 	/*
 	 * 获得所有申请的Dao
 	 */

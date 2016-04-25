@@ -130,7 +130,7 @@
     <servlet-name>modify</servlet-name>
     <url-pattern>/modify</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>delete</servlet-name>
     <servlet-class>com.system.servlet.deleteQuestion</servlet-class>
   </servlet>
@@ -138,4 +138,13 @@
     <servlet-name>delete</servlet-name>
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>teacherBindingStudent</servlet-name>
+    <servlet-class>com.system.servlet.do_teacherPushBinding</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>teacherBindingStudent</servlet-name>
+    <url-pattern>/teacherBindingStudent</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

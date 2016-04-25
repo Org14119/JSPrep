@@ -31,7 +31,7 @@
 	<a href="teacherQuestionBank.jsp">添加题库</a>
 
 	<a href="viewAllTests.jsp">查看考试</a><br>
-     <a href="viewBindedStudent.jsp">查看绑定的学生</a>
+     <a href="viewStudent.jsp">查看学生</a><br>
 	<br />
 	<center>
 		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>

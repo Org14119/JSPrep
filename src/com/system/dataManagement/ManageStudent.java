@@ -6,9 +6,9 @@ import java.util.Vector;
 
 import com.system.entity.Student;
 
-public class ManageBindedStudent {
+public class ManageStudent {
 
-	public Vector<Student> getBindedStudent(Vector<Student> allStudent,List<Student> bindingStudent){
+	public Vector<Student> getStudent(Vector<Student> allStudent,List<Student> bindingStudent){
 		if(allStudent!=null&&bindingStudent!=null){
 			Iterator<Student> iterList=allStudent.iterator();
 			
@@ -17,7 +17,7 @@ public class ManageBindedStudent {
 				Iterator<Student> iterList2=bindingStudent.iterator();
 				while(iterList2.hasNext()){
 					Student s2=iterList2.next();
-					if(s.getEmail().equals(s2)){
+					if(s.getEmail().equals(s2.getEmail())){
 						iterList.remove();
 					}
 				}

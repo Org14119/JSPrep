@@ -261,6 +261,7 @@ public class BindingService {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		ConsultService service = new ConsultService();
 		try {
+			
 			conn.setAutoCommit(false);
 			student = service.getStudentID(student);
 			teacher = service.getTeacherID(teacher);
@@ -299,7 +300,10 @@ public class BindingService {
 	 */
 	public boolean createBinding(Student student, Teacher teacher) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ConsultService service=new ConsultService();
 		try {
+			student = service.getStudentID(student);
+			teacher = service.getTeacherID(teacher);
 			conn.setAutoCommit(false);
 			new Student_TeacherDaoImpl().teacherPush(conn, student, teacher);
 			conn.commit();
