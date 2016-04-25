@@ -20,10 +20,12 @@ public class FileRootFactory {
 	}
 
 	public static String getUpLocation() {
+		// System.out.println("upLoc"+upLoacation);
 		return upLoacation;
 	}
 
 	public static String getTrueLoacation() {
+		// System.out.println("upLoc"+trueLocation);
 		return trueLocation;
 	}
 }
