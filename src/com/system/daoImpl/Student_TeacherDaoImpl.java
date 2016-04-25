@@ -24,7 +24,15 @@ public class Student_TeacherDaoImpl implements Studnet_TeacherDAO {
 		ps.setInt(4, 0);// 默认绑定状态为0，即未绑定
 		ps.execute();
 	}
-
+	public void teacherPush(Connection conn,Student student,Teacher teacher)throws SQLException{
+		String sql="INSERT INTO tbl_student_teacher (studentID,teacherID,relationDate,relationState) VALUES(?,?,?,?)";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setLong(1, student.getId());
+		ps.setLong(2, teacher.getId());
+		ps.setDate(3, TimeUtil.getCurrentTime());
+		ps.setInt(4, 1);
+		ps.execute();
+	}
 	@Override
 	/*
 	 * (non-Javadoc) 修改状态为1，即绑定成功

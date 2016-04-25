@@ -293,4 +293,34 @@ public class BindingService {
 			}
 		}
 	}
+
+	/*
+	 * 直接创建一个成功绑定的行
+	 */
+	public boolean createBinding(Student student, Teacher teacher) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		try {
+			conn.setAutoCommit(false);
+			new Student_TeacherDaoImpl().teacherPush(conn, student, teacher);
+			conn.commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return false;
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }
