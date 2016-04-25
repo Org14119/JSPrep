@@ -33,6 +33,7 @@ public class do_checkTest extends HttpServlet {
 
 					test.setTestID(Long.parseLong(testID));
 					int score = new CheckTestService().checkTest(test);
+					System.out.println("score="+score);
 					if (score == -1) {
 						System.out.println("批改失败");
 

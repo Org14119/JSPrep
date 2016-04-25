@@ -70,6 +70,9 @@
 							else if(tempObjectQuestion.getCorrectAnswer()==4){
 								correctAnswer="D";
 							}
+							else{
+								correctAnswer="无";
+							}
 						
 							
 							

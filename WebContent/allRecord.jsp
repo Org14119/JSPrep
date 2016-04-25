@@ -192,7 +192,10 @@ if(!session.isNew()){
 						all=m.getKey();
 						checked=m.getValue();
 					}
+				System.out.println("all="+all);
+				System.out.println("cheacked="+checked);
 				if(all!=0&&all==checked){
+					
 				str="查看答题情况";
 			    Test tempTest=new TestService().getTestRecord(test);
 			    if(tempTest!=null){
