@@ -46,6 +46,7 @@ public class CheckTestService {
 						tempAnswer.setChecked(true);
 						tempAnswer.setAnswerContent(0);
 						answerImpl.update(conn, tempAnswer);
+						quizSet.beforeFirst();
 					}
 					while (quizSet.next()) {
 						int trueAnswer = quizSet.getInt("trueAnswer");
