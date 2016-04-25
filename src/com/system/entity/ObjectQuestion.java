@@ -11,13 +11,13 @@ public class ObjectQuestion {
 		this.id = id;
 	}
 
-	private String title;
-	private String choiceA;
-	private String choiceB;
-	private String choiceC;
-	private String ChoiceD;
-	private int correctAnswer;
-	private int score;
+	private String title = "没有找到该题";
+	private String choiceA = "无";
+	private String choiceB = "无";
+	private String choiceC = "无";
+	private String ChoiceD = "无";
+	private int correctAnswer = 0;
+	private int score = 0;
 
 	public int getScore() {
 		return score;

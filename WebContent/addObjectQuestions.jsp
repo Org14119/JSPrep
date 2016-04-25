@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% request.setCharacterEncoding("UTF-8");%>
+<%response.setCharacterEncoding("UTF-8"); %>
 	<%
 		if (!session.isNew()) {
 
@@ -39,7 +41,8 @@
 		<input type="radio" name="correctAnswer" value="3">C<br>
 		<input type="radio" name="correctAnswer" value="4">D<br>
 		请输入答案解析： <input type="text" name="answerAnalyze"><br> <br />
-		请输入该题的分值： <input type="text" name="score"><br> <br /> <input
+		请输入该题的分值： <input type="text" name="score"><br> <br /> 
+		<input
 			type="submit" name="submit" value="确定"><br> <br /> <br />
 
 	</form>

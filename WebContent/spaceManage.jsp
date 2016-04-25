@@ -35,6 +35,7 @@ if(!session.isNew()){
 				currentTeacherSpace.setId(Long.parseLong(spaceID));
 				session.setAttribute("currentTeacherSpace", currentTeacherSpace);%>
 				<a href="addObjectQuestions.jsp">增加题目</a>
+				
 				<%@ include file="showQuestions.jsp" %>
 				
 				

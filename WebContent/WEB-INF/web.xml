@@ -114,12 +114,28 @@
     <servlet-name>practice</servlet-name>
     <url-pattern>/practice</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>check</servlet-name>
     <servlet-class>com.system.servlet.do_checkTest</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>check</servlet-name>
     <url-pattern>/check</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>modify</servlet-name>
+    <servlet-class>com.system.servlet.do_modifyQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>modify</servlet-name>
+    <url-pattern>/modify</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>delete</servlet-name>
+    <servlet-class>com.system.servlet.deleteQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>delete</servlet-name>
+    <url-pattern>/delete</url-pattern>
   </servlet-mapping>
 </web-app>
