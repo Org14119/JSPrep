@@ -106,7 +106,13 @@ String getSql = "SELECT *FROM tbl_student_teacher WHERE studentID=? AND relation
 	public ResultSet getApplies(Connection conn, Teacher teacher) throws SQLException {
 		String applySql = "SELECT * FROM tbl_student_teacher WHERE teacherID=? AND relationState='0'";
 		PreparedStatement ps = conn.prepareStatement(applySql);
-
+		
+		ps.setLong(1, teacher.getId());
+		return ps.executeQuery();
+	}
+	public ResultSet get(Connection conn,Teacher teacher)throws SQLException{
+		String getsql="SELECT * FROM tbl_student_teachre WHERE teacherID=?";
+		PreparedStatement ps=conn.prepareStatement(getsql);
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();
 	}

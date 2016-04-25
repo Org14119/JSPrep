@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import com.system.daoImpl.StudentDaoImpl;
 import com.system.daoImpl.Student_TeacherDaoImpl;
@@ -13,10 +14,58 @@ import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
 
 public class BindingService {
+	/*
+	 * 通过老师的ID查看所有绑定了得学生
+	 * 
+	 */
+	public Vector<Student> getAllStudent(Teacher teacher) {
+		Vector<Student> v = new Vector<Student>();
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		StudentDaoImpl impl = new StudentDaoImpl();
+		ResultSet studentIDSet = null;
+		ResultSet studentSet = null;
+		try {
+			conn.setAutoCommit(false);
+			studentIDSet = new Student_TeacherDaoImpl().get(conn, teacher);
+			while (studentIDSet.next()) {
+				Student tempS = new Student();
+				tempS.setId(studentIDSet.getLong("studentID"));
+				studentSet = impl.getByID(conn, tempS);
+				while (studentSet.next()) {
+					Student trueS = new Student();
+					trueS.setId(studentSet.getLong("studentID"));
+					trueS.setName(studentSet.getString("studentName"));
+					trueS.setEmail(studentSet.getString("studentEmail"));
+					trueS.setGender(String.valueOf(studentSet.getInt("studentGender")));
+					v.add(trueS);
+				}
+			}
+			conn.commit();
+			return v;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		} finally {
+			try {
+				studentIDSet.close();
+				studentSet.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	/*
-	 * 添加绑定信息之前查重复,传入Email参数
-	 * 如果能够绑定，表示检验通过（之前没有绑定过）则返回True，否则返回false；
+	 * 添加绑定信息之前查重复,传入Email参数 如果能够绑定，表示检验通过（之前没有绑定过）则返回True，否则返回false；
 	 */
 	public boolean CheckWhetherBinding(Student student, Teacher teacher) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
@@ -27,12 +76,12 @@ public class BindingService {
 			teacher = cService.getTeacherID(teacher);
 			student = cService.getStudentID(student);
 			if (teacher != null && student != null) {
-				set=new Student_TeacherDaoImpl().get(conn, student, teacher);
+				set = new Student_TeacherDaoImpl().get(conn, student, teacher);
 				conn.commit();
-				while(set.next()){
+				while (set.next()) {
 					return false;
 				}
-				return true;//表示检验通过
+				return true;// 表示检验通过
 			} else {
 				return false;
 			}
@@ -61,7 +110,7 @@ public class BindingService {
 				e.printStackTrace();
 			}
 		}
-	
+
 	}
 
 	/*
@@ -101,7 +150,7 @@ public class BindingService {
 
 			try {
 				conn.close();
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
