@@ -48,6 +48,7 @@ public class CheckTestService {
 						answerImpl.update(conn, tempAnswer);
 						quizSet.beforeFirst();
 					}
+					quizSet.beforeFirst();
 					while (quizSet.next()) {
 						int trueAnswer = quizSet.getInt("trueAnswer");
 						int score = quizSet.getInt("score");
