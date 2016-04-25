@@ -62,5 +62,9 @@ public class StudentDaoImpl implements StudentDAO {
 		ps.setLong(1, student.getId());
 		return ps.executeQuery();
 	}
-
+	public ResultSet getAll(Connection conn)throws SQLException{
+		String sql="SELECT * FROM tbl_student";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		return ps.executeQuery();
+	}
 }
