@@ -53,14 +53,31 @@ public class BindingService {
 			}
 			return null;
 		} finally {
-			try {
-				studentIDSet.close();
-				studentSet.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+				if(studentSet!=null){
+					try {
+						studentSet.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if(studentIDSet!=null){
+					try {
+						studentIDSet.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 		}
 	}
 
