@@ -54,7 +54,7 @@ public class do_FileUpLoad extends HttpServlet {
 			factory.setSizeThreshold(4 * 1024);// 设置缓冲区大小
 			factory.setRepository(new File(tempPath));
 			ServletFileUpload upload = new ServletFileUpload(factory);
-			upload.setSizeMax(40 * 1024 * 1024);// 设置上传文件的最大大小为40M
+			upload.setSizeMax(4000 * 1024 * 1024);// 设置上传文件的最大大小为4000M
 			List<FileItem> items = upload.parseRequest(req);
 			Iterator<FileItem> iter = items.iterator();
 			while (iter.hasNext()) {

@@ -1,8 +1,12 @@
 package com.system.entity;
+import java.io.Serializable;
 
 
-
-public class QuestionSpace {
+public class QuestionSpace implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4356556681545926239L;
 	private long id;
 	private String name;
 	private String type;
