@@ -45,8 +45,15 @@
 	<%
 		for (int i = 0; i < spacelists.size(); i++) {
 	%>
-	
-	<a href="spaceHandleIndex.jsp?spaceID=<%=spacelists.get(i).getId()%>&startTime=<%=spacelists.get(i).getBeginTime()%>&endTime=<%=spacelists.get(i).getEndTime()%>"><%=spacelists.get(i).getName()%></a>
+<form method="post" action="spaceHandleIndex.jsp">
+<input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId()%>>
+<input type="hidden" name="startTime" value=<%=spacelists.get(i).getBeginTime()%>>
+<input type="hidden" name="endTime" value=<%=spacelists.get(i).getEndTime()%>>
+<input type="submit" name="submit" value=<%=spacelists.get(i).getName()%> >
+<br>
+
+</form>
+
 	<%
 		}
 					}

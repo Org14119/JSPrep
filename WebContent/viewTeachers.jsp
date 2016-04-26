@@ -38,8 +38,12 @@ out.println("会话过期，请重新登录");
 			if (teachers != null) {
 				for (Teacher t : teachers) {
 %>
+<form method="post" action="viewMyTeacherSpace.jsp">
+<input type="hidden" name="teacherEmail" value=<%=t.getEmail()%>>
+<input type="submit" name="submit" value=<%=t.getName() %>>
+<br>
 
-	<a href="viewMyTeacherSpace.jsp?teacherEmail=<%=t.getEmail()%>"><%=t.getName() %></a>
+</form>
 <% 	
 				}
 			}

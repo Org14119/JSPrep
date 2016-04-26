@@ -1,6 +1,12 @@
 package com.system.entity;
 
-public class ObjectQuestion {
+import java.io.Serializable;
+
+public class ObjectQuestion implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3497124813514084374L;
 	private long id;
 
 	public long getId() {

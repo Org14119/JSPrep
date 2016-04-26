@@ -1,6 +1,12 @@
 package com.system.entity;
 
-public class Test {
+import java.io.Serializable;
+
+public class Test implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8950162593990950183L;
 	private String testTime = "2016-01-01 09:00:00";
 	private long testID;
 	private boolean isExam = false;

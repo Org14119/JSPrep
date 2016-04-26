@@ -1,6 +1,12 @@
 package com.system.entity;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2477478696314228720L;
 	private Long id;
 	private String email;
 	private String password;

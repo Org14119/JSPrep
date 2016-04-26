@@ -1,6 +1,12 @@
 package com.system.entity;
 
-public class ObjectAnswer {
+import java.io.Serializable;
+
+public class ObjectAnswer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4177651667251406148L;
 	private long answerInfoID;
 	private int answerScore = 0;
 	private String answerTime = "2016-01-01 09:00:00";
