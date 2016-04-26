@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+%>
 	<%
 		if (!session.isNew()) {
 			if (session == null || session.equals("") || session.getAttribute("type") == null
@@ -44,11 +48,15 @@
 	<%="题库："%><br />
 	<%
 		for (int i = 0; i < spacelists.size(); i++) {
+			//System.out.println("spacelists.get(i).getBeginTime()======"+spacelists.get(i).getBeginTime());
+			
+			
 	%>
 <form method="post" action="spaceHandleIndex.jsp">
 <input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId()%>>
-<input type="hidden" name="startTime" value=<%=spacelists.get(i).getBeginTime()%>>
-<input type="hidden" name="endTime" value=<%=spacelists.get(i).getEndTime()%>>
+
+<input type="hidden" name="startTime" value=<%=spacelists.get(i).getBeginTime().replaceAll(" ", "时间")%>>
+<input type="hidden" name="endTime" value=<%=spacelists.get(i).getEndTime().replaceAll(" ","时间")%>>
 <input type="submit" name="submit" value=<%=spacelists.get(i).getName()%> >
 <br>
 

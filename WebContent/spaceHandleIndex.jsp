@@ -11,6 +11,10 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+%>
+<%
 if(!session.isNew()){
 	if ((session == null) || session.getAttribute("type") == null || session.getAttribute("student") == null
 			|| session.getAttribute("state") == null) {
@@ -30,9 +34,10 @@ if(!session.isNew()){
 				if (flag && type.equals("student")) {
 					out.println("欢迎您，" + s.getName() + "学生!");
 					String spaceID=request.getParameter("spaceID");
-					String beginTime=request.getParameter("startTime");
-					String endTime=request.getParameter("endTime");
+					String beginTime=request.getParameter("startTime").replaceAll("时间", " ");
+					String endTime=request.getParameter("endTime").replaceAll("时间", " ");
 					out.print(spaceID);
+					//System.out.println("beginTime======"+beginTime);
 					QuestionSpace currentTeacherSpace= new QuestionSpace();
 					currentTeacherSpace.setId(Long.parseLong(spaceID));
 					currentTeacherSpace.setBeginTime(beginTime);

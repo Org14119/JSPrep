@@ -11,6 +11,10 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+%>
+<%
 		if (!session.isNew()) {
 			if (session == null || session.equals("") || session.getAttribute("type") == null
 					|| session.getAttribute("state") == null || session.getAttribute("teacher") == null) {
