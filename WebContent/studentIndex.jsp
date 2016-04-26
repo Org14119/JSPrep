@@ -31,9 +31,9 @@
 				boolean flag = (boolean) session.getAttribute("state");
 				if (flag && type.equals("student")) {
 					out.println("欢迎您，" + s.getName() + "学生!");
-	%>
-	<a href="viewTeachers.jsp">查看我的老师</a>
-	<a href="viewMyTestRecord.jsp">查看我的考试记录</a>
+	%><br>
+	<a href="viewTeachers.jsp">查看老师</a><br>
+	<a href="viewMyTestRecord.jsp">考试查询</a>
 	<jsp:include page="isBinding.jsp"></jsp:include>
 	<a href="<%=request.getContextPath()%>/logout">登出</a>
 	<br />

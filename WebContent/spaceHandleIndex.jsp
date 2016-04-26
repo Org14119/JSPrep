@@ -44,9 +44,9 @@ if(!session.isNew()){
 					currentTeacherSpace.setEndTime(endTime);
 					session.setAttribute("currentTeacherSpace", currentTeacherSpace);
 					%>
-					
+					<br/>
 					<a href="practice.jsp">练习</a><br/>
-					<a href="test.jsp">考试</a>
+					<a href="test.jsp">考试</a><br/>
 	
 				<% 
 					}
@@ -56,7 +56,9 @@ if(!session.isNew()){
 					<a href="index.jsp">登录</a>
 					
 <% }
-	}
+	}%>
+	<a href="viewTeachers.jsp">返回</a>
+	<%
 }
 else{%>
 <%session.invalidate(); %>

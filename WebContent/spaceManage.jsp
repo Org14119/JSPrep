@@ -48,7 +48,9 @@ if(!session.isNew()){
 	<%
 		}
 
-}
+		%>
+		<a href="getTeacherAllSpace.jsp">返回</a>
+	<%}
 else{%>
 <%="会话过期或者未登录，请重新登录"%>
 <a href="index.jsp">登录</a>

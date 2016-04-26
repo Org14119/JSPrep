@@ -99,8 +99,8 @@ if(!session.isNew()){
 					<%="会话过期或者未登录，请重新登录"%>
 					<a href="index.jsp">登录</a>
 				<%}
-				}
-	}
+				}%><a href="viewTeachers.jsp">返回</a>
+	<% }
 else{
 %>
 <%session.invalidate(); %>

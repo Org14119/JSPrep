@@ -126,13 +126,13 @@ else{
 
 								<div>
 								<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
-								<div id="one">
+								<div >
 								<form method="post"  action="viewCheckState.jsp">
 								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
 								<input type="submit" name="submit" value=<%=state %>>
 								</form>		
 								</div>
-							   <div id="two">
+							   <div >
 							   <%=t.getTestScore()+"        " %>
 							   </div>
 
@@ -140,7 +140,7 @@ else{
 								
 								
 								<%if(str.equals("查看试卷")){%>
-								<div id="three">
+								<div >
 								<form method="post"  action="viewMyPapers.jsp">
 								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
 								<input type="submit" name="submit" value=<%=str %>>
@@ -213,18 +213,18 @@ else{
 							
 								<div>
 									<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
-									<div id="one">
+									<div>
 							    <form method="post"  action="viewCheckState.jsp">
 								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
 								<input type="submit" name="submit" value=<%=state %>>
 								</form>
 									</div>
-									<div id="two">
+									<div >
 									<%=t.getTestScore()+"        " %>
 									</div>
 
 								<%if(str.equals("查看试卷")){%>
-							    <div id="three">
+							    <div>
 							    
 								<form method="post"  action="viewMyPapers.jsp">
 								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
@@ -262,7 +262,11 @@ else{
 		}
 
 			}
-		} else {
+			%>	
+
+			<a href="studentIndex.jsp">返回</a>
+
+			<%} else {
 	%>
 	<%
 		session.invalidate();

@@ -39,10 +39,19 @@
 					int i=1;
 					String myAnswer="";
 					String correctAnswer="";
+					double passRate=0.0;
 					if(map!=null){
 						for(Map.Entry<ObjectQuestion, ObjectAnswer> me:map.entrySet()){
 							tempObjectQuestion=me.getKey();
 							tempObjectAnswer=me.getValue();
+							passRate=new ScoreAnalyzeService().getPassRate(tempObjectQuestion);
+							System.out.println("passRate===="+passRate);
+							if(passRate==-1){
+								break;
+							}
+							else{
+								
+							}
 							if(tempObjectAnswer.getAnswerContent()==1){
 								myAnswer="A";
 							}
@@ -88,7 +97,7 @@
 									所选答案：<%=myAnswer %><br>
 									正确答案：<%=correctAnswer %><br>
 									答案解析：<%=tempObjectQuestion.getAnswerAnalyze() %><br>
-									
+									通过率：<%=passRate %><br>
 								</div>
 							
 							
@@ -119,8 +128,8 @@
 	<%
 		}
 
-			}
-		} else {
+			}%>
+			<a href="viewMyTestRecord.jsp">返回上一页</a><% } else {
 	%>
 	<%
 		session.invalidate();

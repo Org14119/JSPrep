@@ -82,8 +82,9 @@
 
 
 	<%
-		}
-		}
+		}%>
+			<a href="viewTeachers.jsp">返回上一页</a>
+			<% }
 		else{%>
 		<%session.invalidate(); %>
 		<%="会话过期或者未登录，请重新登录"%>

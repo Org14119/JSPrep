@@ -25,13 +25,14 @@
 				boolean flag = (boolean) session.getAttribute("state");
 				if (flag && type.equals("teacher")) {
 					out.println("欢迎您，" + t.getName() + "教师!");
-	%>
-	<a href="getTeacherAllSpace.jsp">查看你的所有的题库</a>
+	%><br>
+	<a href="getTeacherAllSpace.jsp">查看题库</a>
 	<br />
-	<a href="teacherQuestionBank.jsp">添加题库</a>
+	<a href="teacherQuestionBank.jsp">添加题库</a><br>
 
-	<a href="viewAllTests.jsp">查看考试</a><br>
-     <a href="viewStudent.jsp">查看学生</a><br>
+	<a href="viewAllTests.jsp">考试管理</a><br>
+     <a href="viewStudent.jsp">学生管理</a><br>
+      <a href="viewStudentGrade.jsp">成绩分析</a><br>
 	<br />
 	<center>
 		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>

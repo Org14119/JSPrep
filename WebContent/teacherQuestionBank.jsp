@@ -72,7 +72,9 @@
 	%>
 	<%
 		}
-		} else {
+			%>
+			<a href="teacherIndex.jsp">返回</a>
+		<%} else {
 	%>
 	<%
 		session.invalidate();

@@ -39,12 +39,7 @@ if(!session.isNew()){
 				//System.out.println("zcP"+currentTeacherSpace.getId());
 				
 				%>
-				
-				<form method="post" action="viewScoreAnalyze.jsp">
-				<input type="hidden" name="spaceID" value=<%=spaceID %>>
-				<input type="submit" name="submit" value=<%="查看排名情况" %>>
-				</form><br>
-				
+	
 				<% 
 				Map<Test, Student> map=new TestService().getTestRecord(currentTeacherSpace);
 				Test test=new Test();
@@ -85,8 +80,11 @@ if(!session.isNew()){
 						
                           <%=student.getName()+"  "+student.getGender()+"  "+student.getEmail()+"   "+test.getTestTime()%>
                           <%=score+"分"%>
-                          
-                          <a href="checkTest.jsp?testID=<%=test.getTestID()%>"><%=str%></a><br>
+                          	<form method="post" action="checkTest.jsp">
+	                        <input type="hidden" name="testID" value=<%=test.getTestID() %>>
+	                         <input type="submit" name="submit" value=<%=str%>>
+	                        </form>
+                         
                           
 								
 								
@@ -94,7 +92,7 @@ if(!session.isNew()){
 							}
 							else{
 								out.println("系统繁忙，请稍候重试！");%>
-								<a href="viewMyTestRecord.jsp">返回上一页</a>
+								<a href="viewAllTests.jsp">返回</a>
 					<% 		}
 
 							
@@ -111,7 +109,7 @@ if(!session.isNew()){
 				}
 				else{
 					out.println("系统繁忙，请稍候重试！");%>
-					<a href="viewMyTestRecord.jsp">返回上一页</a>
+					<a href="viewAllTests.jsp">返回</a>
 					
 				<%}
 				/**********************************/
@@ -144,8 +142,11 @@ if(!session.isNew()){
 			
             <%=student.getName()+"  "+student.getGender()+"  "+student.getEmail()+"   "+test.getTestTime()%>
             <%=score+"分"%>
-            
-            <a href="checkTest.jsp?testID=<%=test.getTestID()%>"><%=str%></a><br>
+          	<form method="post" action="checkTest.jsp">
+	                        <input type="hidden" name="testID" value=<%=test.getTestID() %>>
+	                         <input type="submit" name="submit" value=<%=str%>>
+	         </form>
+       
             
 					
 					
@@ -153,7 +154,7 @@ if(!session.isNew()){
 				}
 				else{
 					out.println("系统繁忙，请稍候重试！");%>
-					<a href="viewMyTestRecord.jsp">返回上一页</a>
+					<a href="viewAllTests.jsp">返回</a>
 		<% 		}
 
 				
@@ -170,7 +171,7 @@ if(!session.isNew()){
 	}
 	else{
 		out.println("系统繁忙，请稍候重试！");%>
-		<a href="viewMyTestRecord.jsp">返回上一页</a>
+		<a href="viewAllTests.jsp">返回</a>
 		
 	<%}
 				
@@ -213,8 +214,11 @@ if(!session.isNew()){
 					
 			            <%=student.getName()+"  "+student.getGender()+"  "+student.getEmail()+"   "+test.getTestTime()%>
             <%=tempTest.getTestScore()+"分"%>
-            
-            <a href="viewStudentTestPaper.jsp?testID=<%=test.getTestID()%>"><%=str%></a><br>		
+                      	<form method="post" action="viewStudentTestPaper.jsp">
+	                        <input type="hidden" name="testID" value=<%=test.getTestID() %>>
+	                         <input type="submit" name="submit" value=<%=str%>>
+	         </form>
+           		
 					
 					
 			<% 	}
@@ -234,7 +238,7 @@ if(!session.isNew()){
 				}
 				else{
 					out.println("系统繁忙，请稍候重试！");%>
-					<a href="viewMyTestRecord.jsp">返回上一页</a>
+					<a href="viewAllTests.jsp">返回</a>
 		<% 		}
 
 				
@@ -251,7 +255,7 @@ if(!session.isNew()){
 	}
 	else{
 		out.println("系统繁忙，请稍候重试！");%>
-		<a href="viewMyTestRecord.jsp">返回上一页</a>
+		<a href="viewAllTests.jsp">返回</a>
 		
 	<%}
 				
@@ -287,8 +291,11 @@ if(!session.isNew()){
 					%>
 		    <%=student.getName()+"  "+student.getGender()+"  "+student.getEmail()+"   "+test.getTestTime()%>
             <%=tempTest.getTestScore()+"分"%>
-            
-            <a href="viewStudentTestPaper.jsp?testID=<%=test.getTestID()%>"><%=str%></a><br>	
+                            	<form method="post" action="viewStudentTestPaper.jsp">
+	                        <input type="hidden" name="testID" value=<%=test.getTestID() %>>
+	                         <input type="submit" name="submit" value=<%=str%>>
+	         </form>
+         
 					
 		<% 		}
 				else{%>
@@ -306,7 +313,7 @@ if(!session.isNew()){
 				}
 				else{
 					out.println("系统繁忙，请稍候重试！");%>
-					<a href="viewMyTestRecord.jsp">返回上一页</a>
+					<a href="viewAllTests.jsp">返回</a>
 		<% 		}
 
 				
@@ -323,7 +330,7 @@ if(!session.isNew()){
 	}
 	else{
 		out.println("系统繁忙，请稍候重试！");%>
-		<a href="viewMyTestRecord.jsp">返回上一页</a>
+		<a href="viewAllTests.jsp">返回</a>
 		
 	<%}
 				/*******************************/
@@ -340,7 +347,10 @@ if(!session.isNew()){
 	%>
 	<%
 		}
-
+		
+		
+		%><a href="viewAllTests.jsp">返回</a>
+<% 
 }
 else{%>
 <%="会话过期或者未登录，请重新登录"%>

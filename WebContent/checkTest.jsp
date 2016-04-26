@@ -82,14 +82,14 @@
 								<input type="hidden" name="testID" value=<%=testID%> >
 								<input type="submit" name="submit" value="批改">
 								</form>
-								<a href="allRecord.jsp">返回上一页</a>
+								<a href="viewAllTests.jsp">返回</a>
 								
 								
 							<% }
 				
 							else{
 								out.println("系统繁忙，请稍候重试！");%>
-								<a href="viewAllTests.jsp">返回上一页</a>
+								<a href="viewAllTests.jsp">返回</a>
 								
 							<%}
 								

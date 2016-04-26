@@ -64,7 +64,12 @@ out.println("会话过期，请重新登录");
 
 
 <%
-	}}
+	}
+%>	
+
+<a href="studentIndex.jsp">返回</a>
+
+<% }
 else{%>
 <%session.invalidate(); %>
 <%="会话过期或者未登录，请重新登录"%>

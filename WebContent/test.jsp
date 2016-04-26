@@ -130,7 +130,8 @@
 	<%
 		}
 			}
-		} else {
+			%><a href="viewTeachers.jsp">返回</a>
+			<%} else {
 	%>
 	<%
 		session.invalidate();
