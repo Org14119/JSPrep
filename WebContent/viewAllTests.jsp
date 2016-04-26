@@ -35,7 +35,11 @@
 
 	<br />
 	<br />
-	<a href="allRecord.jsp?spaceID=<%=spacelists.get(i).getId()%>"><%=spacelists.get(i).getName() + "-" + spacelists.get(i).getType()%></a>
+	<form method="post" action="allRecord.jsp">
+	<input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId() %>>
+	<input type="submit" name="submit" value=<%=spacelists.get(i).getName() + "-" + spacelists.get(i).getType()%>>
+	</form><br>
+	
 
 	<%
 		}

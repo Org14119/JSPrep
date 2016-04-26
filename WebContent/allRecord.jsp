@@ -32,11 +32,20 @@ if(!session.isNew()){
 				String spaceID=request.getParameter("spaceID");
 
 				//out.print(spaceID);
-				System.out.println("shabi"+spaceID);
+				//System.out.println("shabi"+spaceID);
 
 				QuestionSpace currentTeacherSpace= new QuestionSpace();
 				currentTeacherSpace.setId(Long.parseLong(spaceID));
-				System.out.println("zcP"+currentTeacherSpace.getId());
+				//System.out.println("zcP"+currentTeacherSpace.getId());
+				
+				%>
+				
+				<form method="post" action="viewScoreAnalyze.jsp">
+				<input type="hidden" name="spaceID" value=<%=spaceID %>>
+				<input type="submit" name="submit" value=<%="查看排名情况" %>>
+				</form><br>
+				
+				<% 
 				Map<Test, Student> map=new TestService().getTestRecord(currentTeacherSpace);
 				Test test=new Test();
 				Student student=new Student();
@@ -46,7 +55,7 @@ if(!session.isNew()){
 				int score=0;
 				String state="";
 				String str="";
-				if(map!=null){%>
+				if(map!=null){%><br>
 				              未批改:<br><br>
 				              考试:<br>
 					姓名           性别               邮箱              考试时间                 分数              操作<br>

@@ -5,6 +5,31 @@
 <%@page import="com.system.entity.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style type="text/css">
+#one{
+margin:0 0 200px 0; 
+width: 68px;
+height:20px;
+border:1px solid #100;
+float:left
+}
+#two{
+margin:0 0 250px 0; 
+width: 68px;
+height:20px;
+border:1px solid #100;
+float:left
+}
+#three{
+margin:0 0 300px 0; 
+width: 68px;
+height:20px;
+border:1px solid #100;
+float:left
+}
+
+
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查看我的考试记录</title>
@@ -101,18 +126,35 @@ else{
 
 								<div>
 								<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
+								<div id="one">
+								<form method="post"  action="viewCheckState.jsp">
+								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
+								<input type="submit" name="submit" value=<%=state %>>
+								</form>		
+								</div>
+							   <div id="two">
+							   <%=t.getTestScore()+"        " %>
+							   </div>
+
 							
-								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state %></a>
-								<%=t.getTestScore()+"        " %>
+								
+								
 								<%if(str.equals("查看试卷")){%>
-									<a href="viewMyPapers.jsp?testID=<%=t.getTestID()%>"><%=str %></a>
+								<div id="three">
+								<form method="post"  action="viewMyPapers.jsp">
+								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
+								<input type="submit" name="submit" value=<%=str %>>
+								</form>
+								</div>
+
+							
 								<% }
 								else{%>
 									<%=str %>
 								<% }
 								%>
 								
-								</div>
+								</div><br>
 							<% }}
 						
 						Iterator<Test> iterList1=testRecord.iterator();%><br/><br/>
@@ -171,10 +213,26 @@ else{
 							
 								<div>
 									<%=qs.getName()+"      "+ myTeacher.getName()+ "           "+t.getTestTime()+"   "%>
-								<a href="viewCheckState.jsp?testID=<%=t.getTestID()%>"><%=state%></a>
-								<%=t.getTestScore()+"        " %>
+									<div id="one">
+							    <form method="post"  action="viewCheckState.jsp">
+								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
+								<input type="submit" name="submit" value=<%=state %>>
+								</form>
+									</div>
+									<div id="two">
+									<%=t.getTestScore()+"        " %>
+									</div>
+
 								<%if(str.equals("查看试卷")){%>
-									<a href="viewMyPapers.jsp?testID=<%=t.getTestID()%>"><%=str %></a>
+							    <div id="three">
+							    
+								<form method="post"  action="viewMyPapers.jsp">
+								<input type="hidden" name="testID" value=<%=t.getTestID() %>>
+								<input type="submit" name="submit" value=<%=str %>>
+								</form>    
+							    
+								</div>
+
 								<% }
 								else if(str.equals("无法查看")){%>
 									<%=str %>

@@ -35,6 +35,7 @@
 					Test test=new Test();
 					test.setTestID(Integer.parseInt(testID));
 					Map<Integer,Integer> map=new TestService().getCheckState(test);
+					List<Integer> list=new ScoreAnalyzeService().getRangeList(test);
 					int all=0;
 					int checked=0;
 					int rest=0;
@@ -47,8 +48,22 @@
 						if(all==0){
 							out.println("该考试您还未作答也没提交，没有具体信息！");
 						}
-						else{
+						else if(all!=0&&all>checked){
 							out.println("已经批改了"+String.valueOf(checked)+"道题，还剩"+String.valueOf(rest)+"道题未批改");
+						}
+						else if(all!=0&&all==checked){
+							out.println("已经批改了"+String.valueOf(checked)+"道题，还剩"+String.valueOf(rest)+"道题未批改");
+							if(list!=null&&list.size()>0){%>
+							<br>
+							<%="当前考试最低分=" %>
+							<%=list.get(0) %><br>
+							<%="当前考试最高分=" %>
+							<%=list.get(list.size()-1) %>
+							<% }
+							else{%>
+								<%="系统繁忙。请稍候重试" %>
+								<a href="viewMyTestRecord.jsp">返回上一页</a>
+							<% }
 						}
 						
 						%>
