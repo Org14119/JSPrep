@@ -29,7 +29,10 @@
 					if (flag && type.equals("teacher")) {
 							out.println("欢迎您，" + t.getName() + "教师!");%>
 			<form method="post" action="addNotice.jsp">
-			<input type="submit"name="submit" value="发布公告">
+			<input type="submit"name="submit" value="发布新的公告">
+			</form><br>
+			<form method="post" action="viewOldNotice.jsp">
+			<input type="submit"name="submit" value="查看已有公告">
 			</form>
 	
 	<% }
@@ -45,7 +48,9 @@
 		}
 
 			}
-		} else {
+			%>
+			<a href="teacherIndex.jsp">返回</a>
+		<%} else {
 	%>
 	<%
 		session.invalidate();
