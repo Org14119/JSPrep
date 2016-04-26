@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.system.entity.Announce;
+import com.system.entity.Teacher;
+import com.system.service.AnnounceService;
 
 public class do_addNotice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -16,13 +18,9 @@ public class do_addNotice extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		if(!session.isNew()){
-			System.out.println("sessionID="+session.getId());
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			String identity = request.getParameter("identity");
-			if (username == null || password == null || identity == null || username.contentEquals("")
-					|| password.contentEquals("") || identity.contentEquals("")) {
-				response.sendRedirect("error.jsp");
+			Teacher t=(Teacher)session.getAttribute("teacher");
+			if (t == null ||t.equals("")) {
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
 				return;
 			}
 			else{
@@ -35,11 +33,20 @@ public class do_addNotice extends HttpServlet {
 					notice.setContent(content);
 					notice.setTitle(title);
 					notice.setTime(time);
-					
+					boolean flag=new AnnounceService().addAnnounce(notice,t);
+					if(flag){
+						System.out.println("发布成功");
+						request.getRequestDispatcher("/teacherIndex。jsp").forward(request, response);
+					}
+					else{
+						System.out.println("发布失败");
+						request.getRequestDispatcher("/error.jsp").forward(request, response);
+						
+					}
 				}
 				else{
 					System.out.println("系统繁忙，请稍候重试");
-					response.sendRedirect("error.jsp");
+					request.getRequestDispatcher("/error.jsp").forward(request, response);
 					return;
 				}
 				

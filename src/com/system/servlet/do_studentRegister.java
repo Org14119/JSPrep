@@ -24,7 +24,6 @@ public class do_studentRegister extends HttpServlet {
 		String name=request.getParameter("name");
 		String sex=request.getParameter("sex");	
 		if(email==null||password==null||name==null||sex==null||email.equals("")||password.equals("")||name.equals("")||sex.equals("")){
-			System.out.println("啥都没有");
 			response.sendRedirect("error.jsp");
 			return;
 		}

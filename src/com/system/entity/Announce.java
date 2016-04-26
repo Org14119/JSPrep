@@ -40,8 +40,8 @@ public class Announce implements Serializable {
 	 */
 	private static final long serialVersionUID = 8504742495971459160L;
 	private long id;
-	private String title;
-	private String content;
-	private String time;
+	private String title="未知";
+	private String content="未知";
+	private String time="1996-05-28 00:00:00";
 
 }

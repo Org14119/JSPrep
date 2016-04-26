@@ -29,8 +29,10 @@
 					if (flag && type.equals("teacher")) {
 							out.println("欢迎您，" + t.getName() + "教师!");%>
 							<form method="post" action="addNotices">
+							标题：<br>
 							<input type="text" name="title" ><br>
-							<textarea name="content" rows="30" cols="4"></textarea><br>
+							内容：<br>
+							<textarea name="content" rows="6" cols="80"></textarea><br>
 							<input type="submit" name="submit" value="发布">
 							</form>
 							
