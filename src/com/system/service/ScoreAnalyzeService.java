@@ -51,7 +51,11 @@ public class ScoreAnalyzeService {
 			}
 
 			conn.commit();
-			return correct / count;
+			if (count != 0) {
+				return (double) correct / (double) count;
+			} else {
+				return 0;
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -132,14 +136,21 @@ public class ScoreAnalyzeService {
 						if (tempScore > 0) {
 							correct++;
 							count++;
+							// System.out.println("正确+1");
 						} else if (tempScore == 0) {
 							count++;
+							// System.out.println("错误+1");
 						}
 					}
 
 				}
-				tempRate = correct / count;
-				rateMap.put(trueQuestion, tempRate);
+				if (count != 0) {
+					tempRate = (double) correct / (double) count;
+					// System.out.println("返回某个提的通过率为：" + tempRate);
+					rateMap.put(trueQuestion, tempRate);
+				} else {
+					rateMap.put(trueQuestion, 0.0);
+				}
 			}
 			conn.commit();
 			return rateMap;
