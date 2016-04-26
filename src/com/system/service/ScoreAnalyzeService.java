@@ -84,9 +84,7 @@ public class ScoreAnalyzeService {
 	}
 
 	/*
-	 * 传入QuestionSpace对象，其中至少包括id属性。
-	 * 返回对value排序完成的map
-	 * 其中key为Student，value为分数
+	 * 传入QuestionSpace对象，其中至少包括id属性。 返回对value排序完成的map 其中key为Student，value为分数
 	 * 如果发生异常，返回null
 	 */
 	public Map<Student, Integer> getRangeMap(QuestionSpace space) {
@@ -147,24 +145,25 @@ public class ScoreAnalyzeService {
 			}
 		}
 	}
+
 	/*
 	 * 同上，传入参数为考试
 	 */
-	public Map<Student,Integer>getRangeMap(Test test){
-		Connection conn=ConnectionFactory.getInstace().makeConnection();
-		TestDaoImpl testImpl=new TestDaoImpl();
-		ResultSet testSet=null;
+	public Map<Student, Integer> getRangeMap(Test test) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		TestDaoImpl testImpl = new TestDaoImpl();
+		ResultSet testSet = null;
 		try {
 			conn.setAutoCommit(false);
-			testSet=testImpl.get(conn, test);
-			//long spaceId=0L;
-			QuestionSpace space=new QuestionSpace();
-			while(testSet.next()){
+			testSet = testImpl.get(conn, test);
+			// long spaceId=0L;
+			QuestionSpace space = new QuestionSpace();
+			while (testSet.next()) {
 				space.setId(testSet.getLong("questionSpaceID"));
 			}
 			conn.commit();
 			return getRangeMap(space);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -175,7 +174,7 @@ public class ScoreAnalyzeService {
 				e1.printStackTrace();
 			}
 			return null;
-		}finally{
+		} finally {
 			try {
 				testSet.close();
 			} catch (SQLException e1) {
@@ -190,14 +189,10 @@ public class ScoreAnalyzeService {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-/*
- * 以下方法私有，排序算法，使用链式散列表
- */
+
+	/*
+	 * 以下方法私有，排序算法，使用链式散列表
+	 */
 	private static Map<Student, Integer> sortMapByValue(Map<Student, Integer> orimap) {
 
 		if (orimap == null || orimap.isEmpty()) {
@@ -223,6 +218,6 @@ class MapValueComparator implements Comparator<Map.Entry<Student, Integer>> {
 	@Override
 	public int compare(Entry<Student, Integer> me1, Entry<Student, Integer> me2) {
 
-		return me1.getValue().compareTo(me2.getValue());
+		return me2.getValue().compareTo(me1.getValue());
 	}
 }
