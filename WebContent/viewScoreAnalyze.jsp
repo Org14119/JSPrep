@@ -35,7 +35,7 @@
 								 Map<Student, Integer> map=new ScoreAnalyzeService().getRangeMap(currentTeacherSpace);
 								 Student student=new Student();
 								 int score=0;
-								 int i=1;
+								 int i=0;
 								 if(map!=null){
 									 for(Map.Entry<Student, Integer> me:map.entrySet()){
 										 student=me.getKey();
