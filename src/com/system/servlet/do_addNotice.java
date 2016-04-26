@@ -36,7 +36,7 @@ public class do_addNotice extends HttpServlet {
 					boolean flag=new AnnounceService().addAnnounce(notice,t);
 					if(flag){
 						System.out.println("发布成功");
-						request.getRequestDispatcher("/teacherIndex。jsp").forward(request, response);
+						request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
 					}
 					else{
 						System.out.println("发布失败");
