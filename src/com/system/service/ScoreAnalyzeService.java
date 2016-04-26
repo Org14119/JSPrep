@@ -13,14 +13,117 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.system.daoImpl.ObjectAnswerInfoDaoImpl;
+import com.system.daoImpl.ObjectQuestionDaoImpl;
 import com.system.daoImpl.StudentDaoImpl;
 import com.system.daoImpl.TestDaoImpl;
+import com.system.entity.ObjectQuestion;
 import com.system.entity.QuestionSpace;
 import com.system.entity.Student;
 import com.system.entity.Test;
 import com.system.util.ConnectionFactory;
 
 public class ScoreAnalyzeService {
+	/*
+	 * 根据传入的QuestionSpace对象查看每道题的正确率。
+	 * 返回Map<>,key=question,key含有题目的全部信息，double是通过率.. 如果异常，返回null;
+	 */
+	public Map<ObjectQuestion, Double> getPassRate(QuestionSpace space) {
+		Map<ObjectQuestion, Double> rateMap = new HashMap<ObjectQuestion, Double>();
+		List<ObjectQuestion> quizList = new ArrayList<ObjectQuestion>();
+		// Map<ObjectQuestion, Double> tempRateMap = new HashMap<ObjectQuestion,
+		// Double>();
+		// TestDaoImpl testImpl=new TestDaoImpl();
+		ObjectAnswerInfoDaoImpl answerImpl = new ObjectAnswerInfoDaoImpl();
+		ObjectQuestionDaoImpl questionImpl = new ObjectQuestionDaoImpl();
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		// ResultSet testSet=null;
+		ResultSet quizSet = null;
+		ResultSet answerSet = null;
+		try {
+			conn.setAutoCommit(false);
+			quizSet = questionImpl.get(conn, space);
+			// 获取所有题目,放在quizList中
+			while (quizSet.next()) {
+				ObjectQuestion tempQuiz = new ObjectQuestion();
+				tempQuiz.setId(quizSet.getLong("questionID"));
+				tempQuiz.setTitle(quizSet.getString("questionContent"));
+				tempQuiz.setChoiceA(quizSet.getString("answer1"));
+				tempQuiz.setChoiceB(quizSet.getString("answer2"));
+				tempQuiz.setChoiceC(quizSet.getString("answer3"));
+				tempQuiz.setChoiceD(quizSet.getString("answer4"));
+				tempQuiz.setCorrectAnswer(quizSet.getInt("trueAnswer"));
+				tempQuiz.setAnswerAnalyze(quizSet.getString("questionAnalyze"));
+				tempQuiz.setScore(quizSet.getInt("score"));
+				quizList.add(tempQuiz);
+			}
+			// 根据每个question对象寻找到这道题，然后统计对应题目的正确率
+			Iterator<ObjectQuestion> iter = quizList.iterator();
+
+			while (iter.hasNext()) {
+				ObjectQuestion trueQuestion = iter.next();
+				answerSet = answerImpl.get(conn, trueQuestion);
+				int count = 0;
+				int correct = 0;
+				// double rate=0;
+				double tempRate = 0;
+				while (answerSet.next()) {
+					int tempCheckState = answerSet.getInt("isChecked");
+					int tempScore = answerSet.getInt("answerScore");
+					if (tempCheckState == 1) {
+						if (tempScore > 0) {
+							correct++;
+							count++;
+						} else if (tempScore == 0) {
+							count++;
+						}
+					}
+
+				}
+				tempRate = correct / count;
+				rateMap.put(trueQuestion, tempRate);
+			}
+			conn.commit();
+			return rateMap;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (quizSet != null) {
+				try {
+					quizSet.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+			}
+			if (answerSet != null) {
+				try {
+					answerSet.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+
 	/*
 	 * 传入Test对象，其中包括testID属性，最好调用的时候确定这个考生的试题已经被批改
 	 * 传回对应这个Test的题库的所有考试学生的分数的列表(已经排序) 如果没有被批改的Test，则返回一个不含有任何元素的List
@@ -63,13 +166,17 @@ public class ScoreAnalyzeService {
 			return null;
 		} finally {
 			try {
-				allSet.close();
+				if (allSet != null) {
+					allSet.close();
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
-				testSet.close();
+				if (testSet != null) {
+					testSet.close();
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -126,13 +233,17 @@ public class ScoreAnalyzeService {
 			return null;
 		} finally {
 			try {
-				studentSet.close();
+				if (studentSet != null) {
+					studentSet.close();
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
-				scoreSet.close();
+				if (scoreSet != null) {
+					scoreSet.close();
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -176,7 +287,9 @@ public class ScoreAnalyzeService {
 			return null;
 		} finally {
 			try {
-				testSet.close();
+				if (testSet != null) {
+					testSet.close();
+				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
