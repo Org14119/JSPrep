@@ -32,6 +32,7 @@
 
 	<a href="viewAllTests.jsp">考试管理</a><br>
      <a href="viewStudent.jsp">学生管理</a><br>
+     <a href="notice.jsp">公告管理</a><br>
       <a href="viewStudentGrade.jsp">成绩分析</a><br>
 	<br />
 	<center>
