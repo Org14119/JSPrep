@@ -111,6 +111,14 @@ public class AnnounceService {
 					e.printStackTrace();
 				}
 			}
+			if (ansSet != null) {
+				try {
+					ansSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
