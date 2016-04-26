@@ -34,6 +34,7 @@
 	%><br>
 	<a href="viewTeachers.jsp">查看老师</a><br>
 	<a href="viewMyTestRecord.jsp">考试查询</a>
+	<a href="viewNotice.jsp">查询公告</a>
 	<jsp:include page="isBinding.jsp"></jsp:include>
 	<a href="<%=request.getContextPath()%>/logout">登出</a>
 	<br />

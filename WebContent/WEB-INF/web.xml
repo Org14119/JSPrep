@@ -146,4 +146,12 @@
     <servlet-name>teacherBindingStudent</servlet-name>
     <url-pattern>/teacherBindingStudent</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>addNotices</servlet-name>
+    <servlet-class>com.system.servlet.do_addNotice</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addNotices</servlet-name>
+    <url-pattern>/addNotices</url-pattern>
+  </servlet-mapping>
 </web-app>
