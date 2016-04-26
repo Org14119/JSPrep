@@ -43,10 +43,11 @@
 %>
 <%="请选择给老师上传的文件"%>
 <form method="post" enctype="multipart/form-data"
-	action="#">
-	<input type="file" name="upFile" size=100 /> <br /> 
-	
-	<input type="submit" name="submit" value="upload" />
+	action="uploadStudentFile">
+	<input type="file" name="upFile" size=100 /> <br /> <input
+		type="hidden" name="teacherEmail" value=<%=teacherEmail%> /> <input
+		type="hidden" name="studentEmail" value=<%=s.getEmail()%> /> <input
+		type="submit" name="submit" value="upload" />
 </form>
 <%
 	}
