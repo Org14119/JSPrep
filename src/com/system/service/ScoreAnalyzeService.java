@@ -25,6 +25,64 @@ import com.system.util.ConnectionFactory;
 
 public class ScoreAnalyzeService {
 	/*
+	 * 根据传入的每道题，查看正确率...如果发生异常，返回-1
+	 */
+	public double getPassRate(ObjectQuestion question) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ObjectAnswerInfoDaoImpl answerImpl = new ObjectAnswerInfoDaoImpl();
+		ResultSet answerSet = null;
+		try {
+			conn.setAutoCommit(false);
+			answerSet = answerImpl.get(conn, question);
+			int count = 0;
+			int correct = 0;
+			// double rate=0;
+			while (answerSet.next()) {
+				int tempCheckState = answerSet.getInt("isChecked");
+				int tempScore = answerSet.getInt("answerScore");
+				if (tempCheckState == 1) {
+					if (tempScore > 0) {
+						correct++;
+						count++;
+					} else if (tempScore == 0) {
+						count++;
+					}
+				}
+			}
+
+			conn.commit();
+			return correct / count;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return -1;
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (answerSet != null) {
+				try {
+					answerSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/*
 	 * 根据传入的QuestionSpace对象查看每道题的正确率。
 	 * 返回Map<>,key=question,key含有题目的全部信息，double是通过率.. 如果异常，返回null;
 	 */
