@@ -10,6 +10,7 @@ import com.system.util.ConnectionFactory;
 
 public class AnnounceService {
 	public boolean addAnnounce(Announce announce, Teacher teacher) {
+		teacher = new ConsultService().getTeacherID(teacher);
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		try {
 			conn.setAutoCommit(false);
