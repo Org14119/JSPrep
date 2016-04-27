@@ -83,10 +83,10 @@ public class AnnounceService {
 			ansSet = new AnnounceDaoImpl().get(conn, teacher);
 			while (ansSet.next()) {
 				Announce temp = new Announce();
-				temp.setId(ansSet.getLong(1));
-				temp.setContent(ansSet.getString(3));
-				temp.setTitle(ansSet.getString(2));
-				temp.setTime(ansSet.getTimestamp(4).toString());
+				temp.setId(ansSet.getLong(5));
+				temp.setContent(ansSet.getString(2));
+				temp.setTitle(ansSet.getString(1));
+				temp.setTime(ansSet.getTimestamp(3).toString());
 				ansList.add(temp);
 			}
 			conn.commit();
