@@ -36,17 +36,41 @@
 								 Student student=new Student();
 								 int score=0;
 								 int i=0;
+								 int outstanding=0;
+								 int pass=0;
+								 int unPass=0;
+								 int good=0;
 								 if(map!=null){
 									 for(Map.Entry<Student, Integer> me:map.entrySet()){
 										 student=me.getKey();
 										 score=me.getValue();
-										 i++;%>
+										 i++;
+										 if(score<=100&&score>=90){
+											 outstanding++; 
+										 }
+										 else if(score>=80&&score<90){
+											 good++;
+										 }
+										 else if(score<80&&score>=60){
+											 pass++;
+										 }
+										 else {
+											 unPass++;
+										 }
+										 
+										 %>
 										 考试排名：   <br>
 										 第<%=i %>名：<%=student.getName() %> 分数：<%=score %>分<br>
 										 
 										 
-									<%  }
-								 }
+									<%  }%><br>
+									总人数：<%=i %>人<br>
+									 优秀:<%=outstanding %>人<br>
+									 良好：<%=good %>人<br>
+									 中：<%=pass %>人<br>
+									 不及格：<%=unPass %>人<br>
+									 
+								 <% }
 							}
 							else{%>
 								<%="系统错误，请稍候重试！" %>
