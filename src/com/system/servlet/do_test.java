@@ -2,7 +2,6 @@ package com.system.servlet;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
@@ -24,8 +23,9 @@ public class do_test extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(!session.isNew()){
 			QuestionSpace currentTeacherSpace=(QuestionSpace)session.getAttribute("currentTeacherSpace");
+			 int array[]=(int[])session.getAttribute("array");
 			Test testInstance=(Test)session.getAttribute("testInstance");
-			if(currentTeacherSpace==null||testInstance==null){
+			if(currentTeacherSpace==null||array==null||testInstance==null){
 				session.invalidate();
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
@@ -33,19 +33,16 @@ public class do_test extends HttpServlet {
 				Vector<ObjectQuestion> objectQuestionLists = new ObjectQuestionService()
 						.getAllQuestionOfSpace(currentTeacherSpace);
 				if(objectQuestionLists!=null){
-					Iterator<ObjectQuestion> iterList = objectQuestionLists.iterator();
 					Map<ObjectQuestion, ObjectAnswer> answerMap=new HashMap<ObjectQuestion, ObjectAnswer>(); 
-					int number=0;
-					while (iterList.hasNext()) {
-						ObjectQuestion o = iterList.next();
-						String temp=request.getParameter(Integer.toString(number+1));
+					for(int a=0;a<25;a++){
+						ObjectQuestion o = objectQuestionLists.get(array[a]);
+						String temp=request.getParameter(String.valueOf(o.getId()));
 						ObjectAnswer objectAnswer=new ObjectAnswer();
 						if(temp==null){
 							temp="0";
 						}
 						objectAnswer.setAnswerContent(Integer.parseInt(temp));
 						answerMap.put(o, objectAnswer);	
-						number++;
 					}
 					boolean flag=new ObjectAnswerService().addObjectAnswer(testInstance, answerMap);
 					if(flag){

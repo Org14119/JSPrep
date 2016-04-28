@@ -26,6 +26,8 @@ public class do_teacherQuestionBank extends HttpServlet {
 				String teacherBankType=request.getParameter("bankType");
 				String startTime=request.getParameter("startTime");
 				String endTime=request.getParameter("endTime");
+				String amount=request.getParameter("amount");
+				
 				
 				if(teacherBankType==null||t==null||startTime==null||endTime==null||t.equals("")||teacherBankType.equals("")||startTime.equals("")||endTime.equals("")){
 					response.sendRedirect("error.jsp");
@@ -38,6 +40,7 @@ public class do_teacherQuestionBank extends HttpServlet {
 					new com.system.util.TimeUtil();
 					teacherBank.setBeginTime(startTime);
 					teacherBank.setEndTime(endTime);
+					teacherBank.setAmount(Integer.parseInt(amount));
 			//		session.setAttribute("currentTeacherSpace",teacherBank);
 					boolean flag=new QuestionSpaceService().addSpace(teacherBank, t);
 					if(flag){

@@ -36,12 +36,14 @@ if(!session.isNew()){
 					String spaceID=request.getParameter("spaceID");
 					String beginTime=request.getParameter("startTime").replaceAll("时间", " ");
 					String endTime=request.getParameter("endTime").replaceAll("时间", " ");
+					String amount=request.getParameter("amount");
 					out.print(spaceID);
 					//System.out.println("beginTime======"+beginTime);
 					QuestionSpace currentTeacherSpace= new QuestionSpace();
 					currentTeacherSpace.setId(Long.parseLong(spaceID));
 					currentTeacherSpace.setBeginTime(beginTime);
 					currentTeacherSpace.setEndTime(endTime);
+					currentTeacherSpace.setAmount(Integer.parseInt(amount));
 					session.setAttribute("currentTeacherSpace", currentTeacherSpace);
 					%>
 					<br/>

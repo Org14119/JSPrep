@@ -57,6 +57,7 @@
 
 <input type="hidden" name="startTime" value=<%=spacelists.get(i).getBeginTime().replaceAll(" ", "时间")%>>
 <input type="hidden" name="endTime" value=<%=spacelists.get(i).getEndTime().replaceAll(" ","时间")%>>
+<input type="hidden" name="amount" value=<%=spacelists.get(i).getAmount()%>>
 <input type="submit" name="submit" value=<%=spacelists.get(i).getName()%> >
 <br>
 

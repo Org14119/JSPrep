@@ -49,9 +49,11 @@
 
 		<%
 			}
-		%>
+		%>设置答题数目：<br/>
+		<input type="text" name="amount"/>
 		<br/>
 		<br/>
+		
 		开始时间： <input name="startTime" type="text"><br/><br/> 结束时间： <input
 			name="endTime" type="text"><br> <input type="submit"
 			name="submit" value="确定"><br>

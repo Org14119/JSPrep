@@ -110,6 +110,8 @@ public class QuestionSpaceService {
 				space.setBeginTime(spaceSet.getTimestamp("beginTime").toString());
 				space.setEndTime(spaceSet.getTimestamp("endTime").toString());
 				space.setAmount(spaceSet.getInt("amountPerTest"));
+				//System.out.println("JJJJJJJJJJJJJJJJJJJJJJ"+space.getAmount());
+						
 				spaceList.add(space);
 			}
 			conn.commit();

@@ -35,6 +35,7 @@
 	%>
 	<%
 		Test testInstance = new Test();
+	//System.out.println("currentTeacherSpace========"+currentTeacherSpace.getAmount());
 					com.system.util.TimeUtil ti = new com.system.util.TimeUtil();
 					String testTime = ti.getTime();
 					java.sql.Date myTestTime=ti.parseStringToDate(testTime);
@@ -57,53 +58,69 @@
 						<div>
 							<form method="post" action="test">
 								<%
-									if (objectQuestionLists != null) {
-														Iterator<ObjectQuestion> iterList = objectQuestionLists.iterator();
-														int i = 1;
-														session.setAttribute("testInstance", testInstance);
-														while (iterList.hasNext()) {
-															ObjectQuestion o = iterList.next();
+									if (objectQuestionLists != null&&objectQuestionLists.size()>currentTeacherSpace.getAmount()) {
+										                int i = 1;
+										                int array[]=new int[currentTeacherSpace.getAmount()];
+										                for(int p=0;p<currentTeacherSpace.getAmount();p++){
+										                	array[p]=-1;
+										                }
+										                session.setAttribute("testInstance", testInstance);
+													   for(int a=0;a<currentTeacherSpace.getAmount();a++){
+														   array[a]=(int)(0+Math.random()*objectQuestionLists.size()-1);	
+														   for(int j=0;j<a;j++){
+															   if(array[a]==array[j]){
+																   a--;
+																   break;
+															   }
+														   }}
+
+													   session.setAttribute("array", array);
+													   for(int a=0;a<currentTeacherSpace.getAmount();a++){
+															ObjectQuestion o=objectQuestionLists.get(array[a]);
+															
 								%>
 								<div>
 									第<%=i%>题
 									<%=o.getTitle() + "(" + o.getScore() + "分)"%><br/>
-									<input type="radio" name="<%=i%>" value="1">A.<%=o.getChoiceA()%><br>
-									<input type="radio" name="<%=i%>" value="2">B.<%=o.getChoiceB()%><br>
-									<input type="radio" name="<%=i%>" value="3">C.<%=o.getChoiceC()%><br>
-									<input type="radio" name="<%=i%>" value="4">D.<%=o.getChoiceD()%><br>
+									<input type="radio" name="<%=o.getId()%>" value="1">A.<%=o.getChoiceA()%><br>
+									<input type="radio" name="<%=o.getId()%>" value="2">B.<%=o.getChoiceB()%><br>
+									<input type="radio" name="<%=o.getId()%>" value="3">C.<%=o.getChoiceC()%><br>
+									<input type="radio" name="<%=o.getId()%>" value="4">D.<%=o.getChoiceD()%><br>
 								</div>
 								<%
 									i++;
 														}
 								%>
-								<%
-									}
-
-													else {
-														session.invalidate();
-														out.println("考试系统繁忙，请稍候重试！");
-								%>
-								<a href="index.jsp">登录</a>
-								<%
-									}
-								%>
-								<input type="submit" name="submit" value="提交"><br>
+		    <input type="submit" name="submit" value="提交"><br>
 								<br />
 								<br />
 							</form>
 						</div>
+								
+								<%
+									}
+								
+
+													else {
+													
+														out.println("考试系统繁忙，请稍候重试！");
+								%>
+								<a href="viewTeachers.jsp">返回</a>
+								<%
+									}
+								%>
 
 
 						<%
 							} else {
 						%>
 						<%
-							session.invalidate();
+						
 						%>
 						<%
 							out.println("考试系统繁忙，请稍候重试！");
 						%>
-						<a href="index.jsp">登录</a>
+						<a href="viewTeachers.jsp">返回</a>
 
 						<%
 							}%>
@@ -114,7 +131,7 @@
 				<% 	}
 					else{
 						out.println("当前时间不在考试时间范围内！");%>
-						<a href="studentIndex.jsp">返回首页</a>
+					<a href="viewTeachers.jsp">返回</a>
 						
 					<%}%>
 					
