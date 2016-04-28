@@ -28,7 +28,7 @@ public class QuestionSpaceService {
 			ResultSet set = new TeacherQuestionSpaceDaoImpl().insert(conn, space, teacher);
 			while (set.next()) {
 				trueSpace.setId(set.getLong(1));
-				System.out.println("已经添加");
+				//System.out.println("已经添加");
 				return trueSpace;
 			}
 			conn.commit();
@@ -109,6 +109,7 @@ public class QuestionSpaceService {
 				space.setType(spaceSet.getString("type"));
 				space.setBeginTime(spaceSet.getTimestamp("beginTime").toString());
 				space.setEndTime(spaceSet.getTimestamp("endTime").toString());
+				space.setAmount(spaceSet.getInt("amountPerTest"));
 				spaceList.add(space);
 			}
 			conn.commit();

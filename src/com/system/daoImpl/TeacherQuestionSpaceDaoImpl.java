@@ -16,14 +16,15 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 	@Override
 	public synchronized ResultSet insert(Connection conn, QuestionSpace space, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
-		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,beginTime,endTime,teacherID) VALUES(?,?,STR_TO_DATE(?,'"
-				+ format + "'),STR_TO_DATE(?,'" + format + "'),?)";
+		String insertSQL = "INSERT INTO tbl_teacherquestionspace (name,type,beginTime,endTime,teacherID,amountPerTest) VALUES(?,?,STR_TO_DATE(?,'"
+				+ format + "'),STR_TO_DATE(?,'" + format + "'),?,?)";
 		PreparedStatement ps = conn.prepareStatement(insertSQL);
 		ps.setString(1, space.getName());
 		ps.setString(2, space.getType());
 		ps.setString(3, space.getBeginTime());
 		ps.setLong(5, teacher.getId());
 		ps.setString(4, space.getEndTime());
+		ps.setInt(6, space.getAmount());
 		Statement st = conn.createStatement();
 		String sql = "SELECT MAX(id) FROM tbl_teacherquestionspace";
 		ps.execute();
@@ -58,7 +59,7 @@ public class TeacherQuestionSpaceDaoImpl implements TeacherQuestionSpaceDAO {
 	@Override
 	public ResultSet get(Connection conn, Teacher teacher) throws SQLException {
 		// TODO Auto-generated method stub
-		String getSQL = "SELECT tbl_teacherquestionspace.id,tbl_teacherquestionspace.type,tbl_teacherquestionspace.name,tbl_teacherquestionspace.beginTime,tbl_teacherquestionspace.endTime FROM tbl_teacher,tbl_teacherquestionspace WHERE tbl_teacher.teacherID=? AND tbl_teacherquestionspace.teacherID=tbl_teacher.teacherID";
+		String getSQL = "SELECT tbl_teacherquestionspace.amountPerTest,tbl_teacherquestionspace.id,tbl_teacherquestionspace.type,tbl_teacherquestionspace.name,tbl_teacherquestionspace.beginTime,tbl_teacherquestionspace.endTime FROM tbl_teacher,tbl_teacherquestionspace WHERE tbl_teacher.teacherID=? AND tbl_teacherquestionspace.teacherID=tbl_teacher.teacherID";
 		PreparedStatement ps = conn.prepareStatement(getSQL);
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();

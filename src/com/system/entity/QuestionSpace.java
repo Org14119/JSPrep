@@ -1,8 +1,8 @@
 package com.system.entity;
+
 import java.io.Serializable;
 
-
-public class QuestionSpace implements Serializable{
+public class QuestionSpace implements Serializable {
 	/**
 	 * 
 	 */
@@ -12,6 +12,7 @@ public class QuestionSpace implements Serializable{
 	private String type;
 	private String beginTime;
 	private String endTime;
+	private int amount = 25;
 
 	public String getBeginTime() {
 		return beginTime;
@@ -51,6 +52,14 @@ public class QuestionSpace implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 }
