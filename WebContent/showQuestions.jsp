@@ -44,6 +44,7 @@ if(!session.isNew()){
 				switch (correct) {
 				case 1:
 					out.println("A");
+					//out.println("XZXZXXZ");
 					break;
 				case 2:
 					out.println("B");

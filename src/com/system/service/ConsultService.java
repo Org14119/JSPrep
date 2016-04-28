@@ -15,18 +15,18 @@ import com.system.util.ConnectionFactory;
 
 public class ConsultService {
 	/*
-
+	 * 
 	 * 获得所有学生的集合，如果查询异常返回null
 	 */
-	public Vector<Student> getAllStudents(){
-		Vector<Student>students=new Vector<Student>();
-		Connection conn=ConnectionFactory.getInstace().makeConnection();
-		ResultSet studentSet=null;
+	public Vector<Student> getAllStudents() {
+		Vector<Student> students = new Vector<Student>();
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ResultSet studentSet = null;
 		try {
 			conn.setAutoCommit(false);
-			studentSet=new StudentDaoImpl().getAll(conn);
-			while(studentSet.next()){
-				Student tempS=new Student();
+			studentSet = new StudentDaoImpl().getAll(conn);
+			while (studentSet.next()) {
+				Student tempS = new Student();
 				tempS.setEmail(studentSet.getString("studentEmail"));
 				tempS.setGender(String.valueOf(studentSet.getInt("studentGender")));
 				tempS.setName(studentSet.getString("studentName"));
@@ -45,7 +45,7 @@ public class ConsultService {
 				e1.printStackTrace();
 			}
 			return null;
-		}finally{
+		} finally {
 			try {
 				studentSet.close();
 			} catch (SQLException e) {
@@ -111,13 +111,13 @@ public class ConsultService {
 	/*
 	 * 获取学生的ID信息
 	 */
-	protected Student getStudentID(Student student){
-		Connection conn=ConnectionFactory.getInstace().makeConnection();
-		ResultSet studentSet=null;
+	protected Student getStudentID(Student student) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ResultSet studentSet = null;
 		try {
 			conn.setAutoCommit(false);
-			studentSet=new StudentDaoImpl().get(conn, student);
-			while(studentSet.next()){
+			studentSet = new StudentDaoImpl().get(conn, student);
+			while (studentSet.next()) {
 				student.setId(studentSet.getLong("studentID"));
 				conn.commit();
 				return student;
@@ -132,7 +132,7 @@ public class ConsultService {
 			}
 			return null;
 			// TODO: handle exception
-		}finally{
+		} finally {
 			try {
 				studentSet.close();
 			} catch (SQLException e) {
@@ -147,16 +147,17 @@ public class ConsultService {
 			}
 		}
 	}
+
 	/*
 	 * 获取老师ID信息
 	 */
-	protected Teacher getTeacherID(Teacher teacher){
-		Connection conn=ConnectionFactory.getInstace().makeConnection();
-		ResultSet teacherSet=null;
+	protected Teacher getTeacherID(Teacher teacher) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ResultSet teacherSet = null;
 		try {
 			conn.setAutoCommit(false);
-			teacherSet=new TeacherDaoImpl().get(conn,teacher);
-			while(teacherSet.next()){
+			teacherSet = new TeacherDaoImpl().get(conn, teacher);
+			while (teacherSet.next()) {
 				teacher.setId(teacherSet.getLong("teacherID"));
 				conn.commit();
 				return teacher;
@@ -171,7 +172,7 @@ public class ConsultService {
 			}
 			return null;
 			// TODO: handle exception
-		}finally{
+		} finally {
 			try {
 				teacherSet.close();
 			} catch (SQLException e) {
@@ -186,14 +187,61 @@ public class ConsultService {
 			}
 		}
 	}
-	protected Teacher getTeacherByID(Teacher teacher){
-		Connection conn=ConnectionFactory.getInstace().makeConnection();
-		Teacher t=teacher;
-		ResultSet teacherSet=null;
+
+	protected Student getStudentByID(Student student) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ResultSet studentSet = null;
+		Student s = student;
 		try {
 			conn.setAutoCommit(false);
-			teacherSet=new TeacherDaoImpl().getById(conn, teacher);
-			while(teacherSet.next()){
+			studentSet = new StudentDaoImpl().getByID(conn, student);
+			while (studentSet.next()) {
+				s.setEmail(studentSet.getString("studentEmail"));
+				s.setGender(String.valueOf(studentSet.getInt("studentGender")));
+				s.setId(studentSet.getLong("studentID"));
+				s.setName(studentSet.getString("studentName"));
+
+			}
+			conn.commit();
+			return s;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		} finally {
+			if (studentSet != null) {
+				try {
+					studentSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	protected Teacher getTeacherByID(Teacher teacher) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		Teacher t = teacher;
+		ResultSet teacherSet = null;
+		try {
+			conn.setAutoCommit(false);
+			teacherSet = new TeacherDaoImpl().getById(conn, teacher);
+			while (teacherSet.next()) {
 				t.setEmail(teacherSet.getString("teacherEmail"));
 				t.setGender(String.valueOf(teacherSet.getInt("teacherGender")));
 				t.setName(teacherSet.getString("teacherName"));
@@ -210,7 +258,7 @@ public class ConsultService {
 				e1.printStackTrace();
 			}
 			return null;
-		}finally{
+		} finally {
 			try {
 				teacherSet.close();
 			} catch (SQLException e) {

@@ -93,14 +93,14 @@ public class FileDaoImpl implements FileDao {
 		return ps.executeQuery();
 	}
 
-	public ResultSet getFromTo(Connection conn, Teacher teacher) throws SQLException {
+	public ResultSet getToOf(Connection conn, Teacher teacher) throws SQLException {
 		String sql = "SELECT * FROM tbl_file WHERE toID=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();
 	}
 
-	public ResultSet getFromTo(Connection conn, Student student) throws SQLException {
+	public ResultSet getToOf(Connection conn, Student student) throws SQLException {
 		String sql = "SELECT * FROM tbl_file WHERE toID=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setLong(1, student.getId());

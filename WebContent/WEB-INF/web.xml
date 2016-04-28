@@ -14,6 +14,14 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
+	<servlet-name>downloadFile</servlet-name>
+	<servlet-class>com.system.servlet.do_downLoadFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>downloadFile</servlet-name>
+	<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>uploadStudentFile</servlet-name>
 		<servlet-class>com.system.servlet.do_upLoadStudentFile</servlet-class>
 	</servlet>
