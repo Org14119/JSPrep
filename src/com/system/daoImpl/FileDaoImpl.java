@@ -33,13 +33,18 @@ public class FileDaoImpl implements FileDao {
 	@Override
 	public void update(Connection conn, SaveFile file) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE tbl_file SET acceptState=? WHERE fileID=?";
+		String sql = "UPDATE tbl_file SET acceptState=? WHERE fileLocate=?";
+
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setLong(2, file.getFileID());
+		ps.setString(2, file.getFileLocate());
+		///System.out.println(file.getFileLocate());
 		if (file.isAccept()) {
 			ps.setInt(1, 1);
+			//System.out.println("ok");
+		} else {
+			ps.setInt(1, 0);
 		}
-		ps.setInt(1, 0);
+		// System.out.println("update");
 		ps.execute();
 	}
 

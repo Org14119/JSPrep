@@ -1,7 +1,6 @@
 package com.system.servlet;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.system.service.NormalFileService;
 import com.system.util.FileRootFactory;
 
 public class do_downLoadFile extends HttpServlet {
@@ -36,21 +36,24 @@ public class do_downLoadFile extends HttpServlet {
 			return;
 		}
 		//System.out.println(filePath + "/" + fileName);
-		in = new FileInputStream(new File(filePath + "/" + fileName));
-		int length = in.available();
-		// 设置相应正文的MIME类型
-		resp.setContentType("application/force-download");
-		resp.setHeader("Contemt_length", String.valueOf(length));
-		resp.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\" ");
+		in = new NormalFileService().downFile(filePath+"/"+fileName);
+		if(in!=null){
+			int length = in.available();
+			// 设置相应正文的MIME类型
+			resp.setContentType("application/force-download");
+			resp.setHeader("Contemt_length", String.valueOf(length));
+			resp.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\" ");
 
-		out = resp.getOutputStream();
-		int bytesRead = 0;
-		byte[] buffer = new byte[1024];
-		while ((bytesRead = in.read(buffer)) != -1) {
-			out.write(buffer, 0, bytesRead);
+			out = resp.getOutputStream();
+			int bytesRead = 0;
+			byte[] buffer = new byte[1024];
+			while ((bytesRead = in.read(buffer)) != -1) {
+				out.write(buffer, 0, bytesRead);
+			}
+			in.close();
+			out.close();
 		}
-		in.close();
-		out.close();
+		
 	}
 
 	@Override

@@ -38,12 +38,15 @@
 								Vector<Student> bindedStudent=new ManageStudent().getStudent(allStudent, bindingStudent);
 								if(bindedStudent!=null){
 									Iterator<Student> iterList=bindedStudent.iterator();%>
-									<br>已经绑定的学生：<br>
+									<br>点击前面的框解除绑定：<br>
+									<form method="post" action="cancelBinding">
 									<%while(iterList.hasNext()){%>
-										
-										<% Student s=iterList.next();%>
-										<%=s.getName() %><br>
+									<% Student s=iterList.next();%>
+									<input type="checkbox" name="cancelBindingStudent" value=<%=s.getEmail() %>><%=s.getName() %><br>
 									<% }%>
+									<input type="submit" name="submit" value="解除绑定">
+									</form>
+
 											
 					          <%Vector<Student> allStudent1=new BindingService().getAllStudent(t);
 					          Vector<Student> unBindedStudent=new ManageStudent().getStudent(allStudents, allStudent1);

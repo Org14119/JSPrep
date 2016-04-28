@@ -1,5 +1,10 @@
 package com.system.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.io.InputStream;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +18,38 @@ import com.system.entity.Teacher;
 import com.system.util.ConnectionFactory;
 
 public class NormalFileService {
+	public InputStream downFile(String ablocate){
+		Connection conn=ConnectionFactory.getInstace().makeConnection();
+		File file=new File(ablocate);
+		try {
+			conn.setAutoCommit(false);
+			SaveFile sfile=new SaveFile();
+			sfile.setFileLocate(ablocate);
+			sfile.setAccept(true);
+			new FileDaoImpl().update(conn, sfile);
+			conn.commit();
+			return new FileInputStream(file);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		}finally{
+			if(conn!=null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	/*
 	 * 该方法获得给某个学生的所有文件，并下载
 	 */

@@ -14,12 +14,20 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
-	<servlet-name>downloadFile</servlet-name>
-	<servlet-class>com.system.servlet.do_downLoadFile</servlet-class>
+		<servlet-name>cancelBinding</servlet-name>
+		<servlet-class>com.system.servlet.do_cancelBinding</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>downloadFile</servlet-name>
-	<url-pattern>/download</url-pattern>
+		<servlet-name>cancelBinding</servlet-name>
+		<url-pattern>/cancelBinding</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>downloadFile</servlet-name>
+		<servlet-class>com.system.servlet.do_downLoadFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadFile</servlet-name>
+		<url-pattern>/download</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>uploadStudentFile</servlet-name>
@@ -173,4 +181,5 @@
 		<servlet-name>addNotices</servlet-name>
 		<url-pattern>/addNotices</url-pattern>
 	</servlet-mapping>
+
 </web-app>
