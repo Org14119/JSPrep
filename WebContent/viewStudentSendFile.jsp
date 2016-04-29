@@ -31,20 +31,26 @@
 		Map<SaveFile, Teacher> fileMap = new NormalFileService().getSendFile(student);
 	%>
 	<%
-		for (Map.Entry<SaveFile, Teacher> entry : fileMap.entrySet()) {
-					SaveFile sfile = entry.getKey();
-					Teacher teacher = entry.getValue();
-					String teacherName = teacher.getName();
-					boolean acptState = sfile.isAccept();
-					String fileName = sfile.getFileName();
-					String fileLocalte = sfile.getFileLocate();
+		if (fileMap != null) {
+					for (Map.Entry<SaveFile, Teacher> entry : fileMap.entrySet()) {
+						SaveFile sfile = entry.getKey();
+						Teacher teacher = entry.getValue();
+						String teacherName = teacher.getName();
+						boolean acptState = sfile.isAccept();
+						String fileName = sfile.getFileName();
+						String fileLocalte = sfile.getFileLocate();
 	%>
-		<a href="download?<%="fileName=" + fileName%>">文件名：<%=fileName %></a><br/>
-		接收老师：<%=teacherName %><br/>
-		老师是否下载：<%=acptState %><br/>
-		
+	<a href="download?<%="fileName=" + fileName%>">文件名：<%=fileName%></a>
+	<br /> 接收老师：<%=teacherName%><br /> 老师是否下载：<%=acptState%><br />
+	<%
+		}
+	%>
 
 	<%
+		}else{
+			%>
+				<a href="studentIndex.jsp">查询失败，请返回主页</a>
+			<% 
 		}
 	%>
 	<%
