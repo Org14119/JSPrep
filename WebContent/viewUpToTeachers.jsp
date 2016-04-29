@@ -47,11 +47,14 @@
 		<input type="submit" name="submit" value=<%=t.getName()%>> <br>
 
 	</form>
+	<br/>
+	
 	<%
 		}
 						}
 					}
 	%>
+	<a href="viewStudentSendFile.jsp">查看我上传的题目</a>
 	<%
 		} else {
 	%>

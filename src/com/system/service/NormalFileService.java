@@ -24,14 +24,30 @@ public class NormalFileService {
 		ConsultService service = new ConsultService();
 		student = service.getStudentID(student);
 		ResultSet fileSet = null;
+		Map<SaveFile, Teacher> map = new HashMap<SaveFile, Teacher>();
 		try {
 			conn.setAutoCommit(false);
 			fileSet = new FileDaoImpl().getFromOf(conn, student);
 			while (fileSet.next()) {
-				return null;
+				SaveFile tempFile = new SaveFile();
+				// student=service.getStudentByID(student);
+				Teacher tempTeacher = new Teacher();
+				long toID = fileSet.getLong("toID");
+				tempTeacher.setId(toID);
+				tempTeacher = service.getTeacherByID(tempTeacher);
+				int tempState = fileSet.getInt("acceptState");
+				if (tempState == 0) {
+					tempFile.setAccept(false);
+				} else {
+					tempFile.setAccept(true);
+				}
+				tempFile.setFileName(fileSet.getString("fileName"));
+				tempFile.setFileLocate(fileSet.getString("fileLocate"));
+				tempFile.setFileID(fileSet.getLong("fileID"));
+				map.put(tempFile, tempTeacher);
 			}
 			conn.commit();
-			return null;
+			return map;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
