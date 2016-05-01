@@ -14,6 +14,14 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
+		<servlet-name>upLoadTeacherNormalFile</servlet-name>
+		<servlet-class>com.system.servlet.do_upLoadTeacherFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>upLoadTeacherNormalFile</servlet-name>
+		<url-pattern>/upLoadTeacherNormalFile</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>cancelBinding</servlet-name>
 		<servlet-class>com.system.servlet.do_cancelBinding</servlet-class>
 	</servlet>

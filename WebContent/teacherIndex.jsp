@@ -28,13 +28,20 @@
 	%><br>
 	<a href="getTeacherAllSpace.jsp">查看题库</a>
 	<br />
-	<a href="teacherQuestionBank.jsp">添加题库</a><br>
+	<a href="teacherQuestionBank.jsp">添加题库</a>
+	<br>
 
-	<a href="viewAllTests.jsp">考试管理</a><br>
-     <a href="viewStudent.jsp">学生管理</a><br>
-     <a href="notice.jsp">公告管理</a><br>
-      <a href="viewStudentGrade.jsp">成绩分析</a><br>
-      <a href="viewTeacherRecvFile.jsp">查看文件</a><br/>
+	<a href="viewAllTests.jsp">考试管理</a>
+	<br>
+	<a href="viewStudent.jsp">学生管理</a>
+	<br>
+	<a href="notice.jsp">公告管理</a>
+	<br>
+	<a href="viewStudentGrade.jsp">成绩分析</a>
+	<br>
+	<a href="viewTeacherRecvFile.jsp">查看文件</a>
+	<br />
+	<a href="viewUpToStudents.jsp">给学生发文件</a>
 	<br />
 	<center>
 		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>

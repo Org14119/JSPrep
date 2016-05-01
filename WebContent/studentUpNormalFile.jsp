@@ -27,10 +27,10 @@
 %>
 <%
 	String type = (String) session.getAttribute("type");
-			out.println(type);
+			//out.println(type);
 			Student s = (Student) session.getAttribute("student");
 			boolean flag = (boolean) session.getAttribute("state");
-			out.println(flag && type.equals("student"));
+			//out.println(flag && type.equals("student"));
 			if (flag && type.equals("student")) {
 				out.println("欢迎您，" + s.getName() + "学生!");
 %>

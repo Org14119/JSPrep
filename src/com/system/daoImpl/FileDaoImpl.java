@@ -37,10 +37,10 @@ public class FileDaoImpl implements FileDao {
 
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(2, file.getFileLocate());
-		///System.out.println(file.getFileLocate());
+		/// System.out.println(file.getFileLocate());
 		if (file.isAccept()) {
 			ps.setInt(1, 1);
-			//System.out.println("ok");
+			// System.out.println("ok");
 		} else {
 			ps.setInt(1, 0);
 		}
@@ -81,6 +81,7 @@ public class FileDaoImpl implements FileDao {
 		} else {
 			ps.setInt(5, 0);
 		}
+		// System.out.println("老师给学生上传了一个文件");
 		ps.execute();
 	}
 

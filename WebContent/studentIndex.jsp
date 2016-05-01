@@ -38,7 +38,7 @@
 	<a href="viewNotice.jsp">查询公告</a><br>
 
 
-
+	<a href="viewStudentRecvFile.jsp">查看接收文件</a>
 	<a href="viewUpToTeachers.jsp">上传文件给老师</a>
 
 	<jsp:include page="isBinding.jsp"></jsp:include>

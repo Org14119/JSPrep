@@ -21,12 +21,11 @@ import com.system.entity.Teacher;
 import com.system.service.NormalFileService;
 import com.system.util.FileRootFactory;
 
-public class do_upLoadStudentFile extends HttpServlet {
-
+public class do_upLoadTeacherFile extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7488820148563468325L;
+	private static final long serialVersionUID = -6092647301811546691L;
 	private Teacher teacher = null;
 	private Student student = null;
 	private String tempPath = FileRootFactory.getUpLocation();
@@ -34,22 +33,57 @@ public class do_upLoadStudentFile extends HttpServlet {
 	private SaveFile saveFile = new SaveFile();
 	private boolean emptyFlag = true;
 
-	private void processFormFiled(FileItem item, PrintWriter writer) {
-		String name = item.getFieldName();
-		String value = item.getString();
-		if (name.equals("teacherEmail")) {
-			teacher = new Teacher();
-			teacher.setEmail(value);
-			writer.println("服务器连接");
-		} else if (name.equals("studentEmail")) {
-			student = new Student();
-			student.setEmail(value);
-			writer.println("服务器连接");
-		}
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// super.doPost(req, resp);
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter writer = resp.getWriter();
+		try {
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			factory.setSizeThreshold(4 * 1024);// 上传缓存
+			factory.setRepository(new File(tempPath));
 
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			upload.setSizeMax(40 * 1024 * 1024);// 文件最大的大小
+			List<FileItem> items = upload.parseRequest(req);
+			Iterator<FileItem> iter = items.iterator();
+			while (iter.hasNext()) {
+				FileItem item = (FileItem) iter.next();
+				if (item.isFormField()) {
+					processFormFiled(item, writer);
+					//System.out.println("普通");
+				} else {
+					processUploadFile(item, writer);
+					//System.out.println("文见");
+				}
+			}
+			if (!emptyFlag && student != null && teacher != null && teacher.getEmail() != null
+					&& student.getEmail() != null && tempPath != null && filePath != null) {
+				boolean flag = new NormalFileService().upFile(teacher, student, saveFile);
+				if (flag) {
+					writer.println("成功进入数据库");
+					//writer.flush();
+					req.getRequestDispatcher("teacherIndex.jsp").forward(req, resp);
+				} else {
+					writer.println("加入数据库失败");
+					// req.getRequestDispatcher("studentIndex.jsp").forward(req,
+					// resp);
+				}
+			} else {
+				writer.println("filter失败");
+				// req.getRequestDispatcher("error.jsp").forward(req, resp);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			writer.println("服务器故障");
+		}
 	}
 
 	private void processUploadFile(FileItem item, PrintWriter writer) throws Exception {
+		// TODO Auto-generated method stub
 		String fileName = item.getName();
 		int index = fileName.lastIndexOf("\\");
 		fileName = fileName.substring(index + 1, fileName.length());
@@ -67,50 +101,18 @@ public class do_upLoadStudentFile extends HttpServlet {
 		saveFile.setAccept(false);
 	}
 
-	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void processFormFiled(FileItem item, PrintWriter writer) {
 		// TODO Auto-generated method stub
-		//System.out.println("准备接受");
-		req.setCharacterEncoding("UTF-8");
-		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/plain");
-		PrintWriter writer = resp.getWriter();
-		try {
-			DiskFileItemFactory factory = new DiskFileItemFactory();
-			factory.setSizeThreshold(4 * 1024);// 上传缓存
-			factory.setRepository(new File(tempPath));
-
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			upload.setSizeMax(40 * 1024 * 1024);// 文件最大的大小
-			List<FileItem> items = upload.parseRequest(req);
-			Iterator<FileItem> iter = items.iterator();
-			while (iter.hasNext()) {
-				FileItem item = (FileItem) iter.next();
-				if (item.isFormField()) {
-					processFormFiled(item, writer);
-				} else {
-					processUploadFile(item, writer);
-				}
-			}
-			if (!emptyFlag && student != null && teacher != null && teacher.getEmail() != null
-					&& student.getEmail() != null && tempPath != null && filePath != null) {
-				boolean flag = new NormalFileService().upFile(student, teacher, saveFile);
-				if (flag) {
-					writer.println("成功进入数据库");
-					req.getRequestDispatcher("studentIndex.jsp").forward(req, resp);
-				} else {
-					writer.println("加入数据库失败");
-					// req.getRequestDispatcher("studentIndex.jsp").forward(req,
-					// resp);
-				}
-			} else {
-				writer.println("filter失败");
-				// req.getRequestDispatcher("error.jsp").forward(req, resp);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			writer.println("服务器发生异常");
+		String name = item.getFieldName();
+		String value = item.getString();
+		if (name.equals("teacherEmail")) {
+			teacher = new Teacher();
+			teacher.setEmail(value);
+			writer.println("服务器连接");
+		} else if (name.equals("studentEmail")) {
+			student = new Student();
+			student.setEmail(value);
+			writer.println("服务器连接");
 		}
 	}
 

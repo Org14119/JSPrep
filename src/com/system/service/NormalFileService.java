@@ -17,6 +17,129 @@ import com.system.util.ConnectionFactory;
 
 public class NormalFileService {
 	/*
+	 * 获得学生要接收的我文件
+	 */
+	public Map<SaveFile, Teacher> getRecvFiles(Student student) {
+		ConsultService service = new ConsultService();
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ResultSet fileSet = null;
+		Map<SaveFile, Teacher> map = new HashMap<SaveFile, Teacher>();
+		student = service.getStudentID(student);
+		try {
+			conn.setAutoCommit(false);
+			fileSet = new FileDaoImpl().getToOf(conn, student);
+
+			while (fileSet.next()) {
+				SaveFile sfile = new SaveFile();
+				sfile.setFileID(fileSet.getLong("fileID"));
+				sfile.setFileLocate(fileSet.getString("fileLocate"));
+				sfile.setFileName(fileSet.getString("fileName"));
+				sfile.setAccept(false);
+				int tempState = fileSet.getInt("acceptState");
+				if (tempState == 1) {
+					sfile.setAccept(true);
+				}
+				long fromID = fileSet.getLong("fromID");
+				Teacher teacher = new Teacher();
+				teacher.setId(fromID);
+				teacher = service.getTeacherByID(teacher);
+				map.put(sfile, teacher);
+			}
+			conn.commit();
+			return map;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		} finally {
+			if (fileSet != null) {
+				try {
+					fileSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/*
+	 * 老师获得已经上传的文件
+	 */
+	public Map<SaveFile, Student> getSendFile(Teacher teacher) {
+		Connection conn = ConnectionFactory.getInstace().makeConnection();
+		ConsultService service = new ConsultService();
+		teacher = service.getTeacherID(teacher);
+		ResultSet fileSet = null;
+		Map<SaveFile, Student> map = new HashMap<SaveFile, Student>();
+		try {
+
+			conn.setAutoCommit(false);
+			fileSet = new FileDaoImpl().getFromOf(conn, teacher);
+			SaveFile sfile = new SaveFile();
+			while (fileSet.next()) {
+				Student student = new Student();
+				long toID = fileSet.getLong("toID");
+				student.setId(toID);
+				student = service.getStudentByID(student);
+				sfile.setFileID(fileSet.getLong("fileID"));
+				int tempState = fileSet.getInt("acceptState");
+				sfile.setAccept(false);
+				if (tempState == 1) {
+					sfile.setAccept(true);
+				}
+				sfile.setFileLocate(fileSet.getString("fileLocate"));
+				sfile.setFileName(fileSet.getString("fileName"));
+				map.put(sfile, student);
+			}
+			conn.commit();
+			return map;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			try {
+				conn.rollback();
+
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return null;
+		} finally {
+			if (fileSet != null) {
+				try {
+					fileSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/*
 	 * 学生获得已经上传的文件
 	 */
 	public Map<SaveFile, Teacher> getSendFile(Student student) {
