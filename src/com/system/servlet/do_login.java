@@ -57,7 +57,7 @@ public class do_login extends HttpServlet {
 						session.setAttribute("student", s);
 						session.setAttribute("state", true);
 						session.setAttribute("type", "student");
-						response.sendRedirect("studentIndex.jsp");
+						response.sendRedirect("Student/Home.jsp");
 					
 
 					return;

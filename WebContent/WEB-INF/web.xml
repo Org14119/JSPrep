@@ -70,12 +70,12 @@
 		<url-pattern>/acceptBinding</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>logout</servlet-name>
+		<servlet-name>studentLogout</servlet-name>
 		<servlet-class>com.system.servlet.do_logout</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>logout</servlet-name>
-		<url-pattern>/logout</url-pattern>
+		<servlet-name>studentLogout</servlet-name>
+		<url-pattern>/Student/logout</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>login</servlet-name>

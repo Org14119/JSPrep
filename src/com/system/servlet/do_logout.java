@@ -21,11 +21,11 @@ public class do_logout extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		HttpSession session=req.getSession();
 		if(session==null||session.equals("")){
-			resp.sendRedirect("index.jsp");
+			resp.sendRedirect("/OnlineStudy/index.jsp");
 		}else{
 			session.invalidate();
-			resp.sendRedirect("index.jsp");
-			System.out.println("成功清除session");
+			resp.sendRedirect("/OnlineStudy/index.jsp");
+			//System.out.println("成功清除session");
 		}
 	}
 	@Override
