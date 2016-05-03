@@ -45,15 +45,116 @@ a.join-practice-btn {
 
 </head>
 <%
-	if (!(session.isNew() || session.getAttribute("student") == null)) {
+	if (!(session.getAttribute("student") == null)) {
 		//先判断session以决定用户身份，如果身份不符合，不显示相应内容
 		Student student=(Student)session.getAttribute("student");
 		
 %>
 
 <body>
+		<header>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-5">
+						<div class="logo">
+							<h1><a href="#"><img alt="" src="../resources/images/logo.png"></a></h1>
+						</div>
+					</div>
+					<div class="col-xs-7" id="login-info">
 
-</body>
+						<a class="btn btn-primary" href="user-register">欢迎您<%=student.getName() %></a>
+						<a class="btn btn-success" href="logout">退出</a>
+
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- Navigation bar starts -->
+
+		<div class="navbar bs-docs-nav" role="banner">
+			<div class="container">
+				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+					<ul class="nav navbar-nav">
+					  <li class="active">
+							<a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
+						</li>
+						<li>
+							<a href="查看试题.html"><i class="fa fa-edit"></i>试题练习</a>
+						</li>
+						<li>
+							<a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
+						</li>
+						<li>
+							<a href="@老师.html"><i class="fa fa-cogs"></i>@老师</a>
+						</li>
+                         <li>
+							<a href="绑定老师.html"><i class="fa fa-dashboard"></i>绑定老师</a>
+						</li>
+                        <li>
+							<a href="Feedback.jsp"><i class="fa fa-dashboard"></i>成绩反馈</a>
+						</li>
+				  </ul>
+				</nav>
+			</div>
+		</div>
+
+		<!-- Navigation bar ends -->
+
+		<!-- Slider starts -->
+		<div class="content" style="margin-bottom: 100px;">
+
+			<div class="container">
+				<ul class="nav nav-pills " style="margin:20px 0;">
+					<li role="presentation" class="active">
+                    <!--选择是考试还是测试的结果-->
+						<a href="Feedback.jsp?fdbktype=1">考试历史</a>
+					</li>
+					<li role="presentation">
+						<a href="Feedback.jsp?fdbktype=0">测试历史</a>
+					</li>
+					
+				</ul>
+                
+				<div class="row">
+					<div class="col-xs-12">
+						<div style="border-bottom: 1px solid #ddd;">
+							<h3 class="title"><i class="fa fa-book"></i> 所有的历史</h3>
+							<!-- 这里面的 是默认的第一题库 -->
+						</div>
+                        	<!-- 这里是准备include的地方 -->
+						<jsp:include page="FeedbackDipatcher.jsp" flush="true" />
+							<!-- 这是结束include 的地方 -->
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="copy">
+							<p>
+								在线考试系统 ©<!-- 这里面的 连接是本网站的连接 -->
+                                 <a href="考试成绩反馈.html" target="_blank">在线考试系统的主页</a> - <a href="." target="_blank">考试反馈</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</footer>
+
+		<!-- Slider Ends -->
+
+		<!-- Javascript files -->
+		<!-- jQuery -->
+
+	</body>
 <%
 	}
 %>

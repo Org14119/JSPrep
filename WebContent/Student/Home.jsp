@@ -159,7 +159,7 @@ a.join-practice-btn {
 							<a href="绑定老师.html"><i class="fa fa-dashboard"></i>绑定老师</a>
 						</li>
                         <li>
-							<a href="考试成绩反馈.html"><i class="fa fa-dashboard"></i>成绩反馈</a>
+							<a href="Feedback.jsp"><i class="fa fa-dashboard"></i>成绩反馈</a>
 						</li>
 					</ul>
 				</nav>
