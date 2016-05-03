@@ -51,6 +51,7 @@ a.join-practice-btn {
 				<td></td>
 			</tr>
 		</thead>
+		<tbody>
 		<%
 			long teacherID = Long.valueOf(request.getParameter("teacherID"));
 				Teacher reqTeacher = new Teacher();
@@ -59,7 +60,7 @@ a.join-practice-btn {
 				if (spaceList != null) {
 					for (QuestionSpace space : spaceList) {
 		%>
-		<tbody>
+		
 			<!-- 公告的标题-->
 			<tr>
 				<td><%=space.getName()%></td>
@@ -75,18 +76,20 @@ a.join-practice-btn {
 
 
 
-		</tbody>
+		
 		<%
 			}
 		%>
-		<tfoot></tfoot>
-	</table>
-</body>
 
 
 <%
 	}
 %>
+</tbody>
+		<tfoot></tfoot>
+	</table>
+</body>
+
 <%
 	}
 %>

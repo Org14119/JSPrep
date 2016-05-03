@@ -15,7 +15,7 @@
 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
+<meta charset="utf-8">	
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>考试成绩反馈</title>
 <meta name="viewport"
@@ -85,10 +85,10 @@ a.join-practice-btn {
 							<a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
 						</li>
 						<li>
-							<a href="@老师.html"><i class="fa fa-cogs"></i>@老师</a>
+							<a href="@teacher.jsp"><i class="fa fa-cogs"></i>@老师</a>
 						</li>
                          <li>
-							<a href="绑定老师.html"><i class="fa fa-dashboard"></i>绑定老师</a>
+							<a href="BindingTeacher.jsp"><i class="fa fa-dashboard"></i>绑定老师</a>
 						</li>
                         <li>
 							<a href="Feedback.jsp"><i class="fa fa-dashboard"></i>成绩反馈</a>

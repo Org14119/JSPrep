@@ -33,25 +33,27 @@ public class do_binding extends HttpServlet {
 						boolean flag=new BindingService().InsertBindStudentTeacherService(student, t);
 						System.out.println(flag);
 						if(flag){
-							System.out.println("申请成功！");
+							//System.out.println("申请成功！");
+							request.getRequestDispatcher("BindingTeacher.jsp").forward(request, response);
 							
 						}
 						else{
-							System.out.println("申请失败！");
+							//System.out.println("申请失败！");
+							request.getRequestDispatcher("Home.jsp").forward(request, response);
 						}	
 					}
 					else{
 						System.out.println("你已经绑定"+t.getName()+"老师！");
-						request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+						request.getRequestDispatcher("BindingTeacher.jsp").forward(request, response);
 						
 					}
 					
 				}
-				request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+				//request.getRequestDispatcher("Home.jsp").forward(request, response);
 			}
 			else{
 				System.out.println("服务器故障，请稍候重试");
-				request.getRequestDispatcher("/studentIndex.jsp").forward(request, response);
+				request.getRequestDispatcher("Home.jsp").forward(request, response);
 			}
 		}
 		else{

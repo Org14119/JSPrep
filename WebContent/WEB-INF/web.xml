@@ -21,6 +21,7 @@
 		<servlet-name>upLoadTeacherNormalFile</servlet-name>
 		<url-pattern>/upLoadTeacherNormalFile</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>cancelBinding</servlet-name>
 		<servlet-class>com.system.servlet.do_cancelBinding</servlet-class>
@@ -35,7 +36,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>downloadFile</servlet-name>
-		<url-pattern>/download</url-pattern>
+		<url-pattern>/Student/download</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>uploadStudentFile</servlet-name>
@@ -43,7 +44,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>uploadStudentFile</servlet-name>
-		<url-pattern>/uploadStudentFile</url-pattern>
+		<url-pattern>/Student/uploadStudentFile</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>fileUpLoad</servlet-name>
@@ -107,7 +108,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>binding</servlet-name>
-		<url-pattern>/binding</url-pattern>
+		<url-pattern>/Student/binding</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>registerDispatcher</servlet-name>

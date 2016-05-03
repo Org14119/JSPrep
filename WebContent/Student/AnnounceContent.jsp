@@ -69,13 +69,13 @@ a.join-practice-btn {
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="主页.html"><i class="fa fa-home"></i>主页</a>
 				</li>
-				<li><a href="查看试题.html"><i class="fa fa-edit"></i>试题练习</a></li>
-				<li><a href="在线考试.html"><i class="fa fa-dashboard"></i>在线考试</a>
+				<li><a href="Home.jsp"><i class="fa fa-edit"></i>试题练习</a></li>
+				<li><a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
 				</li>
-				<li><a href="@老师.html"><i class="fa fa-cogs"></i>@老师</a></li>
-				<li><a href="绑定老师.html"><i class="fa fa-dashboard"></i>绑定老师</a>
+				<li><a href="@teacher.jsp"><i class="fa fa-cogs"></i>@老师</a></li>
+				<li><a href="BindingTeacher.jsp"><i class="fa fa-dashboard"></i>绑定老师</a>
 				</li>
-				<li><a href="考试成绩反馈.html"><i class="fa fa-dashboard"></i>成绩反馈</a>
+				<li><a href="Feedback.jsp"><i class="fa fa-dashboard"></i>成绩反馈</a>
 				</li>
 			</ul>
 			</nav>

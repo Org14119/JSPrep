@@ -27,6 +27,19 @@
 a.join-practice-btn {
 	margin-top: 0;
 }
+ .white_content1 { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 500px; 
+            height: 300px; 
+            padding: 5px; 
+            border: 3px solid #5E42BD; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -78,6 +91,7 @@ a.join-practice-btn {
 			</tr>
 		</thead>
 		<!-- 这里大概是标题内容的结束 -->
+			<tbody>
 		<%
 			while (testIter.hasNext()) {
 					Test tempTest = testIter.next();
@@ -103,13 +117,13 @@ a.join-practice-btn {
 						
 		%>
 
-		<tbody>
+	
 
 			<tr>
 				<td><%=tempSpace.getName() %></td>
 
 				<td><%=tempTeacher.getName() %></td>
-				<td><a href="#"><%=tempState %></a></td>
+				<td><a href="#" onclick = "document.getElementById('light').style.display='block'"><%=tempState %></a></td>
 				<!-- 弹框在未修改这里-->
 
 				<!-- 考试的类型-->
@@ -125,15 +139,46 @@ a.join-practice-btn {
 			</tr>
 
 
+		
+		<%
+			}
+		%>
+		<%
+			}
+		%>
 		</tbody>
-		<%
-			}
-		%>
-		<%
-			}
-		%>
 		<tfoot></tfoot>
 	</table>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<div id="light" class="white_content1">
+			 <p>123</p><br></br>	
+			 <button href = "javascript:void(0)" 
+					onclick ="document.getElementById('light').style.display='none'">关闭窗口</button>
+		</div>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 <%
 	}else{
