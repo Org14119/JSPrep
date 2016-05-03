@@ -2,12 +2,12 @@ package com.system.entity;
 
 import java.io.Serializable;
 
-public class Teacher implements Serializable{
+public class Teacher implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1417058203679297118L;
-	private Long id;
+	private Long id = -1L;
 	private String email;
 	private String password;
 	private String name;

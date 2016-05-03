@@ -5,6 +5,8 @@
 <%@page import="com.system.entity.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
 	if (!session.isNew()) {
 		if (session == null || session.equals("") || session.getAttribute("type") == null
 				|| session.getAttribute("state") == null || session.getAttribute("student") == null) {
@@ -138,22 +140,31 @@ a.join-practice-btn {
 	<!-- Navigation bar starts -->
 
 	<div class="navbar bs-docs-nav" role="banner">
-		<div class="container">
-			<nav class="collapse navbar-collapse bs-navbar-collapse"
-				role="navigation">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="home"><i class="fa fa-home"></i>主页</a>
-				</li>
-				<li><a href="start-exam"><i class="fa fa-edit"></i>试题查看</a></li>
-				<li><a href="student/usercenter"><i class="fa fa-dashboard"></i>在线考试</a></li>
-				<li><a href="student/setting"><i class="fa fa-cogs"></i>@老师</a>
-				</li>
-				<li><a href="student/usercenter"><i class="fa fa-dashboard"></i>绑定老师</a></li>
-				<li><a href="student/usercenter"><i class="fa fa-dashboard"></i>成绩反馈</a></li>
-			</ul>
-			</nav>
+			<div class="container">
+				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+					<ul class="nav navbar-nav">
+											<li class="active">
+							<a href="主页.html"><i class="fa fa-home"></i>主页</a>
+						</li>
+						<li>
+							<a href="查看试题.html"><i class="fa fa-edit"></i>试题练习</a>
+						</li>
+						<li>
+							<a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
+						</li>
+						<li>
+							<a href="@老师.html"><i class="fa fa-cogs"></i>@老师</a>
+						</li>
+                         <li>
+							<a href="绑定老师.html"><i class="fa fa-dashboard"></i>绑定老师</a>
+						</li>
+                        <li>
+							<a href="考试成绩反馈.html"><i class="fa fa-dashboard"></i>成绩反馈</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 		</div>
-	</div>
 
 	<!-- Navigation bar ends -->
 
@@ -212,6 +223,7 @@ a.join-practice-btn {
 	while (iterList.hasNext()) {
 						t = iterList.next();
 						List<Announce> list = new AnnounceService().getAnnounce(t);
+						session.setAttribute("announceList", list);
 						//System.out.println("list.size()====="+list.size());
 						//	System.out.println("list"+list!=null);
 						if (list != null && list.size() > 0) {
@@ -233,7 +245,7 @@ a.join-practice-btn {
 					<td><span class="span-info question-number"><%=notice.getTime() %></span></td>
 					<!-- 公告的上传-->
 					<td><span class="span-success question-number-2"><%=t.getName() %></span></td>
-					<td><a href="#"
+					<td><a href="AnnounceContent.jsp?announceID=<%=notice.getId() %>"
 						class="btn btn-success btn-sm join-practice-btn">查看</a></td>
 				</tr>
 
