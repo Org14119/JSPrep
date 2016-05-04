@@ -33,16 +33,19 @@ public class deleteQuestion extends HttpServlet {
 					boolean flag=new ObjectQuestionService().deleteAQuestion(question);
 					if(flag){
 						System.out.println("删除成功！");
-						request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+//						response.sendRedirect("teacherIndex.jsp");
+					request.getRequestDispatcher("/Teacher/paperManage.jsp").forward(request, response);
 					}
 					else{
 						System.out.println("删除失败！");
-						request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+					//						response.sendRedirect("teacherIndex.jsp");
+					request.getRequestDispatcher("/Teacher/teacherIndex.jsp").forward(request, response);
 					}
 				}
 				else{
 					session.invalidate();
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
+				//					response.sendRedirect("index.jsp");
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 				}
 				

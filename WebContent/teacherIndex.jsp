@@ -24,7 +24,7 @@
 				Teacher t = (Teacher) session.getAttribute("teacher");
 				boolean flag = (boolean) session.getAttribute("state");
 				if (flag && type.equals("teacher")) {
-					out.println("欢迎您，" + t.getName() + "教师!");
+			
 	%><br>
 	<a href="getTeacherAllSpace.jsp">查看题库</a>
 	<br />

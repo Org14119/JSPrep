@@ -37,11 +37,11 @@ public class do_checkTest extends HttpServlet {
 					if (score == -1) {
 						System.out.println("批改失败");
 
-						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
+						request.getRequestDispatcher("/Teacher/teacherIndex.jsp").forward(request, response);
 
 					} else {
 						System.out.println("批改成功");
-						request.getRequestDispatcher("/viewAllTests.jsp").forward(request, response);
+						request.getRequestDispatcher("/Teacher/TestRecord.jsp").forward(request, response);
 
 					}
 

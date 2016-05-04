@@ -46,10 +46,11 @@ public class do_addObjectQuestions extends HttpServlet {
 			boolean flag=new ObjectQuestionService().addQuestionToSpace(question, currentTeacherSpace);
 			if(flag){
 				System.out.println("添加成功！");
-				request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+				request.getRequestDispatcher("/Teacher/getTeacherAllSpace.jsp").forward(request, response);
 			}
 			else{
 				System.out.println("添加失败！");
+				request.getRequestDispatcher("/Teacher/teacherIndex.jsp").forward(request, response);
 			}
 		}
 

@@ -11,9 +11,10 @@
 <title>教师查看学生绑定邀请</title>
 </head>
 <body>
-	<center>
-		<h1>这是教师查看学生绑定邀请的页面</h1>
-	</center>
+<%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+%>
 	<%
 		if ((session == null) || session.getAttribute("state") == null
 				|| (Boolean) session.getAttribute("state") == false || session.getAttribute("type") == null
@@ -70,7 +71,8 @@
 		<%
 			}
 		%>
-		<br /> <br /> <br /> <input type="submit" value="允许" />
+		<br /> <br /> <br />
+		<button>允许</button>
 	</form>
 	<%
 		}

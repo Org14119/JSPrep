@@ -45,9 +45,12 @@ public class do_modifyQuestion extends HttpServlet {
 			boolean flag=new ObjectQuestionService().updateQuestion(question);
 			if(flag){
 				System.out.println("修改成功！");
-				request.getRequestDispatcher("/teacherIndex.jsp").forward(request, response);
+			//				response.sendRedirect("teacherIndex.jsp");
+			
+			request.getRequestDispatcher("/Teacher/paperManage.jsp").forward(request, response);
 			}
 			else{
+				response.sendRedirect("error.jsp");
 				System.out.println("修改失败！");
 			}
 		}

@@ -27,7 +27,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>cancelBinding</servlet-name>
-		<url-pattern>/cancelBinding</url-pattern>
+		<url-pattern>/Teacher/cancelBinding</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>downloadFile</servlet-name>
@@ -35,7 +35,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>downloadFile</servlet-name>
-		<url-pattern>/download</url-pattern>
+		<url-pattern>/Teacher/download</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>uploadStudentFile</servlet-name>
@@ -43,7 +43,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>uploadStudentFile</servlet-name>
-		<url-pattern>/uploadStudentFile</url-pattern>
+		<url-pattern>/Teacher/uploadStudentFile</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>fileUpLoad</servlet-name>
@@ -51,7 +51,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>fileUpLoad</servlet-name>
-		<url-pattern>/fileUpLoad</url-pattern>
+		<url-pattern>/Teacher/fileUpLoad</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>validate</servlet-name>
@@ -123,7 +123,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>teacherBank</servlet-name>
-		<url-pattern>/teacherBank</url-pattern>
+		<url-pattern>/Teacher/teacherBank</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>addObjectQuestion</servlet-name>
@@ -131,7 +131,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>addObjectQuestion</servlet-name>
-		<url-pattern>/addObjectQuestion</url-pattern>
+		<url-pattern>/Teacher/addObjectQuestion</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>test</servlet-name>
@@ -155,7 +155,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>check</servlet-name>
-		<url-pattern>/check</url-pattern>
+		<url-pattern>/Teacher/check</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>modify</servlet-name>
@@ -163,7 +163,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>modify</servlet-name>
-		<url-pattern>/modify</url-pattern>
+		<url-pattern>/Teacher/modify</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>delete</servlet-name>
@@ -171,7 +171,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>delete</servlet-name>
-		<url-pattern>/delete</url-pattern>
+		<url-pattern>/Teacher/delete</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>teacherBindingStudent</servlet-name>
@@ -179,7 +179,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>teacherBindingStudent</servlet-name>
-		<url-pattern>/teacherBindingStudent</url-pattern>
+		<url-pattern>/Teacher/teacherBindingStudent</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>addNotices</servlet-name>
@@ -187,7 +187,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>addNotices</servlet-name>
-		<url-pattern>/addNotices</url-pattern>
+		<url-pattern>/Teacher/addNotices</url-pattern>
 	</servlet-mapping>
 
 </web-app>

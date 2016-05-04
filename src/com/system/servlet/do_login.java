@@ -34,7 +34,6 @@ public class do_login extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		if(!session.isNew()){
-			System.out.println("sessionID="+session.getId());
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String identity = request.getParameter("identity");
@@ -77,7 +76,9 @@ public class do_login extends HttpServlet {
 						session.setAttribute("teacher", t);
 						session.setAttribute("state", true);
 						session.setAttribute("type", "teacher");
-						response.sendRedirect("teacherIndex.jsp");	
+						response.sendRedirect("Teacher/teacherIndex.jsp");
+						
+		
 					
 
 					return;
