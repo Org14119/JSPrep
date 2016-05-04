@@ -34,17 +34,20 @@ public class do_cancelBinding extends HttpServlet {
 						boolean b = new BindingService().cancelBindingService(temps, teacher);
 						if (b) {
 							//System.out.println("解除同意");
-							response.sendRedirect("bindedStudent.jsp");
+							
+//							response.sendRedirect("bindedStudent.jsp");
 						} else {
 							//System.out.println("解除失败");
 							response.sendRedirect("error.jsp");
 						}
 					}
+					request.getRequestDispatcher("/Teacher/bindedStudent.jsp").forward(request, response);
 
 				}
 				else{
 					System.out.println("系统错误");
-					response.sendRedirect("bindedStudent.jsp");
+					request.getRequestDispatcher("/Teacher/teacherIndex.jsp").forward(request, response);
+					//response.sendRedirect("bindedStudent.jsp");
 				}
 			}
 		}

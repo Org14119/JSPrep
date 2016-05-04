@@ -177,12 +177,13 @@
 												
 									</tr>
 				<%
-							Vector<Student> allStudent=new BindingService().getAllStudent(t);
-							List<Student> bindingStudent=new BindingService().getApplyStudent(t);
+							//Vector<Student> allStudent=new BindingService().getAllStudent(t);
+							//List<Student> bindingStudent=new BindingService().getApplyStudent(t);
 							Vector<Student> allStudents=new ConsultService().getAllStudents();
-							if(allStudent!=null&&allStudents!=null&&bindingStudent!=null){
-								Vector<Student> bindedStudent=new ManageStudent().getStudent(allStudent, bindingStudent);
-								Vector<Student> allStudent1=new BindingService().getAllStudent(t);
+							Vector<Student> allStudent1=new BindingService().getAllStudent(t);
+							if(allStudents!=null&&allStudent1!=null){
+								//Vector<Student> bindedStudent=new ManageStudent().getStudent(allStudent, bindingStudent);
+								
 						          Vector<Student> unBindedStudent=new ManageStudent().getStudent(allStudents, allStudent1);
 								if(unBindedStudent!=null){
 									Iterator<Student> iterList=unBindedStudent.iterator();%>			
@@ -204,7 +205,7 @@
 									<% }%>
 
 								</table>
-																	<input type="submit" name="submit" value="绑定">
+										<button class="btn btn-success">绑定</button>
 									</form>
 							</div>
 							<div id="page-link-content">
@@ -267,7 +268,7 @@
 		session.invalidate();
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 
@@ -280,7 +281,7 @@
 		session.invalidate();
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 	%>

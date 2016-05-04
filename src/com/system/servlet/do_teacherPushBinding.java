@@ -45,13 +45,13 @@ public class do_teacherPushBinding extends HttpServlet {
 							if (b) {
 								System.out.println("成功同意");
 							//	resp.sendRedirect("teacherIndex.jsp");
-							req.getRequestDispatcher("/Teacher/unbindedStudent.jsp").forward(req, resp);
+							
 							} else {
 								System.out.println("请求未成功");
 								resp.sendRedirect("error.jsp");
 							}
 						}
-
+						req.getRequestDispatcher("/Teacher/unbindedStudent.jsp").forward(req, resp);
 					}
 					else{
 						System.out.println("系统错误");

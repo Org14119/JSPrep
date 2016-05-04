@@ -203,7 +203,7 @@
 									<% }%>
 
 								</table>
-										<input type="submit" name="submit" value="解除绑定">
+										<button class="btn btn-success">解除绑定</button>
 									</form>
 							</div>
 							<div id="page-link-content">
@@ -279,7 +279,7 @@
 		session.invalidate();
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 	%>

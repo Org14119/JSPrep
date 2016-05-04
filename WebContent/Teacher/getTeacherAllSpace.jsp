@@ -145,12 +145,12 @@
 											
 											
 											<form method="post" action="addObjectQuestions.jsp">
-											<td width="10%"><button>增加题目</button></td>
+											<td width="10%"><button class="btn btn-success">增加题目</button></td>
 											<input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId()%>>
 											</form>
 																						
 											<form method="post" action="spaceManage.jsp">
-											<td width="10%"><button>查看题目</button></td>
+											<td width="10%"><button class="btn btn-success">查看题目</button></td>
 											<input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId()%>>
 											</form>
 										

@@ -139,13 +139,13 @@ if(spaceID!=null&&!spaceID.equals("")){
 			<td>
 				<form method="post" action="viewScoreAnalyze.jsp">
 				<input type="hidden" name="spaceID" value=<%=spaceID %>>
-				<button>查看排名</button>
+				<button class="btn btn-success">排名</button>
 				</form>
 			</td>
 			<td>
 				<form method="post" action="viewPassRate.jsp">
 				<input type="hidden" name="spaceID" value=<%=spaceID %>>
-				<button>查看通过率</button>
+				<button class="btn btn-success">通过率</button>
 				</form>
 			</td>	
 			
@@ -239,7 +239,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=score %></td>
 								<form method="post" action="checkTest.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
-									<td width="16%"><button><%=str%></button></td>
+									<td width="16%"><button class="btn btn-success"><%=str%></button></td>
 								</form>
 
 							</tr>
@@ -326,7 +326,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=score %></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
-									<td width="16%"><button><%=str%></button></td>
+									<td width="16%"><button class="btn btn-success"><%=str%></button></td>
 								</form>
 
 							</tr>
@@ -456,7 +456,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=score %></td>
 								<form method="post" action="checkTest.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
-									<td width="16%"><button><%=str%></button></td>
+									<td width="16%"><button class="btn btn-success"><%=str%></button></td>
 								</form>
 
 							</tr>
@@ -543,7 +543,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=score %></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
-									<td width="16%"><button><%=str%></button></td>
+									<td width="16%"><button class="btn btn-success"><%=str%></button></td>
 								</form>
 
 							</tr>

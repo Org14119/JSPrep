@@ -150,7 +150,7 @@
 							<input type="text" name="title" ><br>
 							内容：<br>
 							<textarea name="content" rows="6" cols="80"></textarea><br>
-							<input type="submit" name="submit" value="发布">
+							<button class="btn btn-success">发布</button>
 							</form>
 						</div>
 

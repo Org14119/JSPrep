@@ -72,7 +72,7 @@
 			}
 		%>
 		<br /> <br /> <br />
-		<button>允许</button>
+		<button class="btn btn-success">允许</button>
 	</form>
 	<%
 		}

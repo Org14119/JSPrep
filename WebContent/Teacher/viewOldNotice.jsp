@@ -197,7 +197,7 @@
 											<td width="20%">
 	    	 <form method="post" action="deleteNotice.jsp">
 			<input type="hidden" name="noticeID" value=<%=notice.getId() %>>
-			<button>删除</button>
+			<button class="btn btn-success">删除</button>
 			</form>
 											
 				</td>

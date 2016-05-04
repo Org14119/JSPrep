@@ -233,12 +233,13 @@
 			     									  <input type="hidden" name="correctAnswer" value=<%=o.getCorrectAnswer() %>>
 			 										  <input type="hidden" name="answerAnalyze" value=<%=o.getAnswerAnalyze() %>>
 			                                          <input type="hidden" name="score" value=<%=o.getScore() %>>
-	                                                 <button>修改</button>
+			                                          <button class="change-property btn-sm btn-info"><i class="ace-icon fa fa-pencil bigger-120"></i></button>
+	                                              
 	                                            </form>
 											
 											<form method="post" action="delete">
                                              <input type="hidden" name="questionID" value=<%=o.getId() %>>
-                                            <button>删除</button>
+                                            <button class="delete-question-btn btn-sm btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button>
                                              </form> 
 											</td>
 								</tr>
