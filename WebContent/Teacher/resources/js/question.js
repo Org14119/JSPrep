@@ -24,14 +24,15 @@ for(i=0,j=0;i<aBtn.length;i++){
 		j++;
 	}
 };
-aTd_myTd[0].onclick =function(){
-		aDiv_myDiv[0].style.display="block";
-	}
 for(i=0;i<aTd_myTd.length;i++){
 	 aTd_myTd[i].index=i;
 	aTd_myTd[i].onclick =function(){
+		for(j=0;j<aTd_myTd.length;j++){
+			aDiv_myDiv[j].style.display="none";	
+		}
+		var high=110+this.index*100;
+		aDiv_myDiv[this.index].style.top=high+"px";
 		aDiv_myDiv[this.index].style.display="block";
-		aDiv_myDiv[this.index].style.top+=(i*30)px;
 	}
 }
 for(i=0;i<aBtn_myBtn.length;i++){

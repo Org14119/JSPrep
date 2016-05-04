@@ -59,7 +59,6 @@
 		</style>
 <title>试题管理</title>
 
-			<script src="resources/js/question.js"></script>
 </head>
 <body>
 <%
@@ -134,7 +133,7 @@
 			</div>
 		</div>
 				<%="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" %>	
-					
+					<%="所有题库：" %>
 					
 					
 					
@@ -154,7 +153,25 @@
 	<%
 		}
 	%>
-		<div class="content" style="margin-bottom: 100px;">
+
+						
+
+
+							
+
+	<%
+	String spaceID = request.getParameter("spaceID");
+	if(spaceID==null||spaceID.equals("")){
+		spaceID=String.valueOf(spacelists.get(0).getId());
+		
+	}
+	if(spaceID!=null&&!spaceID.equals("")){
+		for (int i = 0; i < spacelists.size(); i++) {
+			if(spacelists.get(i).getId()==Long.parseLong(spaceID)){%>
+			<br></br>
+							<%="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" %>
+			<%="当前题库："+ spacelists.get(i).getName()%>
+					<div class="content" style="margin-bottom: 100px;">
 
 			<div class="container" style="margin-top: 40px;">
 				
@@ -173,18 +190,8 @@
 											<td width="25%">分数</td>
 											<td width="25%">操作</td>
 								</tr>
-						
-
-
-							
-
-	<%
-	String spaceID = request.getParameter("spaceID");
-	if(spaceID==null||spaceID.equals("")){
-		spaceID=String.valueOf(spacelists.get(0).getId());
-		
-	}
-	if(spaceID!=null&&!spaceID.equals("")){
+		<%	}
+		}
 		QuestionSpace currentTeacherSpace = new QuestionSpace();
 		currentTeacherSpace.setId(Long.parseLong(spaceID));
 		Vector<ObjectQuestion> objectQuestionLists = new ObjectQuestionService()
@@ -197,9 +204,20 @@
 				i++;%>
 
 					
-								<tr align="center">
-											<td width="25%"><%=i %></td>
-											<td width="25%" class="question_td" ><a><%=o.getTitle() %></a></td>
+								<tr align="center" height="100px">
+											<td width="25%" ><%=i %></td>
+											<td width="25%" class="question_td" ><a><%String str=o.getTitle();
+                           if(str.length()>15){
+                           char[]arr=str.toCharArray();
+                           char[]temp=new char[15];
+                           for(int j=0;j<15;j++){
+                        	   temp[j]=arr[j];
+                           }
+                           str=String.valueOf(temp);
+                           out.println(str);
+                           }else{
+                        	   out.println(str);
+                           } %></a></td>
 											<td width="25%"><%=o.getScore() %></td>
 											
 											<td width="25%">
@@ -224,7 +242,36 @@
                                              </form> 
 											</td>
 								</tr>
-                          <div class="white_content">这是一个层窗口示例程序<%=i %> <button class="question_btn">关闭窗口</button></div> 		
+                          <div class="white_content">
+                           <%=i%>.<%=o.getTitle()
+
+                           %>
+<%="(" + o.getScore() + "分)"%><br /> 选项A:<%=o.getChoiceA()%><br />
+选项B:<%=o.getChoiceB()%><br /> 选项C:<%=o.getChoiceC()%><br /> 选项D:<%=o.getChoiceD()%><br />
+正确答案：
+<%
+	int correct = o.getCorrectAnswer();
+				switch (correct) {
+				case 1:
+					out.println("A");
+					//out.println("XZXZXXZ");
+					break;
+				case 2:
+					out.println("B");
+					break;
+				case 3:
+					out.println("C");
+					break;
+				case 4:
+					out.println("D");
+					break;
+				}
+				
+				
+				
+			
+%>
+<br /> 答案解析：<%=o.getAnswerAnalyze()%><br />   <button class="question_btn">关闭</button></div> 		
 				<% 
 				
 				

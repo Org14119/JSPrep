@@ -38,6 +38,24 @@
 			a.join-practice-btn {
 				margin-top: 0;
 			}
+			.question_btn{
+			}
+			.question_td{
+			}
+			
+			 .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 100px; 
+            left: 15%; 
+            width: 700px; 
+            height: 200px; 
+            padding: 5px; 
+            border: 3px solid #5E42BD; 
+            background-color: white; 
+            z-index:5000; 
+            overflow: auto;
+		}
 		</style>
 
 <title>查看公告</title>
@@ -173,7 +191,7 @@
 								i++;%>
 							    <tr align="center">
 											<td width="20%"><%=notice.getTitle() %></td>
-											<td width="20%" onclick = "document.getElementById('light').style.display='block'">点击查看</td>
+											<td width="20%"  class="question_td"><a>点击查看</a></td>
 											<td width="20%"><%=notice.getTime() %></td>
 											<td width="20%">编辑公告</td>
 											<td width="20%">
@@ -184,8 +202,11 @@
 											
 				</td>
 								</tr>
-
-								
+								 <div class="white_content">
+								 <%=notice.getContent() %>
+								 <br>
+								 <button class="question_btn">关闭</button>
+								</div>
 
 								
 								
@@ -231,6 +252,8 @@
 	<%
 		}
 	%>
-</body>
+	
+			<script src="resources/js/question.js"></script>
+
 </body>
 </html>
