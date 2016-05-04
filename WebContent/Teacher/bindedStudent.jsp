@@ -104,7 +104,7 @@
 							<a href="bindedStudent.jsp"><i class="fa fa-user"></i>学生管理</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-cubes"></i>@学生</a>
+							<a href="@student.jsp"><i class="fa fa-cubes"></i>@学生</a>
 						</li>
 						<li>
 							<a href="viewOldNotice.jsp"><i class="fa fa-dashboard"></i>公告管理</a>

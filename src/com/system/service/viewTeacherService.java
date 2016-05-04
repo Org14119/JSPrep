@@ -19,7 +19,9 @@ public class ViewTeacherService {
 		List<Teacher> teachers = new ArrayList<Teacher>();
 
 		ConsultService cService = new ConsultService();
-		s = cService.getStudentID(s);
+		if (s.getId() == -1L) {
+			s = cService.getStudentID(s);
+		}
 		if (s != null) {
 			Connection conn = ConnectionFactory.getInstace().makeConnection();
 			ResultSet teacherSet = null;
@@ -31,8 +33,10 @@ public class ViewTeacherService {
 					teacher.setId(teacherSet.getLong("teacherID"));
 					teacher = cService.getTeacherByID(teacher);
 					teachers.add(teacher);
+					//System.out.println("一个绑定了的");
 				}
 				conn.commit();
+				//System.out.println("司泽思泽斯则"+teachers.size());
 				return teachers;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -65,6 +69,7 @@ public class ViewTeacherService {
 		}
 
 	}
+
 	/*
 	 * 这个方法返回所有正在绑定的老师(已经提交了申请)
 	 */
@@ -72,7 +77,9 @@ public class ViewTeacherService {
 		List<Teacher> teachers = new ArrayList<Teacher>();
 
 		ConsultService cService = new ConsultService();
-		s = cService.getStudentID(s);
+		if (s.getId() == -1L) {
+			s = cService.getStudentID(s);
+		}
 		if (s != null) {
 			Connection conn = ConnectionFactory.getInstace().makeConnection();
 			ResultSet teacherSet = null;

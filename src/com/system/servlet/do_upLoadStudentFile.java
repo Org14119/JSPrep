@@ -97,20 +97,23 @@ public class do_upLoadStudentFile extends HttpServlet {
 				boolean flag = new NormalFileService().upFile(student, teacher, saveFile);
 				if (flag) {
 					writer.println("成功进入数据库");
-					req.getRequestDispatcher("studentIndex.jsp").forward(req, resp);
+					req.getRequestDispatcher("@teacher.jsp").forward(req, resp);
 				} else {
 					writer.println("加入数据库失败");
 					// req.getRequestDispatcher("studentIndex.jsp").forward(req,
 					// resp);
 				}
 			} else {
+				
 				writer.println("filter失败");
+				System.out.println(emptyFlag);
 				// req.getRequestDispatcher("error.jsp").forward(req, resp);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			writer.println("服务器发生异常");
+			
 		}
 	}
 

@@ -28,7 +28,7 @@ public class QuestionSpaceService {
 			ResultSet set = new TeacherQuestionSpaceDaoImpl().insert(conn, space, teacher);
 			while (set.next()) {
 				trueSpace.setId(set.getLong(1));
-				//System.out.println("已经添加");
+				// System.out.println("已经添加");
 				return trueSpace;
 			}
 			conn.commit();
@@ -100,7 +100,9 @@ public class QuestionSpaceService {
 		List<QuestionSpace> spaceList = new ArrayList<QuestionSpace>();
 		try {
 			conn.setAutoCommit(false);
-			teacher = cService.getTeacherID(teacher);
+			if (teacher.getId() == -1L) {
+				teacher = cService.getTeacherID(teacher);
+			}
 			spaceSet = new TeacherQuestionSpaceDaoImpl().get(conn, teacher);
 			while (spaceSet.next()) {
 				QuestionSpace space = new QuestionSpace();
@@ -110,8 +112,8 @@ public class QuestionSpaceService {
 				space.setBeginTime(spaceSet.getTimestamp("beginTime").toString());
 				space.setEndTime(spaceSet.getTimestamp("endTime").toString());
 				space.setAmount(spaceSet.getInt("amountPerTest"));
-				//System.out.println("JJJJJJJJJJJJJJJJJJJJJJ"+space.getAmount());
-						
+				// System.out.println("JJJJJJJJJJJJJJJJJJJJJJ"+space.getAmount());
+
 				spaceList.add(space);
 			}
 			conn.commit();

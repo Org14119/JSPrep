@@ -396,4 +396,30 @@ public class TestService {
 			}
 		}
 	}
+
+	/*
+	 * 对上一个方法的辅助
+	 */
+	public int getCheckStateInNumber(Test test) {
+		Map<Integer, Integer> checkMap = getCheckState(test);
+		if (checkMap == null) {
+			return -1;
+		}
+		for (Map.Entry<Integer, Integer> entry : checkMap.entrySet()) {
+			int all = entry.getKey();
+			int check = entry.getValue();
+			if (all != 0) {
+				if (all > check) {
+					return 0;
+				} else if (all == check) {
+					return 1;
+				} else {
+					return -1;
+				}
+			} else {
+				return -1;
+			}
+		}
+		return -1;
+	}
 }

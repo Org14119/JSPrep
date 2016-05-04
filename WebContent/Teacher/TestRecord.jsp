@@ -93,7 +93,7 @@ a.join-practice-btn {
 				</li>
 				<li><a href="paperManage.jsp"><i class="fa fa-cloud"></i>管理试题</a></li>
 				<li><a href="bindedStudent.jsp"><i class="fa fa-user"></i>学生管理</a></li>
-				<li><a href=""><i class="fa fa-cubes"></i>@学生</a></li>
+				<li><a href="@student.jsp"><i class="fa fa-cubes"></i>@学生</a></li>
 				<li><a href="viewOldNotice.jsp"><i class="fa fa-dashboard"></i>公告管理</a></li>
 			</ul>
 			</nav>

@@ -90,13 +90,13 @@
 							<a href="TestRecord.jsp"><i class="fa fa-dashboard"></i>考试记录</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-cogs"></i>管理试题</a>
+							<a href="paperManage.jsp"><i class="fa fa-cogs"></i>管理试题</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-cogs"></i>学生管理</a>
+							<a href="bindedStudent.jsp"><i class="fa fa-cogs"></i>学生管理</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-cogs"></i>@学生</a>
+							<a href="@student.jsp"><i class="fa fa-cogs"></i>@学生</a>
 						</li>
 						<li>
 							<a href=""><i class="fa fa-cogs"></i>公告管理</a>

@@ -14,13 +14,22 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
+	<servlet-name>handInPaper</servlet-name>
+	<servlet-class>com.system.servlet.do_handInPaper</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>handInPaper</servlet-name>
+	<url-pattern>/Student/handInPaper</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>upLoadTeacherNormalFile</servlet-name>
 		<servlet-class>com.system.servlet.do_upLoadTeacherFile</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>upLoadTeacherNormalFile</servlet-name>
-		<url-pattern>/upLoadTeacherNormalFile</url-pattern>
+		<url-pattern>/Teacher/upLoadTeacherNormalFile</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>cancelBinding</servlet-name>
 		<servlet-class>com.system.servlet.do_cancelBinding</servlet-class>
@@ -29,13 +38,23 @@
 		<servlet-name>cancelBinding</servlet-name>
 		<url-pattern>/Teacher/cancelBinding</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>downloadFileTeacher</servlet-name>
+		<servlet-class>com.system.servlet.do_downLoadFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadFileTeacher</servlet-name>
+		<url-pattern>/Teacher/download</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>downloadFile</servlet-name>
 		<servlet-class>com.system.servlet.do_downLoadFile</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>downloadFile</servlet-name>
-		<url-pattern>/Teacher/download</url-pattern>
+
+		<url-pattern>/Student/download</url-pattern>
+
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>uploadStudentFile</servlet-name>
@@ -43,7 +62,9 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>uploadStudentFile</servlet-name>
-		<url-pattern>/Teacher/uploadStudentFile</url-pattern>
+
+		<url-pattern>/Student/uploadStudentFile</url-pattern>
+
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>fileUpLoad</servlet-name>
@@ -70,12 +91,20 @@
 		<url-pattern>/acceptBinding</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>logout</servlet-name>
+		<servlet-name>studentLogout</servlet-name>
 		<servlet-class>com.system.servlet.do_logout</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>logout</servlet-name>
-		<url-pattern>/logout</url-pattern>
+		<servlet-name>studentLogout</servlet-name>
+		<url-pattern>/Student/logout</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TeacherLogout</servlet-name>
+		<servlet-class>com.system.servlet.do_logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TeacherLogout</servlet-name>
+		<url-pattern>/Teacher/logout</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>login</servlet-name>
@@ -107,7 +136,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>binding</servlet-name>
-		<url-pattern>/binding</url-pattern>
+		<url-pattern>/Student/binding</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>registerDispatcher</servlet-name>

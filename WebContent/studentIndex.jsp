@@ -22,7 +22,7 @@
 
 				out.println("会话过期或者未登录，请重新登录");
 	%>
-	<a href="index.jsp">登录</a>
+	<a href="/OnlineStudy/index.jsp">登录</a>
 	<%
 		} else {
 

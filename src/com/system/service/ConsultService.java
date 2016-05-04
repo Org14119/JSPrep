@@ -245,6 +245,7 @@ public class ConsultService {
 				t.setEmail(teacherSet.getString("teacherEmail"));
 				t.setGender(String.valueOf(teacherSet.getInt("teacherGender")));
 				t.setName(teacherSet.getString("teacherName"));
+				t.setPhone(teacherSet.getString("teacherPhone"));
 				return t;
 			}
 			return null;
