@@ -128,10 +128,33 @@ input[type="radio"] {
 										<i id="time-icon" class="fa fa-clock-o"> </i>
 									</div>
 
-									<span style="margin-right:10px;color: #B8B8B8;">已用时</span>
-									<span id="exam-clock">&nbsp;</span>
-									<span id="exam-timestamp" style="display:none;">3600</span>
-									<div id="answer-save-info"></div>
+									  <div>
+									    <span id="t_h">00时</span>
+									    <span id="t_m">00分</span>
+									    <span id="t_s">00秒</span>
+									  </div>
+									<script>
+										var end;
+									  	var EndTime= new Date();
+										end = EndTime.getTime()+60*60*1000;
+									  function GetRTime(){   
+									    var NowTime = new Date();
+									    var t =end - NowTime.getTime();
+									    var h=0;
+									    var m=0;
+									    var s=0;
+									    if(t>=0){
+									      h=Math.floor(t/1000/60/60%24);
+									      m=Math.floor(t/1000/60%60);
+									      s=Math.floor(t/1000%60);
+									    }
+									 
+									    document.getElementById("t_h").innerHTML = h + "时";
+									    document.getElementById("t_m").innerHTML = m + "分";
+									    document.getElementById("t_s").innerHTML = s + "秒";
+									  }
+									  setInterval(GetRTime,0);
+									</script>
 
 								</div>
 								
