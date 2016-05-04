@@ -3,13 +3,16 @@
 <%@page import="com.system.service.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.system.entity.*"%>
+<%
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 request.setCharacterEncoding("UTF-8");
 response.setCharacterEncoding("UTF-8");
 	if (!session.isNew()) {
-		if (session == null || session.equals("") || session.getAttribute("type") == null
-				|| session.getAttribute("state") == null || session.getAttribute("student") == null) {
+		if (session.getAttribute("student")==null){
 %>
 <%
 	out.println("会话过期或者未登录，请重新登录");
@@ -25,7 +28,7 @@ response.setCharacterEncoding("UTF-8");
 				//out.println("欢迎您，" + s.getName() + "学生!");
 				List<Teacher> teachers = new ViewTeacherService().getBindedTeachers(s);
 				Teacher t = new Teacher();
-				if (teachers != null && teachers.size() > 0) {
+				if (teachers != null && teachers.size() >= 0) {
 					Iterator<Teacher> iterList = teachers.iterator();
 %>
 
@@ -144,7 +147,7 @@ a.join-practice-btn {
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
 											<li class="active">
-							<a href="主页.html"><i class="fa fa-home"></i>主页</a>
+							<a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li>
 							<a href="查看试题.html"><i class="fa fa-edit"></i>试题练习</a>
@@ -223,6 +226,7 @@ a.join-practice-btn {
 	while (iterList.hasNext()) {
 						t = iterList.next();
 						List<Announce> list = new AnnounceService().getAnnounce(t);
+						System.out.println("hjoodsafadsfa"+list.size());
 						session.setAttribute("announceList", list);
 						//System.out.println("list.size()====="+list.size());
 						//	System.out.println("list"+list!=null);

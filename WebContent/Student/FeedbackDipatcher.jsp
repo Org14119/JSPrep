@@ -123,7 +123,7 @@ a.join-practice-btn {
 				<td><%=tempSpace.getName() %></td>
 
 				<td><%=tempTeacher.getName() %></td>
-				<td><a href="#" onclick = "document.getElementById('light').style.display='block'"><%=tempState %></a></td>
+				<td><a href="Feedback.jsp?testID=<%=tempTest.getTestID()%>&score=<%=tempTest.getTestScore() %>&fdbktype=<%=type %>" onclick = "document.getElementById('light').style.display='block'"><%=tempState %></a></td>
 				<!-- 弹框在未修改这里-->
 
 				<!-- 考试的类型-->
@@ -161,7 +161,24 @@ a.join-practice-btn {
 	
 	
 		<div id="light" class="white_content1">
-			 <p>123</p><br></br>	
+			 <%
+			 long testID=Long.parseLong(request.getParameter("testID"));
+			 int score=Integer.parseInt(request.getParameter("score"));
+			 int range=0;
+			 Test reTest=new Test();
+			 reTest.setTestID(testID);
+			 List<Integer>scoreList=new ScoreAnalyzeService().getRangeList(reTest);
+			 for(int i=0;i<scoreList.size();i++){
+				 if(scoreList.get(i)==score){
+					 range=i;
+					 break;
+				 }
+			 }
+			 %>
+			 <center>
+			 最高分：<%=scoreList.get(0) %><br/>
+			 您的排名：<%=range %>
+			 </center>
 			 <button href = "javascript:void(0)" 
 					onclick ="document.getElementById('light').style.display='none'">关闭窗口</button>
 		</div>

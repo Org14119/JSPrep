@@ -34,16 +34,13 @@
 					QuestionSpace currentTeacherSpace = (QuestionSpace) session.getAttribute("currentTeacherSpace");
 	%>
 	<%
-		Test testInstance = new Test();
-	//System.out.println("currentTeacherSpace========"+currentTeacherSpace.getAmount());
+					Test testInstance = new Test();
 					com.system.util.TimeUtil ti = new com.system.util.TimeUtil();
 					String testTime = ti.getTime();
 					java.sql.Date myTestTime=ti.parseStringToDate(testTime);
 					testInstance.setTestTime(testTime);
 					testInstance.setExam(true);
-					System.out.println("考试开始时间"+currentTeacherSpace.getBeginTime());
-					System.out.println("考试开始时间"+currentTeacherSpace.getEndTime());
-					System.out.println("当前时间"+testTime);
+			
 					if(myTestTime.after(ti.parseStringToDate(currentTeacherSpace.getBeginTime()))
 							&&myTestTime.before(ti.parseStringToDate(currentTeacherSpace.getEndTime()))){%>
 						

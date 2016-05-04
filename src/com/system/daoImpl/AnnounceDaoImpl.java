@@ -57,5 +57,6 @@ public class AnnounceDaoImpl implements AnnounceDao {
 		ps.setLong(1, teacher.getId());
 		return ps.executeQuery();
 	}
+	
 
 }

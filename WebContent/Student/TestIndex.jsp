@@ -70,13 +70,20 @@ a.join-practice-btn {
 				<td><span class="span-info question-number"><%=space.getEndTime()%></span></td>
 				<!-- 考试的类型-->
 				<td><span class="span-success question-number-2"><%=space.getType()%></span></td>
-				<!-- 开始考试的按钮，页面还没有写 -->
-				<td><a href="#" class="btn btn-success btn-sm join-practice-btn">开始考试</a></td>
+				<!-- 开始考试的按钮,以post方法传递参数 -->
+				<td>
+				<form action="Exam.jsp" method="post">
+				<input type="hidden" name="spaceID" value=<%=space.getId() %>>
+				<input type="hidden" name="spaceName" value=<%=space.getName() %>>
+				<input type="hidden" name="type" value=<%=space.getType() %>>
+				<input type="hidden" name="beginTime" value=<%=space.getBeginTime() %>>
+				<input type="hidden" name="endTime" value=<%=space.getEndTime() %>>
+				<input type="hidden" name="amount" value=<%=space.getAmount() %>>
+				<button  class="btn btn-success btn-sm join-practice-btn" type="submit">开始考试</button>
+				</form>
+				</td>
 			</tr>
 
-
-
-		
 		<%
 			}
 		%>

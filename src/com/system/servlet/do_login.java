@@ -58,7 +58,7 @@ public class do_login extends HttpServlet {
 						session.setAttribute("state", true);
 						session.setAttribute("type", "student");
 						response.sendRedirect("Student/Home.jsp");
-					
+						
 
 					return;
 				} else {

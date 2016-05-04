@@ -67,7 +67,7 @@ a.join-practice-btn {
 			<nav class="collapse navbar-collapse bs-navbar-collapse"
 				role="navigation">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="主页.html"><i class="fa fa-home"></i>主页</a>
+				<li class="active"><a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 				</li>
 				<li><a href="Home.jsp"><i class="fa fa-edit"></i>试题练习</a></li>
 				<li><a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
@@ -85,10 +85,13 @@ a.join-practice-btn {
 	<!-- Navigation bar ends -->
 	<%
 		if (!(session.isNew() || session == null || session.getAttribute("announceList") == null)) {
+			//System.out.println("sdfadfdsafadsf");
 			List<Announce> announceList = (List) session.getAttribute("announceList");
+			System.out.println("sizesizesize"+announceList.size());
 			long id = Long.valueOf(request.getParameter("announceID"));
 			Announce ann = null;
 			for (Announce tempAnn : announceList) {
+				System.out.println("tempAnnwdsafasfd"+tempAnn.getId());
 				if (tempAnn.getId() == id) {
 					ann = tempAnn;
 				}
