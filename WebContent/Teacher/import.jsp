@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.system.entity.*"%>
-<%@ page import="com.system.service.*"%>
-<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,26 +36,32 @@
 				margin-top: 0;
 			}
 		</style>
-<title>管理题库</title>
+<title>增加题目</title>
 </head>
 <body>
+<% request.setCharacterEncoding("UTF-8");%>
+<%response.setCharacterEncoding("UTF-8"); %>
 	<%
 		if (!session.isNew()) {
+
 			if ((session == null) || session.getAttribute("type") == null || session.getAttribute("teacher") == null
 					|| session.getAttribute("state") == null) {
 	%>
-				<%="会话过期或者未登录，请重新登录"%>
-				<a href="index.jsp">登录</a>
+	
+	<%="会话过期或者未登录，请重新登录"%>
+	<a href="../index.jsp">登录</a>
 
 	<%
 		} else {
 	%>
-										<%
+	<%
 		String type = (String) session.getAttribute("type");
 				Teacher t = (Teacher) session.getAttribute("teacher");
 				boolean flag = (boolean) session.getAttribute("state");
-				if (flag && type.equals("teacher")) {%>
-		<header>
+				if (flag && type.equals("teacher")) {
+					
+	%>
+			<header>
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-5">
@@ -79,7 +83,7 @@
 		<div class="navbar bs-docs-nav" role="banner">
 			<div class="container">
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav">
 						<li>
 							<a href="teacherIndex.jsp"><i class="fa fa-home"></i>主页</a>
 						</li>
@@ -107,99 +111,66 @@
 		</div>
 
 		<!-- Navigation bar ends -->
+<div>
+			<!-- Slider (Flex Slider) -->
 
-		<!-- Slider starts -->
-		<div class="content" style="margin-bottom: 100px;">
+			<div class="container" style="min-height:500px;">
 
-			<div class="container" style="margin-top: 40px;">
+				<div class="row">
+					<div class="col-xs-2" id="left-menu">
+						
+
+					<ul class="nav default-sidenav">
+						<!-- 	<li>
+								<a href="admin/user-list"> <i class="fa fa-list-ul"></i> 会员管理 </a>
+							</li>
+							<li class="active">
+								<a> <i class="fa fa-list-ul"></i> 添加会员 </a>
+							</li> -->
+	
 				
-				<div class="row" style="margin-left: 50px;">
+			<li >
+				<a href="addObjectQuestions.jsp" title="手动添加"><i class="fa fa-plus-square">&nbsp</i><span class="left-menu-item-name"> 手动添加</span></a>
+			</li>
+			<li class="active">
+				<a href="import.jsp" title="从Excel导入"><i class="fa fa-volume-up">&nbsp</i><span class="left-menu-item-name">从Excel导入</span></a>
+			</li>
+		
+		
+	
+
+		
+</ul>	</div>
+
 					<div class="col-xs-10">
 						<div style="border-bottom: 1px solid #ddd;">
-							<h3 class="title"><i class="fa fa-edit"></i> 管理题库</h3>
+							<h3 class="title"><i class="fa fa-dashboard"></i> 从Excel中导入</h3>
 						</div>	
 						<div>
-							<table class="table-striped table">
-								<tr align="center">
-											<td width="16%">题库</td>
-											<td width="16%">start</td>
-											<td width="16%">end</td>
-											<td width="16%">类型</td>
-											<td width="16%">名称</td>
-											<td width="10%">操作</td>
-											<td width="10%"></td>
-								</tr>
+		
 
-				<% 
-					List<QuestionSpace> spacelists = new QuestionSpaceService().getQuestionSpaceOfTeacher(t);
-					session.setAttribute("SpaceList", spacelists);
-					for (int i = 0; i < spacelists.size(); i++) {
-	%>
+	<br />
+	<br />
+	<form name="uploadFileForm" method="post" enctype="multipart/form-data"
+		action="fileUpLoad">
+		<input type="file" class="btn btn-primary" name="upFile" size=50 /><br /> <br />
+		<button class="btn btn-success">upload</button>
+	</form>
+										</div>
 
-								<tr align="center">
-											<td width="16%"><%=spacelists.get(i).getName()%></td>
-											<td width="16%"><%=spacelists.get(i).getBeginTime() %></td>
-											<td width="16%"><%=spacelists.get(i).getEndTime() %></td>
-											<td width="16%">选择题</td>
-											<td width="16%"><%=spacelists.get(i).getType() %></td>
-											
-											
-											<form method="post" action="addObjectQuestions.jsp">
-											<td width="10%"><button class="btn btn-success">增加题目</button></td>
-											<input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId()%>>
-											</form>
-																						
-											<form method="post" action="spaceManage.jsp">
-											<td width="10%"><button class="btn btn-success">查看题目</button></td>
-											<input type="hidden" name="spaceID" value=<%=spacelists.get(i).getId()%>>
-											</form>
-										
-								</tr>
-
-	
-	
-	
-
-	<%
-		}
-	%>
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-
-
-							</table>
-						
 					</div>
-					
 				</div>
-				
-				
-
 			</div>
-
 		</div>
-<a href="teacherQuestionBank.jsp" title="创建题库"><i class="fa fa-leaf">&nbsp</i><span class="left-menu-item-name"> 创建题库</span></a>
+
 		<footer>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="copy">
 							<p>
-								在线考试系统 ©<!-- 这里面的 连接是本网站的连接 -->
-                                 <a href="" target="_blank">在线考试系统</a> - <a href="getTeacherAllSpace.jsp" target="_blank">管理题库</a>
+								在线考试系统 ?<!-- 这里面的 连接是本网站的连接 -->
+                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">管理题库</a>
 							</p>
 						</div>
 					</div>
@@ -208,8 +179,6 @@
 			</div>
 
 		</footer>
-	
-	
 
 	<%
 		} else {
@@ -220,16 +189,14 @@
 	<%
 		}
 			%>
-
-		<%}
-		else{%>
-		<%session.invalidate(); %>
-		<%="会话过期或者未登录，请重新登录"%>
-		<a href="index.jsp">登录</a>
-<% 	}
+			<a href="getTeacherAllSpace.jsp">返回</a>
+		<%} else {
 	%>
-
-
+	<%="会话过期或者未登录，请重新登录"%>
+	<a href="../index.jsp">登录</a>
+	<%
+		}
+	%>
 
 
 
