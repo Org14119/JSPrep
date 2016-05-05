@@ -78,8 +78,8 @@ a.join-practice-btn {
 			<ul class="nav navbar-nav">
 				<li ><a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 				</li>
-				<li><a href="Practice.jsp"><i class="fa fa-edit"></i>试题练习</a></li>
-				<li class="active"><a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
+				<li class="active"><a href="Practice.jsp"><i class="fa fa-edit"></i>试题练习</a></li>
+				<li><a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
 				</li>
 				<li><a href="@teacher.jsp"><i class="fa fa-cogs"></i>@老师</a></li>
 				<li><a href="BindingTeacher.jsp"><i class="fa fa-dashboard"></i>绑定老师</a>
@@ -109,7 +109,7 @@ a.join-practice-btn {
 
 				<li role="presentation">
 				
-				<a href="Test.jsp?teacherID=<%=tempTeacher.getId() %>" ><%=tempTeacher.getName()%></a>
+				<a href="Practice.jsp?teacherID=<%=tempTeacher.getId() %>" ><%=tempTeacher.getName()%></a>
 				</li>
 				<%
 					}
@@ -127,7 +127,7 @@ a.join-practice-btn {
 						<!-- 这里面的 是默认的第一题库 -->
 					</div>
 
-					<jsp:include page="TestIndex.jsp"  flush="true" />
+					<jsp:include page="PracticeIndex.jsp"  flush="true" />
 
 				</div>
 

@@ -43,8 +43,13 @@ public class do_handInPaper extends HttpServlet {
 		long spaceID=Long.parseLong(req.getParameter("spaceID"));
 		long testID=Long.parseLong(req.getParameter("testID"));
 		long studentID=Long.parseLong(req.getParameter("studentID"));
+		boolean isExam=Boolean.parseBoolean(req.getParameter("isExam"));
 		QuestionSpace space=new QuestionSpace();
 		Test test=new Test();
+		if(isExam){
+			test.setExam(true);
+			//System.out.println("isExamIsExam");
+		}
 		Student student=new Student();
 		student.setId(studentID);
 		test.setTestID(testID);

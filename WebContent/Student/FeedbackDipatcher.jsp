@@ -1,3 +1,5 @@
+<%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
+<%@page import="jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.system.entity.*"%>
@@ -51,6 +53,7 @@ a.join-practice-btn {
 %>
 <body>
 	<%
+		
 		int type = Integer.parseInt((String) request.getParameter("fdbktype"));
 			Vector<Test> testRecord = new TestService().getTestRecord((Student) session.getAttribute("student"));
 			//System.out.println("已经有了vector");
@@ -72,8 +75,14 @@ a.join-practice-btn {
 		Iterator<Test> testIter = null;
 			if (type == 1) {
 				testIter = examList.iterator();
+				%>
+				您当前查看的是考试信息！
+				<% 
 			} else if (type == 0) {
 				testIter = practiceList.iterator();
+				%>
+				您当前查看的是测试信息！
+				<% 
 			}
 	%>
 	<table class="table-striped table">

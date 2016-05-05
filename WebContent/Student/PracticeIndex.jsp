@@ -73,14 +73,14 @@ a.join-practice-btn {
 				<!-- 开始考试的按钮,以post方法传递参数 -->
 				<td>
 				<form action="Exam.jsp" method="post">
-				<input type="hidden" name="type" value="ex">
+				<input type="hidden" name="type" value="pr">
 				<input type="hidden" name="spaceID" value=<%=space.getId() %>>
 				<input type="hidden" name="spaceName" value=<%=space.getName() %>>
 				<input type="hidden" name="type" value=<%=space.getType() %>>
 				<input type="hidden" name="beginTime" value=<%=space.getBeginTime() %>>
 				<input type="hidden" name="endTime" value=<%=space.getEndTime() %>>
 				<input type="hidden" name="amount" value=<%=space.getAmount() %>>
-				<button  class="btn btn-success btn-sm join-practice-btn" type="submit">开始考试</button>
+				<button  class="btn btn-success btn-sm join-practice-btn" type="submit">开始测试</button>
 				</form>
 				</td>
 			</tr>

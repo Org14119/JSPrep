@@ -27,9 +27,18 @@ response.setCharacterEncoding("UTF-8");
 		String testTime = ti.getTime();
 		java.sql.Date myTestTime=ti.parseStringToDate(testTime);
 		testInstance.setTestTime(testTime);
-		testInstance.setExam(true);
+		testInstance.setExam(false);
+		String type=request.getParameter("type");
+		//System.out.println("type"+type);
+		if(type.equals("ex")){
+			//System.out.println("exam");
+			testInstance.setExam(true);
+			
+		}
 		long testID = new TestService().beginTest(testInstance, space, student);//准备开始考试，向服务器发送请求，返回考号
 		testInstance.setTestID(testID);
+	
+	
 		if(testID!=-1L){
 %>
 <head>
@@ -92,7 +101,7 @@ input[type="radio"] {
 							<a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-edit"></i>试题练习</a>
+							<a href="Practice.jsp"><i class="fa fa-edit"></i>试题练习</a>
 						</li>
 						<li class="active">
 							<a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
@@ -260,6 +269,7 @@ input[type="radio"] {
 								<input 	type="hidden" name="testID"	value=<%=testInstance.getTestID() %>>
 								<%String idStr=new RandomManage().encoding(idList); %>
 								<input  type="hidden" name="idStr" value=<%=idStr %>>
+								<input type="hidden"  name="isExam" value=<%=testInstance.isExam() %>>
 								<%} //System.out.println("error3") ;%>
 								<%} //System.out.println("error2") ;%>
 								</form>

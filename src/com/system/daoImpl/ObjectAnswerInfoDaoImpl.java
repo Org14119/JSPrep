@@ -20,7 +20,7 @@ public class ObjectAnswerInfoDaoImpl implements ObjectAnswerInfoDao {
 
 		String inserSql = "INSERT INTO tbl_objectanswerinfo (testID,questionID,studentAnswer,answerScore,answerTime,isChecked) VALUES(?,?,?,?,STR_TO_DATE(?,?),?)";
 		PreparedStatement ps = conn.prepareStatement(inserSql);
-
+		
 		ps.setLong(1, test.getTestID());
 		ps.setLong(2, question.getId());
 		ps.setInt(3, answer.getAnswerContent());
@@ -28,6 +28,8 @@ public class ObjectAnswerInfoDaoImpl implements ObjectAnswerInfoDao {
 		ps.setString(5, answer.getAnswerTime());
 		ps.setString(6, format);
 		ps.setInt(7, (answer.isChecked() == true ? 1 : 0));
+		
+		
 		ps.execute();
 	}
 

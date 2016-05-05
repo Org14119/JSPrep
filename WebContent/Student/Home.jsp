@@ -150,7 +150,7 @@ a.join-practice-btn {
 							<a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li>
-							<a href="查看试题.html"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="Practice.jsp"><i class="fa fa-edit"></i>试题练习</a>
 						</li>
 						<li>
 							<a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
@@ -244,7 +244,23 @@ a.join-practice-btn {
 				<tr>
 					<td><%=notice.getTitle() %></td>
 					<!-- 公告的内容-->
-					<td><%=notice.getContent() %></td>
+					<td>
+					<%
+					String content=notice.getContent();
+					char[]arr=content.toCharArray();
+					char[]arr2=new char[10];
+					if(arr.length>10){
+						for(int j=0;j<10;j++){
+							arr2[j]=arr[j];
+						}
+						content=String.valueOf(arr2)+"......";
+						
+					}
+					
+					
+					%>
+					<%=content %>
+</td>
 					<!-- 公告的上传时间-->
 					<td><span class="span-info question-number"><%=notice.getTime() %></span></td>
 					<!-- 公告的上传-->

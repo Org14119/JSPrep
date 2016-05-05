@@ -75,11 +75,11 @@ a.join-practice-btn {
 			<div class="container">
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
-					  <li class="active">
+					  <li >
 							<a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li>
-							<a href="查看试题.html"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="Practice.jsp"><i class="fa fa-edit"></i>试题练习</a>
 						</li>
 						<li>
 							<a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
@@ -90,7 +90,7 @@ a.join-practice-btn {
                          <li>
 							<a href="BindingTeacher.jsp"><i class="fa fa-dashboard"></i>绑定老师</a>
 						</li>
-                        <li>
+                        <li class="active">
 							<a href="Feedback.jsp"><i class="fa fa-dashboard"></i>成绩反馈</a>
 						</li>
 				  </ul>
@@ -105,7 +105,7 @@ a.join-practice-btn {
 
 			<div class="container">
 				<ul class="nav nav-pills " style="margin:20px 0;">
-					<li role="presentation" class="active">
+					<li role="presentation" >
                     <!--选择是考试还是测试的结果-->
 						<a href="Feedback.jsp?fdbktype=1">考试历史</a>
 					</li>

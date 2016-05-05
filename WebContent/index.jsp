@@ -157,9 +157,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	
 																</td>
 																<td>
+																
 																<input type="image"
-																		src="<%=request.getContextPath()%>/validate" />
+																		src="<%=request.getContextPath()%>/validate" /><a href="index.jsp">看不清？</a>
 																</td>
+																
 															</tr>
 														</table>
 													</div>

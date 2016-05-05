@@ -69,7 +69,7 @@ a.join-practice-btn {
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="Home.jsp"><i class="fa fa-home"></i>主页</a>
 				</li>
-				<li><a href="Home.jsp"><i class="fa fa-edit"></i>试题练习</a></li>
+				<li><a href="Practice.jsp"><i class="fa fa-edit"></i>试题练习</a></li>
 				<li><a href="Test.jsp"><i class="fa fa-dashboard"></i>在线考试</a>
 				</li>
 				<li><a href="@teacher.jsp"><i class="fa fa-cogs"></i>@老师</a></li>
@@ -86,12 +86,21 @@ a.join-practice-btn {
 	<%
 		if (!(session.isNew() || session == null || session.getAttribute("announceList") == null)) {
 			//System.out.println("sdfadfdsafadsf");
-			List<Announce> announceList = (List) session.getAttribute("announceList");
-			System.out.println("sizesizesize"+announceList.size());
+			Student student = (Student) session.getAttribute("student");
+			List<Teacher> teachers = new ViewTeacherService().getBindedTeachers(student);
+			AnnounceService service = new AnnounceService();
+
+			List<Announce> announceList = new ArrayList<Announce>();
+			if (teachers.size() != 0) {
+				for (Teacher tempTeacher : teachers) {
+					announceList.addAll(service.getAnnounce(tempTeacher));
+				}
+			}
+			//System.out.println("sizesizesize" + announceList.size());
 			long id = Long.valueOf(request.getParameter("announceID"));
 			Announce ann = null;
 			for (Announce tempAnn : announceList) {
-				System.out.println("tempAnnwdsafasfd"+tempAnn.getId());
+				//System.out.println("tempAnnwdsafasfd"+tempAnn.getId());
 				if (tempAnn.getId() == id) {
 					ann = tempAnn;
 				}
@@ -121,9 +130,9 @@ a.join-practice-btn {
 							<tbody>
 
 								<tr>
-									<td><strong><%=ann.getTitle() %></strong></td>
+									<td><strong><%=ann.getTitle()%></strong></td>
 								<tr>
-									<td><%=ann.getContent() %></td>
+									<td><%=ann.getContent()%></td>
 								</tr>
 
 
