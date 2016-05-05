@@ -50,7 +50,7 @@
 					|| session.getAttribute("state") == null) {
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 
 	<%
 		} else {
@@ -120,23 +120,61 @@
 			<div class="container" style="margin-top: 40px;">
 				
 				<div class="row" style="margin-left: 50px;">
-					<div class="col-xs-8">
+					<div class="col-xs-14">
 						<div style="border-bottom: 1px solid #ddd;">
 							<h3 class="title"><i class="fa fa-cloud-upload"></i> 介绍</h3>
 						</div>	
 						
-						<div class="myDiv1">
-							介绍内容
+					<!-- 	<div class="myDiv1" > -->
+			<div class="full-slider">
+			<!-- Slider (Flex Slider) -->
+
+			<div class="container" >
+				<div class="row" >
+					<div class="col-md-12" >
+						<div class="flexslider">
+							<div class="flex-caption">
+								<!-- Left column -->
+								<div class="col-l">
+									<p style="text-indent:2em;">
+										Exam是国内首款一款基于JAVA与MYSQL开发的网络考试系统。它可以稳定、顺畅的运行在Windows与Linux平台上。您可以通过它快捷方便的创建试题和题库，发布试卷，组织考试，系统自动批改。高度的可配置性和灵活性使得它可以被应用于很多领域。
+									</p>
+							
+								</div>
+								<!-- Right column -->
+								<div class="col-r">
+
+									<!-- Use the class "flex-back" to add background inside flex slider -->
+
+									<!-- <img alt="" src="../resources/images/ad.png"> -->
+									<p>
+										如果您对软件有任何反馈和建议，加入我们的QQ群1111一起讨论吧!
+									</p>
+
+									<!-- Button -->
+									<a class="btn btn-default btn-cta" href="../index.jsp"><i class="fa fa-arrow-circle-down"></i> 马上加入我们吧</a>
+
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-xs-8"style="margin-right: 50px;">
+				</div>
+			</div>
+		</div>
+					<!-- 	</div> -->
+					</div>
+					<div class="col-xs-14"style="margin-right: 50px;">
 						<div style="border-bottom: 1px solid #ddd;">
 							<h3 class="title"><i class="fa fa-cloud-upload"></i> 申请加入的同学：</h3>
 						</div>	
 						
-						<div class="myDiv2">
-		<jsp:include page="teacherBindingInfo.jsp"></jsp:include>
-						</div>
+		         <jsp:include page="teacherBindingInfo.jsp"></jsp:include>
+						
+					</div>
+					<div class="col-xs-14"style="margin-right: 50px;">
+						<div style="border-bottom: 1px solid #ddd;">
+							<h3 class="title"><i class="fa fa-cloud-upload"></i> 我的资源：</h3>
+						</div>	
 					</div>
 				</div>
 				
@@ -207,7 +245,7 @@
 		} else {
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 	%>

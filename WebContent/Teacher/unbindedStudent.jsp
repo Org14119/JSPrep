@@ -227,7 +227,7 @@
 						<div class="copy">
 							<p>
 								在线考试系统 ?<!-- 这里面的 连接是本网站的连接 -->
-                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">学员管理</a>
+                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">学生管理</a>
 							</p>
 						</div>
 					</div>

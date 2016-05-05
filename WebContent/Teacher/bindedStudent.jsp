@@ -225,7 +225,7 @@
 						<div class="copy">
 							<p>
 								在线考试系统 ?<!-- 这里面的 连接是本网站的连接 -->
-                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">学员管理</a>
+                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">学生管理</a>
 							</p>
 						</div>
 					</div>
@@ -266,7 +266,7 @@
 		session.invalidate();
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 

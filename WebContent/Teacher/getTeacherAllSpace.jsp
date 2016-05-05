@@ -84,7 +84,7 @@
 							<a href="teacherIndex.jsp"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li class="active">
-							<a href="getTeacherAllSpace.jsp"><i class="fa fa-edit"></i>管理题库</a>
+							<a href="getTeacherAllSpace.jsp"><i class="fa fa-edit"></i>题库管理</a>
 						</li>
 						<li>
 							<a href="TestRecord.jsp"><i class="fa fa-dashboard"></i>考试记录</a>
@@ -116,7 +116,7 @@
 				<div class="row" style="margin-left: 50px;">
 					<div class="col-xs-10">
 						<div style="border-bottom: 1px solid #ddd;">
-							<h3 class="title"><i class="fa fa-edit"></i> 管理题库</h3>
+							<h3 class="title"><i class="fa fa-edit"></i> 题库管理</h3>
 						</div>	
 						<div>
 							<table class="table-striped table">
@@ -164,22 +164,6 @@
 		}
 	%>
 								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-
-
 							</table>
 						
 					</div>
@@ -191,7 +175,30 @@
 			</div>
 
 		</div>
-<a href="teacherQuestionBank.jsp" title="创建题库"><i class="fa fa-leaf">&nbsp</i><span class="left-menu-item-name"> 创建题库</span></a>
+		</div>
+		
+				<div class="content" style="margin-bottom: 100px;">
+
+			<div class="container" style="margin-top: 40px;">
+				
+				<div class="row" style="margin-left: 50px;">
+					<div class="col-xs-10">
+						<div style="border-bottom: 1px solid #ddd;">
+							<h3 class="title"><a href="teacherQuestionBank.jsp" title="创建题库"><i class="fa fa-leaf">&nbsp</i><span class="left-menu-item-name"> 创建题库</span></a></h3>
+						</div>	
+					
+				</div>
+				
+				
+
+			</div>
+
+		</div>
+		</div>
+		
+		
+		
+
 		<footer>
 			<div class="container">
 				<div class="row">
@@ -199,7 +206,7 @@
 						<div class="copy">
 							<p>
 								在线考试系统 ©<!-- 这里面的 连接是本网站的连接 -->
-                                 <a href="" target="_blank">在线考试系统</a> - <a href="getTeacherAllSpace.jsp" target="_blank">管理题库</a>
+                                 <a href="" target="_blank">在线考试系统</a> - <a href="getTeacherAllSpace.jsp" target="_blank">题库管理</a>
 							</p>
 						</div>
 					</div>

@@ -88,7 +88,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>acceptBinding</servlet-name>
-		<url-pattern>/acceptBinding</url-pattern>
+		<url-pattern>/Teacher/acceptBinding</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>studentLogout</servlet-name>

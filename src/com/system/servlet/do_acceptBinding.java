@@ -48,23 +48,24 @@ public class do_acceptBinding extends HttpServlet {
 						boolean b = acceptService.acceptBindingService(temps, teacher);
 						if (b) {
 							//System.out.println("成功同意");
-							req.getRequestDispatcher("viewStudent.jsp").forward(req, resp);
+							
 						} else {
 							//System.out.println("请求未成功");
-							req.getRequestDispatcher("error.jsp").forward(req, resp);
+							req.getRequestDispatcher("../error.jsp").forward(req, resp);
 						}
 					}
+					req.getRequestDispatcher("teacherIndex.jsp").forward(req, resp);
 
 				}
 				else{
 					System.out.println("系统错误");
-					req.getRequestDispatcher("viewStudent.jsp").forward(req, resp);
+					req.getRequestDispatcher("teacherIndex.jsp").forward(req, resp);
 				}
 			}
 		}
 		else{
 			session.invalidate();
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
+			req.getRequestDispatcher("../index.jsp").forward(req, resp);
 		}
 		
 

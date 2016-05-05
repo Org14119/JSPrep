@@ -99,7 +99,7 @@
 							<a href="bindedStudent.jsp"><i class="fa fa-user"></i>学生管理</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-cubes"></i>@学生</a>
+							<a href="@student.jsp"><i class="fa fa-cubes"></i>@学生</a>
 						</li>
 						<li class="active">
 							<a href="viewOldNotice.jsp"><i class="fa fa-dashboard"></i>公告管理</a>
@@ -166,7 +166,7 @@
 						<div class="copy">
 							<p>
 								在线考试系统 ?<!-- 这里面的 连接是本网站的连接 -->
-                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">管理题库</a>
+                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">公告管理</a>
 							</p>
 						</div>
 					</div>
@@ -185,20 +185,20 @@
 		session.invalidate();
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 
 			}
 			%>
-			<a href="notice.jsp">返回</a>
+			
 		<%} else {
 	%>
 	<%
 		session.invalidate();
 	%>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<%
 		}
 	%>

@@ -30,50 +30,59 @@
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 			List<Student> applyStudents = new BindingService().getApplyStudent(teacher);
 			Iterator<Student> iterator = applyStudents.iterator();
+	
 	%>
+	<div class="page-content">
+	<div id="teacher-list">
 	<form method="post" action="acceptBinding">
-		<%
-			String type1 = "checkbox";
-				String FormName = "acceptStudents";
-		%>
+
+		<table class="table-striped table">
+		<tr align="center">
+		<td  width="25%">
+		打勾
+		</td>
+		<td  width="25%">
+		姓名
+		</td>
+		<td  width="25%">
+		邮箱
+		</td>
+		<td  width="25%">
+		性别
+		</td>
+		</tr>
+		
+		
+		
 		<%
 			while (iterator.hasNext()) {
-					Student s = iterator.next();
-					String formValue = s.getEmail();
-					out.println("<input type=" + type1 + " name=" + FormName + " value=" + formValue + ">");
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-		%>
-		<%
-			out.print("Name:");
-					out.println(s.getName());
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-		%>
+					Student s = iterator.next();%>
+					<tr align="center">
+					<td  width="25%">
+					<input type="checkbox" name="acceptStudents" value=<%=s.getEmail() %>>
+					</td>	
+					<td  width="25%">
+					<%=s.getName() %>
+					</td>
+					<td  width="25%">
+					<%=s.getEmail() %>
+					</td>
+					<td  width="25%">
+					<%=(s.getGender().equals("0")) ? "男" : "女" %>
+					</td>
+					</tr>
+					
+					<% 
+	
 
-		<%
-			out.println("Email:" + s.getEmail());
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-		%>
-
-		<%
-			out.print("Gender:");
-					out.println((s.getGender().equals("0")) ? "男" : "女");
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-					out.println("&nbsp;");
-		%>
-
-		<%
 			}
 		%>
+		</table>
 		<br /> <br /> <br />
 		<button class="btn btn-success">允许</button>
 	</form>
+	</div>
+	</div>
 	<%
 		}
 	%>
