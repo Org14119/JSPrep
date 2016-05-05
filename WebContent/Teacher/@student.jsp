@@ -271,9 +271,38 @@
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 	&nbsp;
-	<form action="upLoadTeacherNormalFile" method="post"
-					enctype="multipart/form-data">
+	<div class="content" style="margin-bottom: 100px;">
+
+		<div class="container">
+			<br /> <br />
+
+			<div class="row">
+				<div class="col-xs-12">
+					<div style="border-bottom: 1px solid #ddd;">
+						<h3 class="title">
+							<i class="fa fa-book"></i> 上传文件
+						</h3>
+						<br />
+					
+					</div>
+
+					<table class="table-striped table">
+						<thead>
+
+							<tr>
+								<td>选择学生</td>
+								<td>选择文件</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody>
+	<tr>
+    <form action="upLoadTeacherNormalFile" method="post" enctype="multipart/form-data">
+
 	<input type="hidden" name="teacherEmail" value=<%=teacher.getEmail() %>>
+	
+	
+	<td>
 	<select name="studentEmail">
 	<%
 		Vector<Student> students = new BindingService().getAllStudent(teacher);
@@ -287,10 +316,31 @@
 		}
 	%>
 	</select>
+	</td>
 	
+	<td>
 	<input name="upFile"type="file"> 
+	</td>
+	
+	<td>
 	<button  class="btn btn-success btn-sm join-practice-btn" type="submit">上传文件</button>
+	</td>
 	</form>
+							</tr>
+
+						</tbody>
+						<tfoot></tfoot>
+					</table>
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+	</div>
+	
 	<footer>
 	<div class="container">
 		<div class="row">
@@ -300,7 +350,7 @@
 						在线考试系统 ©
 						<!-- 这里面的 连接是本网站的连接 -->
 						<a href="考试成绩反馈.html" target="_blank">在线考试系统的主页</a> - <a href="."
-							target="_blank">考试反馈</a>
+							target="_blank">@student</a>
 					</p>
 				</div>
 			</div>

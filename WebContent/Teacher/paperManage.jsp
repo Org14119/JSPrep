@@ -292,6 +292,22 @@
 			</div>
 
 		</div>
+				<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="copy">
+							<p>
+								在线考试系统 ?<!-- 这里面的 连接是本网站的连接 -->
+                                 <a href="＃" target="_blank">在线考试系统</a> - <a href="." target="_blank">试题管理</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</footer>
 			<script src="resources/js/question.js"></script>
 	<% 
 	
@@ -315,12 +331,12 @@
 	<%
 		}
 			%>
-			<a href="teacherIndex.jsp">返回</a>
+			
 		<%}
 		else{%>
 		<%session.invalidate(); %>
 		<%="会话过期或者未登录，请重新登录"%>
-		<a href="index.jsp">登录</a>
+		<a href="../index.jsp">登录</a>
 <% 	}
 	%>
 </body>
