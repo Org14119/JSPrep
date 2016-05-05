@@ -626,7 +626,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 		else{%>
 	<%session.invalidate(); %>
 	<%="会话过期或者未登录，请重新登录"%>
-	<a href="index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 	<% 	}
 	%>
 </body>

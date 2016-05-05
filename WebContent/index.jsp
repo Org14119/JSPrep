@@ -120,7 +120,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														用户名</label>
 													<div class="col-sm-10">
 														<table>
-														<td>
+														<td  width="400px">
 														<input type="text" name="username" class="form-control"
 															id="email1" placeholder="用户名"  />
 															</td>
