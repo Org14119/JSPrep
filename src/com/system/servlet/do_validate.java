@@ -44,7 +44,8 @@ public class do_validate extends HttpServlet {
 		// String random = drawRandomNum((Graphics2D) g,"l");//生成纯字母的验证码图片
 		String random = drawRandomNum((Graphics2D) g, createTypeFlag);// 根据客户端传递的createTypeFlag标识生成验证码图片
 		// 7.将随机数存在session中
-		request.getSession().setAttribute("checkcode", random);
+		request.getSession().setAttribute("checkCode", random);
+		System.out.println("生成的验证码" + random);
 		// 8.设置响应头通知浏览器以图片的形式打开
 		response.setContentType("image/jpeg");// 等同于response.setHeader("Content-Type",
 												// "image/jpeg");
@@ -169,10 +170,10 @@ public class do_validate extends HttpServlet {
 	 */
 	private String createRandomChar(Graphics2D g, String baseChar) {
 		StringBuffer sb = new StringBuffer();
-		int x = 6;
+		int x = 5;
 		String ch = "";
 		// 控制字数
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 4; i++) {
 			// 设置字体旋转角度
 			int degree = new Random().nextInt() % 30;
 			ch = baseChar.charAt(new Random().nextInt(baseChar.length())) + "";

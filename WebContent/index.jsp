@@ -32,7 +32,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <!--Google Fonts-->
@@ -81,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div></li>
 				</ul>
 			</div>
-			<!--script-->	
+			<!--script-->
 			<div class="bann-bottom">
 				<h1>在线考试</h1>
 
@@ -120,32 +122,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														用户名</label>
 													<div class="col-sm-10">
 														<table>
-														<td  width="400px">
-														<input type="text" name="username" class="form-control"
-															id="email1" placeholder="用户名"  />
+															<td width="400px"><input type="text" name="username"
+																class="form-control" id="email1" placeholder="用户名" />
 															</td>
-															<td>
-														<span class="span-red" ></span></td>
+															<td><span class="span-red"></span></td>
 														</table>
 													</div>
 												</div>
-									
+
 												<div class="form-group">
 													<label for="exampleInputPassword1"
 														class="col-sm-2 control-label"> 密码</label>
 													<div class="col-sm-10">
 														<table>
-													     <td width="400px">
-														<input type="password" name="password"class="form-control" 
-															id="exampleInputPassword1"  placeholder="密码"/>
-															</td>
-														<td>	
-														<span class="span-red" ></span>
-														</td>
+															<tr>
+																<td width="400px"><input type="password"
+																	name="password" class="form-control"
+																	id="exampleInputPassword1" placeholder="密码" /></td>
+															</tr>
+
+
 														</table>
-															
 													</div>
-													<input type="radio" name="identity" value="用户" checked="checked">学生
+												</div>
+												<div class="form-group">
+													<label for="exampleInputPassword1"
+														class="col-sm-2 control-label"> 验证码</label>
+													<div class="col-sm-10">
+														<table>
+														
+															<tr>
+																<td  width="270px">
+																<input type="text" class="form-control" name="checkCode" placeholder="验证码">
+																	
+																</td>
+																<td>
+																<input type="image"
+																		src="<%=request.getContextPath()%>/validate" />
+																</td>
+															</tr>
+														</table>
+													</div>
+													<input type="radio" name="identity" value="用户"
+														checked="checked">学生
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 														type="radio" name="identity" value="教师">教师<br>
 												</div>
@@ -167,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<div class="col-sm-10">
 														<div class="row">
 															<div class="col-md-3">
-																<select class="form-control" name="type" >
+																<select class="form-control" name="type">
 																	<option value="teacher">老师</option>
 																	<option value="student">学生</option>
 
@@ -175,13 +194,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 															</div>
 															<div class="col-md-9">
 																<table>
-																 <td width="240px">
-																<input type="text" name="name" class="form-control" id="input_name"
-																	placeholder="用户名" />
-																</td>
-																<td>	
-																	<span class="span-red" ></span>
-																</td>
+																	<td width="240px"><input type="text" name="name"
+																		class="form-control" id="input_name" placeholder="用户名" />
+																	</td>
+																	<td><span class="span-red"></span></td>
 																</table>
 															</div>
 														</div>
@@ -192,28 +208,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														邮箱</label>
 													<div class="col-sm-10">
 														<table>
-														<td width="429px">
-														<input type="text" name="email" class="form-control"
-															id="email" placeholder="邮箱" />
-														</td>
-														<td>	
-															<span class="span-red" ></span>
-														</td>
+															<td width="429px"><input type="text" name="email"
+																class="form-control" id="email" placeholder="邮箱" /></td>
+															<td><span class="span-red"></span></td>
 														</table>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="mobile" class="col-sm-2 control-label">
 														电话</label>
-													<div class="col-sm-10">									
+													<div class="col-sm-10">
 														<table>
-														<td width="429px">
-														<input type="text" name="phone" class="form-control"
-															id="mobile" placeholder="电话" />
-														</td>
-														<td>	
-															<span class="span-red" ></span>
-														</td>
+															<td width="429px"><input type="text" name="phone"
+																class="form-control" id="mobile" placeholder="电话" /></td>
+															<td><span class="span-red"></span></td>
 														</table>
 													</div>
 												</div>
@@ -221,14 +229,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<label for="password" class="col-sm-2 control-label">
 														密码</label>
 													<div class="col-sm-10">
-															<table>
-														<td width="429px">
-														<input type="password" name="password"
-															class="form-control" id="password" placeholder="密码" />
-														</td>
-														<td>	
-															<span class="span-red" ></span>
-														</td>
+														<table>
+															<td width="429px"><input type="password"
+																name="password" class="form-control" id="password"
+																placeholder="密码" /></td>
+															<td><span class="span-red"></span></td>
+														</table>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputPassword1"
+														class="col-sm-2 control-label"> 验证码</label>
+													<div class="col-sm-10">
+														<table>
+														
+															<tr>
+																<td  width="270px">
+																<input type="text" class="form-control" name="checkCode" placeholder="验证码">
+																	
+																</td>
+																<td>
+																<input type="image"
+																		src="<%=request.getContextPath()%>/validate" />
+																</td>
+															</tr>
 														</table>
 													</div>
 												</div>

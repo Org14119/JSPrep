@@ -204,7 +204,7 @@ public class NormalFileService {
 	/*
 	 * 下载的时候获取输入流
 	 */
-	public InputStream downFile(String ablocate) {
+	public InputStream downFile(String ablocate,boolean type) {
 		Connection conn = ConnectionFactory.getInstace().makeConnection();
 		File file = new File(ablocate);
 		try {
@@ -212,7 +212,9 @@ public class NormalFileService {
 			SaveFile sfile = new SaveFile();
 			sfile.setFileLocate(ablocate);
 			sfile.setAccept(true);
+			if(type){
 			new FileDaoImpl().update(conn, sfile);
+			}
 			conn.commit();
 			return new FileInputStream(file);
 		} catch (Exception e) {

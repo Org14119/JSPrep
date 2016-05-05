@@ -1,6 +1,7 @@
 package com.system.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,16 +34,25 @@ public class do_login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		if(!session.isNew()){
+		String trueCode=(String)session.getAttribute("checkCode");
+		if(!session.isNew()&&trueCode!=null){
+			String checkCode = request.getParameter("checkCode");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String identity = request.getParameter("identity");
-			if (username == null || password == null || identity == null || username.contentEquals("")
+			if (username == null || password == null || checkCode==null ||identity == null || username.contentEquals("")
 					|| password.contentEquals("") || identity.contentEquals("")) {
 				response.sendRedirect("error.jsp");
 				return;
 			}
-
+			if(!checkCode.toUpperCase().equals(trueCode.toUpperCase())){
+				PrintWriter writer=response.getWriter();
+				response.setCharacterEncoding("UTF-8");
+				System.out.println(checkCode);
+				System.out.println(trueCode);
+				writer.println("Verify Code was wrong!");
+				return;
+			}
 			if (identity.equals("用户")) {
 
 				Student s = new Student();

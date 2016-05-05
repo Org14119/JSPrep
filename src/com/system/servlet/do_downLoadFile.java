@@ -36,7 +36,8 @@ public class do_downLoadFile extends HttpServlet {
 			return;
 		}
 		//System.out.println(filePath + "/" + fileName);
-		in = new NormalFileService().downFile(filePath+"/"+fileName);
+		
+		in = new NormalFileService().downFile(filePath+"/"+fileName,req.getSession().getAttribute("teacher")!=null);
 		if(in!=null){
 			int length = in.available();
 			// 设置相应正文的MIME类型
