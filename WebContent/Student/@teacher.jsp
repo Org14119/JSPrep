@@ -256,13 +256,47 @@ a.join-practice-btn {
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				&nbsp; &nbsp; &nbsp; &nbsp;
+
 				<%
 					List<Teacher> teachers = new ViewTeacherService().getBindedTeachers(student);
 						if (teachers != null) {
 				%>
+				
+				
+								
+				<div class="col-xs-12">
+					<div style="border-bottom: 1px solid #ddd;">
+						<h3 class="title">
+							<i class="fa fa-book"></i> 上传文件
+						</h3>
+						<br />
+						<!-- 这里面的 是默认的第一题库 -->
+					</div>
+
+					<table class="table-striped table">
+						<thead>
+
+							<tr>
+								<td>选择老师</td>
+								<td>文件名</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody>
+		
+					
+	
+							
+
+
+
+				
+				
+				
 				<form action="uploadStudentFile" method="post"
 					enctype="multipart/form-data">
-					请选择你要上传文件的老师<select name="teacherEmail">
+					<tr>
+					<td><select name="teacherEmail">
 						<%
 							Iterator<Teacher> iter = teachers.iterator();
 
@@ -270,22 +304,35 @@ a.join-practice-btn {
 										Teacher tempTeacher = iter.next();
 						%>
 
+
 						<option value=<%=tempTeacher.getEmail()%>><%=tempTeacher.getName()%></option>
 
 						<%
 							}
 						%>
 					</select>
-					 <input name="upFile"type="file"> <input type="hidden"name="studentEmail" value=<%=student.getEmail()%> />
-					<button type="submit" 
-						class="btn btn-success btn-sm join-practice-btn">上传文件</button>
+					</td>
+					<td> <input name="upFile"type="file"> <input type="hidden"name="studentEmail" value=<%=student.getEmail()%> /></td>
+					<td><button type="submit" 
+						class="btn btn-success btn-sm join-practice-btn">上传文件</button></td>
+						</tr>
 				</form>
-			</div>
-		</div>
-	</div>
 	<%
 		}
 	%>
+	
+							</tbody>
+						<tfoot></tfoot>
+					</table>
+				</div>
+	
+			</div>
+			
+			
+			
+		</div>
+	</div>
+
 	<footer>
 	<div class="container">
 		<div class="row">
