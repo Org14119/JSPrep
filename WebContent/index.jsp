@@ -139,6 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																<td width="400px"><input type="password"
 																	name="password" class="form-control"
 																	id="exampleInputPassword1" placeholder="密码" /></td>
+																	<td><span class="span-red"></span></td>
 															</tr>
 
 
