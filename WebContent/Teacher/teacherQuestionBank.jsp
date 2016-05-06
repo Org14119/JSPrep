@@ -163,7 +163,7 @@
 	<%
 		}
 			%>
-			<a href="teacherIndex.jsp">返回</a>
+			<!-- <a href="teacherIndex.jsp">返回</a> -->
 		<%} else {
 	%>
 	<%
