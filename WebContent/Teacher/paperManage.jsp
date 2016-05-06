@@ -162,7 +162,9 @@
 	<%
 	String spaceID = request.getParameter("spaceID");
 	if(spaceID==null||spaceID.equals("")){
+		//if(spacelists.size()>=0){
 		spaceID=String.valueOf(spacelists.get(0).getId());
+		//}
 		
 	}
 	if(spaceID!=null&&!spaceID.equals("")){
