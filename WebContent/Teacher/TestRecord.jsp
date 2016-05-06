@@ -325,7 +325,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=student.getGender() %></td>
 								<td width="16%"><%=student.getEmail() %></td>
 								<td width="20%"><%=test.getTestTime() %></td>
-								<td width="16%"><%=score %></td>
+								<td width="16%"><%=test.getTestScore()%></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
 									<td width="16%"><button class="btn btn-success"><%=str%></button></td>
@@ -542,7 +542,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=student.getGender() %></td>
 								<td width="16%"><%=student.getEmail() %></td>
 								<td width="20%"><%=test.getTestTime() %></td>
-								<td width="16%"><%=score %></td>
+								<td width="16%"><%=test.getTestScore() %></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
 									<td width="16%"><button class="btn btn-success"><%=str%></button></td>

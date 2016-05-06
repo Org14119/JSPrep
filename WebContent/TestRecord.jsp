@@ -187,6 +187,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 									}
 									if (all != 0 && all > checked) {
 										str = "批改";
+										
 	%>
 
 
@@ -256,6 +257,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 		for (Map.Entry<Test, Student> me : map.entrySet()) {
 							test = me.getKey();
 							student = me.getValue();
+							
 							if (student.getGender().equals("0")) {
 								student.setGender("男");
 							} else {
@@ -274,6 +276,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 									}
 									if (all != 0 && all == checked) {
 										str = "查看";
+										
 	%>
 
 
@@ -281,8 +284,9 @@ if(spaceID!=null&&!spaceID.equals("")){
 								<td width="16%"><%=student.getName() %></td>
 								<td width="16%"><%=student.getGender() %></td>
 								<td width="16%"><%=student.getEmail() %></td>
-								<td width="20%"><%=test.getTestTime() %></td>
-								<td width="16%"><%=score %></td>
+								<td width="20%"><%=test.getTestTime()%></td>
+								<%System.out.println(test.getTestScore()); %>
+								<td width="16%"><%=test.getTestScore() %></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
 									<td width="16%"><button><%=str%></button></td>
@@ -491,6 +495,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 									}
 									if (all != 0 && all == checked) {
 										str = "查看";
+										score=test.getTestScore();
 	%>
 
 
