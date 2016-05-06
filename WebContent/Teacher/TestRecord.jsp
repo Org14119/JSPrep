@@ -213,9 +213,9 @@ if(spaceID!=null&&!spaceID.equals("")){
 							test = me.getKey();
 							student = me.getValue();
 							if (student.getGender().equals("0")) {
-								student.setGender("男");
+								//student.setGender("男");
 							} else {
-								student.setGender("女");
+								//student.setGender("女");
 							}
 
 							if (test.isExam()) {
@@ -235,7 +235,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 
 							<tr align="center">
 								<td width="16%"><%=student.getName() %></td>
-								<td width="16%"><%=student.getGender() %></td>
+								<td width="16%"><%=student.getGender().equals("0")?"男":"女" %></td>
 								<td width="16%"><%=student.getEmail() %></td>
 								<td width="20%"><%=test.getTestTime() %></td>
 								<td width="16%"><%=score %></td>
@@ -300,9 +300,9 @@ if(spaceID!=null&&!spaceID.equals("")){
 							test = me.getKey();
 							student = me.getValue();
 							if (student.getGender().equals("0")) {
-								student.setGender("男");
+								//student.setGender("男");
 							} else {
-								student.setGender("女");
+								//student.setGender("女");
 							}
 
 							if (test.isExam()) {
@@ -322,10 +322,10 @@ if(spaceID!=null&&!spaceID.equals("")){
 
 							<tr align="center">
 								<td width="16%"><%=student.getName() %></td>
-								<td width="16%"><%=student.getGender() %></td>
+								<td width="16%"><%=student.getGender().equals("0")?"男":"女" %></td>
 								<td width="16%"><%=student.getEmail() %></td>
 								<td width="20%"><%=test.getTestTime() %></td>
-								<td width="16%"><%=score %></td>
+								<td width="16%"><%=test.getTestScore()%></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
 									<td width="16%"><button class="btn btn-success"><%=str%></button></td>
@@ -429,10 +429,12 @@ if(spaceID!=null&&!spaceID.equals("")){
 		for (Map.Entry<Test, Student> me : map.entrySet()) {
 							test = me.getKey();
 							student = me.getValue();
+							//System.out.println(student.getGender());
 							if (student.getGender().equals("0")) {
-								student.setGender("男");
+								
+								//student.setGender("男");
 							} else {
-								student.setGender("女");
+								//student.setGender("女");
 							}
 
 							if (!test.isExam()) {
@@ -452,7 +454,7 @@ if(spaceID!=null&&!spaceID.equals("")){
 
 							<tr align="center">
 								<td width="16%"><%=student.getName() %></td>
-								<td width="16%"><%=student.getGender() %></td>
+								<td width="16%"><%=student.getGender().equals("0")?"男":"女" %></td>
 								<td width="16%"><%=student.getEmail() %></td>
 								<td width="20%"><%=test.getTestTime() %></td>
 								<td width="16%"><%=score %></td>
@@ -517,9 +519,9 @@ if(spaceID!=null&&!spaceID.equals("")){
 							test = me.getKey();
 							student = me.getValue();
 							if (student.getGender().equals("0")) {
-								student.setGender("男");
+								//student.setGender("男");
 							} else {
-								student.setGender("女");
+								//student.setGender("女");
 							}
 
 							if (!test.isExam()) {
@@ -539,10 +541,10 @@ if(spaceID!=null&&!spaceID.equals("")){
 
 							<tr align="center">
 								<td width="16%"><%=student.getName() %></td>
-								<td width="16%"><%=student.getGender() %></td>
+								<td width="16%"><%=student.getGender().equals("0")?"男":"女" %></td>
 								<td width="16%"><%=student.getEmail() %></td>
 								<td width="20%"><%=test.getTestTime() %></td>
-								<td width="16%"><%=score %></td>
+								<td width="16%"><%=test.getTestScore() %></td>
 								<form method="post" action="viewStudentTestPaper.jsp">
 									<input type="hidden" name="testID" value=<%=test.getTestID()%>>
 									<td width="16%"><button class="btn btn-success"><%=str%></button></td>

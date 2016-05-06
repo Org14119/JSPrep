@@ -63,7 +63,7 @@
 				}else if(oInputEmail.value.length > 60 ||oInputEmail.value.length < 9){
 					aSpan[3].innerHTML="请保持在9-60个字符以内";
 				}else if(9<= oInputEmail.value.length <=60){
-				   var email = oInput1.value;    
+				   var email = oInputEmail.value;    
 						//以字母或数字开头，跟上@,字母数字以.com结尾
 				   var expr =  /^([0-9]|[a-z])+@([0-9]|[a-z])+(\.[c][o][m])$/i;
 				   if(!expr.test(email))
