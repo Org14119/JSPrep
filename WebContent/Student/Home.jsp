@@ -133,7 +133,7 @@ a.join-practice-btn {
 
 
 
-				<a class="btn btn-primary" href="user-register">欢迎您<%=s.getName()%></a>
+				<a class="btn btn-primary" href="">欢迎您<%=s.getName()%></a>
 				<a class="btn btn-success" href="logout">退出</a>
 
 			</div>
@@ -198,7 +198,7 @@ a.join-practice-btn {
 								<p>如果您对软件有任何反馈和建议，加入我们的QQ群一起讨论吧</p>
 
 								<!-- Button -->
-								<a class="btn btn-default btn-cta" href="user-register"><i
+								<a class="btn btn-default btn-cta" href=""><i
 									class="fa fa-arrow-circle-down"></i> 马上加入我们吧</a>
 
 							</div>

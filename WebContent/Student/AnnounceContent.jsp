@@ -52,7 +52,7 @@ a.join-practice-btn {
 			</div>
 			<div class="col-xs-7" id="login-info">
 
-				<a class="btn btn-primary" href="user-register">欢迎您kim！</a>
+				<a class="btn btn-primary" href="">欢迎您kim！</a>
 				<!--跳转到登陆界面-->
 				<a class="btn btn-success" href="user-login-page">退出</a>
 

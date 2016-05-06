@@ -74,7 +74,7 @@ a.join-practice-btn {
 			</div>
 			<div class="col-xs-7" id="login-info">
 
-				<a class="btn btn-primary" href="user-register">欢迎您<%=student.getName()%></a>
+				<a class="btn btn-primary" href="">欢迎您<%=student.getName()%></a>
 				<a class="btn btn-success" href="logout">退出</a>
 
 			</div>
